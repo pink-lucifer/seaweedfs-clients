@@ -1,0 +1,85 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+        jcenter()
+        mavenCentral()
+    }
+}
+
+plugins {
+    id 'java'
+    id "nebula.dependency-recommender" version "5.2.0"
+    id "nebula.maven-resolved-dependencies" version "7.1.0"
+    id "nebula.maven-publish" version "7.1.0"
+    id "com.google.protobuf" version "0.8.5"
+    id  'maven-publish'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencyRecommendations {
+    strictMode = false
+    mavenBom module: "com.github.lufs.seaweedfs:seaweedfs-clients-bom:${seaweedfsClientVersion}"
+}
+
+dependencies {
+    compile ('io.grpc:grpc-stub')
+    compile ('io.grpc:grpc-protobuf')
+    compile ('io.grpc:grpc-netty-shaded')
+    compile ('com.google.protobuf:protobuf-java')
+    compile ('com.google.protobuf:protobuf-java-util')
+    testCompile("junit:junit:${junitVersion}")
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/protobuf'
+            srcDir 'src/main/grpcjava'
+        }
+    }
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:${protocVersion}"
+    }
+    plugins {
+        grpc {
+            artifact = "io.grpc:protoc-gen-grpc-java:${grpcVersion}"
+        }
+    }
+
+    generateProtoTasks {
+        ofSourceSet('main').each { task ->
+            task.builtins {
+                java {
+                    outputSubDir = 'protobuf'
+                }
+            }
+            task.plugins {
+                grpc {
+                    outputSubDir = 'grpcjava'
+                }
+            }
+        }
+    }
+    generatedFilesBaseDir = "$projectDir/src/"
+}
+
+task cleanProtoGen {
+    doFirst {
+        delete("$projectDir/src/main/grpcjava")
+        delete("$projectDir/src/main/protobuf")
+    }
+}
+//clean.dependsOn cleanProtoGen

@@ -1,0 +1,76 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+        jcenter()
+        mavenCentral()
+    }
+}
+
+plugins {
+    id 'java'
+    id "nebula.dependency-recommender" version "5.2.0"
+    id 'nebula.maven-resolved-dependencies' version "7.1.0"
+    id 'nebula.maven-publish' version "7.1.0"
+    id 'com.google.protobuf' version "0.8.5"
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencyRecommendations {
+    strictMode = false
+    mavenBom module: "com.github.lufs.seaweedfs:seaweedfs-clients-bom:${seaweedfsClientVersion}"
+}
+
+dependencies {
+    compile ('com.google.code.gson:gson')
+    compile ('com.squareup.retrofit2:retrofit'){
+        transitive=true
+        exclude group: 'com.squareup.okhttp3', module: 'okhttp'
+        exclude group: 'com.squareup.okio', module: 'okio'
+    }
+    compile ('com.squareup.retrofit2:converter-gson')
+    compile ('com.squareup.retrofit2:adapter-rxjava2'){
+        transitive=true
+        exclude group: 'io.reactivex.rxjava2', module: 'rxjava'
+    }
+    compile ('io.reactivex.rxjava2:rxjava')
+    compile ('com.squareup.okhttp3:okhttp')
+    compile ('com.squareup.okhttp3:logging-interceptor')
+    compile ('org.slf4j:slf4j-api:1.7.25')
+    compile ('ch.qos.logback:logback-classic:1.2.3')
+    compileOnly('org.projectlombok:lombok')
+    testCompile ('junit:junit:4.12')
+    testCompileOnly('org.projectlombok:lombok')
+}
+
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId project.group
+            artifactId project.name
+            version project.version
+            from components.java
+        }
+    }
+}
+publishing {
+    repositories {
+        maven {
+            url "http://repo.ebyfnet.com/repository/maven-snapshots/"
+            credentials {
+                username = 'java'
+                password = '123456'
+            }
+        }
+    }
+}

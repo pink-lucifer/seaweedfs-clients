@@ -1,0 +1,31 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+        jcenter()
+        mavenCentral()
+    }
+}
+
+plugins {
+    id 'java'
+    id "nebula.dependency-recommender" version "5.2.0"
+    id "nebula.maven-resolved-dependencies" version "7.1.0"
+    id "nebula.maven-publish" version "7.1.0"
+    id "com.google.protobuf" version "0.8.5"
+    id  'maven-publish'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
