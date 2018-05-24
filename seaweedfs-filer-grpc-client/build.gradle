@@ -37,7 +37,11 @@ dependencies {
     compile ('io.grpc:grpc-netty-shaded')
     compile ('com.google.protobuf:protobuf-java')
     compile ('com.google.protobuf:protobuf-java-util')
+    compile ('org.slf4j:slf4j-api')
+    compile ('ch.qos.logback:logback-classic')
+    compileOnly('org.projectlombok:lombok')
     testCompile("junit:junit:${junitVersion}")
+    testCompileOnly('org.projectlombok:lombok')
 }
 
 sourceSets {

@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package filer_pb;
 
-option java_package = "com.github.lufs.seaweedfs.filer.protos";
+option java_package = "seaweedfs.filer.protos";
 option java_outer_classname = "SeaweedFilerProtos";
 
 
