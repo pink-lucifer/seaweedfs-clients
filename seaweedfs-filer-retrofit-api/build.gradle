@@ -66,10 +66,10 @@ publishing {
 publishing {
     repositories {
         maven {
-            url "http://repo.ebyfnet.com/repository/maven-snapshots/"
+            url "http://repo.internal.com/repository/maven-snapshots/"
             credentials {
                 username = 'java'
-                password = '123456'
+                password = 'userpwd'
             }
         }
     }

@@ -77,16 +77,16 @@ publishing {
             artifactId = 'seaweedfs-clients-bom'
 
             // further customization of the POM is allowed if desired
-            // pom.withXml { asNode().appendNode('description', 'maven POM for ebyf framework') }
+            // pom.withXml { asNode().appendNode('description', 'maven POM for seaweedfs-clients') }
         }
     }
     repositories {
         maven {
             // point this to your destination repository
-            url "http://repo.ebyfnet.com/repository/maven-snapshots/"
+            url "http://repo.internal.com/repository/maven-snapshots/"
             credentials {
                 username = 'java'
-                password = '123456'
+                password = 'userpwd'
             }
         }
     }
