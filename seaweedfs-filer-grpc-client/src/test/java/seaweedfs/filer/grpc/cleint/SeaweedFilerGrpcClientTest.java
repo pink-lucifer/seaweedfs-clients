@@ -25,7 +25,7 @@ public class SeaweedFilerGrpcClientTest {
 
     @Test
     public void listEntries() {
-        SeaweedFilerProtos.ListEntriesResponse response = TestConfigurations.getClient()
+        SeaweedFilerProtos.ListEntriesResponse response = TestConfigurations.getPlainTextClient()
                 .listEntries(
                         SeaweedFilerProtoUtil.newListEntriesRequest("avatar"))
                 .orElse(null);

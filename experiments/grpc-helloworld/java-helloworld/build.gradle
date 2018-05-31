@@ -1,0 +1,89 @@
+buildscript {
+    ext {
+        protocVersion = '3.5.1'
+        grpcVersion = '1.12.0'
+    }
+    repositories {
+        mavenLocal()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+        jcenter()
+        mavenCentral()
+    }
+}
+
+plugins {
+    id 'java'
+    id 'application'
+    id "com.google.protobuf" version "0.8.5"
+    id "com.github.johnrengelman.shadow" version "2.0.4"
+}
+
+group 'io.grpc'
+version '0.0.1-SNAPSHOT'
+
+mainClassName = 'io.grpc.examples.helloworld.HelloWorldClient'
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    compile ("io.grpc:grpc-stub:${grpcVersion}")
+    compile ("io.grpc:grpc-protobuf:${grpcVersion}")
+    compile ("io.grpc:grpc-netty-shaded:${grpcVersion}")
+    compile ("com.google.protobuf:protobuf-java:${protocVersion}")
+    compile ("com.google.protobuf:protobuf-java-util:${protocVersion}")
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/protobuf'
+            srcDir 'src/main/grpcjava'
+        }
+    }
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:${protocVersion}"
+    }
+    plugins {
+        grpc {
+            artifact = "io.grpc:protoc-gen-grpc-java:${grpcVersion}"
+        }
+    }
+
+    generateProtoTasks {
+        ofSourceSet('main').each { task ->
+            task.builtins {
+                java {
+                    outputSubDir = 'protobuf'
+                }
+            }
+            task.plugins {
+                grpc {
+                    outputSubDir = 'grpcjava'
+                }
+            }
+        }
+    }
+    generatedFilesBaseDir = "$projectDir/src/"
+}
+
+task cleanProtoGen {
+    doFirst {
+        delete("$projectDir/src/main/grpcjava")
+        delete("$projectDir/src/main/protobuf")
+    }
+}
+//clean.dependsOn cleanProtoGen
