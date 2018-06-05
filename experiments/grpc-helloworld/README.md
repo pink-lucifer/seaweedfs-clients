@@ -254,3 +254,10 @@ java -jar java-helloworld-0.0.1-SNAPSHOT-all.jar  lucifer
 
 ## Guess
 seems to me, grpc java client would couple Magic and SETTINGS[0] frame together, which cause cmux dispatch grpc request to http server.
+
+
+## Conclusion:
+from cmux [limitation](https://github.com/soheilhy/cmux#limitations):
+Java gRPC Clients: Java gRPC client blocks until it receives a SETTINGS frame from the server. If you are using the Java client to connect to a cmux'ed gRPC server please match with writers:
+
+grpcl := m.MatchWithWriters(cmux.HTTP2MatchHeaderFieldSendSettings("content-type", "application/grpc")

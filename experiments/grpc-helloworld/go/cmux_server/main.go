@@ -57,9 +57,10 @@ func main() {
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
-
 	m := cmux.New(lis)
-	grpcL := m.Match(cmux.HTTP2HeaderField("content-type", "application/grpc"))
+	grpcL := m.MatchWithWriters(cmux.HTTP2MatchHeaderFieldSendSettings("content-type", "application/grpc"))
+	//grpcL := m.Match(cmux.HTTP2HeaderField("content-type", "application/grpc"),
+	//	cmux.HTTP2HeaderField("content-type", "application/grpc+proto"))
 	httpL := m.Match(cmux.Any())
 
 	grpcS := grpc.NewServer()
