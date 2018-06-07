@@ -3,7 +3,7 @@ package seaweedfs.filer.retrofitapi;
 import io.reactivex.Flowable;
 import io.reactivex.Single;
 import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.http.*;
@@ -27,8 +27,12 @@ public interface SeaweedFilerService {
     FilerPostResult update3(@Url String url, @Part MultipartBody.Part part);
 
     @DELETE
-    Flowable<Response> remove(@Url String url, @Body RequestBody requestBody);
+    Single<Response<ResponseBody>> delete(@Url String url);
 
     @GET
-    Flowable<Response> download(@Url String url);
+    Single<Response<ResponseBody>> download(@Url String url);
+
+    @Streaming
+    @GET
+    Single<Response<ResponseBody>> streamDownload(@Url String url);
 }

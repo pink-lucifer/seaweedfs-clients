@@ -58,36 +58,19 @@ public class SeaweedFilerGrpcClient {
         }
     }
 
-    public Optional<SeaweedFilerProtos.GetFileAttributesResponse> getFileAttributes(SeaweedFilerProtos.GetFileAttributesRequest request) {
-        log.info("SeaweedFilerGrpcClient.getFileAttributes starting ... ... GetFileAttributesRequest {}", request);
+    public Optional<SeaweedFilerProtos.GetEntryAttributesResponse> getFileAttributes(SeaweedFilerProtos.GetEntryAttributesRequest request) {
+        log.info("SeaweedFilerGrpcClient.getFileAttributes starting ... ... GetEntryAttributesRequest {}", request);
         try {
-            SeaweedFilerProtos.GetFileAttributesResponse response = newFutureStub()
-                    .getFileAttributes(request).get(60, TimeUnit.SECONDS);
+            SeaweedFilerProtos.GetEntryAttributesResponse response = newFutureStub()
+                    .getEntryAttributes(request).get(60, TimeUnit.SECONDS);
 
-            log.info("SeaweedFilerGrpcClient.getFileAttributes done ... ... GetFileAttributesResponse {}", request);
+            log.info("SeaweedFilerGrpcClient.getFileAttributes done ... ... GetEntryAttributesResponse {}", request);
             return Optional.ofNullable(response);
         } catch (InterruptedException | ExecutionException | TimeoutException e) {
             if (log.isDebugEnabled()) {
                 e.printStackTrace();
             }
             log.error("SeaweedFilerGrpcClient.getFileAttributes .. exception {}", e.getLocalizedMessage());
-            return Optional.empty();
-        }
-    }
-
-    public Optional<SeaweedFilerProtos.GetFileContentResponse> getFileContent(SeaweedFilerProtos.GetFileContentRequest request) {
-        log.info("SeaweedFilerGrpcClient.getFileContent starting ... ... GetFileContentRequest {}", request);
-        try {
-            SeaweedFilerProtos.GetFileContentResponse response = newFutureStub()
-                    .getFileContent(request).get(60, TimeUnit.SECONDS);
-
-            log.info("SeaweedFilerGrpcClient.getFileContent done ... ... GetFileContentResponse {}", request);
-            return Optional.ofNullable(response);
-        } catch (InterruptedException | ExecutionException | TimeoutException e) {
-            if (log.isDebugEnabled()) {
-                e.printStackTrace();
-            }
-            log.error("SeaweedFilerGrpcClient.getFileContent .. exception {}", e.getLocalizedMessage());
             return Optional.empty();
         }
     }

@@ -47,6 +47,7 @@ dependencies {
     compile ('com.squareup.okhttp3:logging-interceptor')
     compile ('org.slf4j:slf4j-api')
     compile ('ch.qos.logback:logback-classic')
+    compile ('javax.annotation:javax.annotation-api')
     compileOnly('org.projectlombok:lombok')
     testCompile ('junit:junit:4.12')
     testCompileOnly('org.projectlombok:lombok')

@@ -102,78 +102,115 @@ public final class SeaweedFilerGrpc {
      return getListEntriesMethod;
   }
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
-  @java.lang.Deprecated // Use {@link #getGetFileAttributesMethod()} instead. 
-  public static final io.grpc.MethodDescriptor<seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest,
-      seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse> METHOD_GET_FILE_ATTRIBUTES = getGetFileAttributesMethodHelper();
+  @java.lang.Deprecated // Use {@link #getGetEntryAttributesMethod()} instead. 
+  public static final io.grpc.MethodDescriptor<seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest,
+      seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse> METHOD_GET_ENTRY_ATTRIBUTES = getGetEntryAttributesMethodHelper();
 
-  private static volatile io.grpc.MethodDescriptor<seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest,
-      seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse> getGetFileAttributesMethod;
+  private static volatile io.grpc.MethodDescriptor<seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest,
+      seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse> getGetEntryAttributesMethod;
 
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
-  public static io.grpc.MethodDescriptor<seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest,
-      seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse> getGetFileAttributesMethod() {
-    return getGetFileAttributesMethodHelper();
+  public static io.grpc.MethodDescriptor<seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest,
+      seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse> getGetEntryAttributesMethod() {
+    return getGetEntryAttributesMethodHelper();
   }
 
-  private static io.grpc.MethodDescriptor<seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest,
-      seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse> getGetFileAttributesMethodHelper() {
-    io.grpc.MethodDescriptor<seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest, seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse> getGetFileAttributesMethod;
-    if ((getGetFileAttributesMethod = SeaweedFilerGrpc.getGetFileAttributesMethod) == null) {
+  private static io.grpc.MethodDescriptor<seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest,
+      seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse> getGetEntryAttributesMethodHelper() {
+    io.grpc.MethodDescriptor<seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest, seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse> getGetEntryAttributesMethod;
+    if ((getGetEntryAttributesMethod = SeaweedFilerGrpc.getGetEntryAttributesMethod) == null) {
       synchronized (SeaweedFilerGrpc.class) {
-        if ((getGetFileAttributesMethod = SeaweedFilerGrpc.getGetFileAttributesMethod) == null) {
-          SeaweedFilerGrpc.getGetFileAttributesMethod = getGetFileAttributesMethod = 
-              io.grpc.MethodDescriptor.<seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest, seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse>newBuilder()
+        if ((getGetEntryAttributesMethod = SeaweedFilerGrpc.getGetEntryAttributesMethod) == null) {
+          SeaweedFilerGrpc.getGetEntryAttributesMethod = getGetEntryAttributesMethod = 
+              io.grpc.MethodDescriptor.<seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest, seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
-                  "filer_pb.SeaweedFiler", "GetFileAttributes"))
+                  "filer_pb.SeaweedFiler", "GetEntryAttributes"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest.getDefaultInstance()))
+                  seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse.getDefaultInstance()))
-                  .setSchemaDescriptor(new SeaweedFilerMethodDescriptorSupplier("GetFileAttributes"))
+                  seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new SeaweedFilerMethodDescriptorSupplier("GetEntryAttributes"))
                   .build();
           }
         }
      }
-     return getGetFileAttributesMethod;
+     return getGetEntryAttributesMethod;
   }
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
-  @java.lang.Deprecated // Use {@link #getGetFileContentMethod()} instead. 
-  public static final io.grpc.MethodDescriptor<seaweedfs.filer.protos.SeaweedFilerProtos.GetFileContentRequest,
-      seaweedfs.filer.protos.SeaweedFilerProtos.GetFileContentResponse> METHOD_GET_FILE_CONTENT = getGetFileContentMethodHelper();
+  @java.lang.Deprecated // Use {@link #getCreateEntryMethod()} instead. 
+  public static final io.grpc.MethodDescriptor<seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest,
+      seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse> METHOD_CREATE_ENTRY = getCreateEntryMethodHelper();
 
-  private static volatile io.grpc.MethodDescriptor<seaweedfs.filer.protos.SeaweedFilerProtos.GetFileContentRequest,
-      seaweedfs.filer.protos.SeaweedFilerProtos.GetFileContentResponse> getGetFileContentMethod;
+  private static volatile io.grpc.MethodDescriptor<seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest,
+      seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse> getCreateEntryMethod;
 
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
-  public static io.grpc.MethodDescriptor<seaweedfs.filer.protos.SeaweedFilerProtos.GetFileContentRequest,
-      seaweedfs.filer.protos.SeaweedFilerProtos.GetFileContentResponse> getGetFileContentMethod() {
-    return getGetFileContentMethodHelper();
+  public static io.grpc.MethodDescriptor<seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest,
+      seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse> getCreateEntryMethod() {
+    return getCreateEntryMethodHelper();
   }
 
-  private static io.grpc.MethodDescriptor<seaweedfs.filer.protos.SeaweedFilerProtos.GetFileContentRequest,
-      seaweedfs.filer.protos.SeaweedFilerProtos.GetFileContentResponse> getGetFileContentMethodHelper() {
-    io.grpc.MethodDescriptor<seaweedfs.filer.protos.SeaweedFilerProtos.GetFileContentRequest, seaweedfs.filer.protos.SeaweedFilerProtos.GetFileContentResponse> getGetFileContentMethod;
-    if ((getGetFileContentMethod = SeaweedFilerGrpc.getGetFileContentMethod) == null) {
+  private static io.grpc.MethodDescriptor<seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest,
+      seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse> getCreateEntryMethodHelper() {
+    io.grpc.MethodDescriptor<seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest, seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse> getCreateEntryMethod;
+    if ((getCreateEntryMethod = SeaweedFilerGrpc.getCreateEntryMethod) == null) {
       synchronized (SeaweedFilerGrpc.class) {
-        if ((getGetFileContentMethod = SeaweedFilerGrpc.getGetFileContentMethod) == null) {
-          SeaweedFilerGrpc.getGetFileContentMethod = getGetFileContentMethod = 
-              io.grpc.MethodDescriptor.<seaweedfs.filer.protos.SeaweedFilerProtos.GetFileContentRequest, seaweedfs.filer.protos.SeaweedFilerProtos.GetFileContentResponse>newBuilder()
+        if ((getCreateEntryMethod = SeaweedFilerGrpc.getCreateEntryMethod) == null) {
+          SeaweedFilerGrpc.getCreateEntryMethod = getCreateEntryMethod = 
+              io.grpc.MethodDescriptor.<seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest, seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
-                  "filer_pb.SeaweedFiler", "GetFileContent"))
+                  "filer_pb.SeaweedFiler", "CreateEntry"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  seaweedfs.filer.protos.SeaweedFilerProtos.GetFileContentRequest.getDefaultInstance()))
+                  seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  seaweedfs.filer.protos.SeaweedFilerProtos.GetFileContentResponse.getDefaultInstance()))
-                  .setSchemaDescriptor(new SeaweedFilerMethodDescriptorSupplier("GetFileContent"))
+                  seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new SeaweedFilerMethodDescriptorSupplier("CreateEntry"))
                   .build();
           }
         }
      }
-     return getGetFileContentMethod;
+     return getCreateEntryMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getUpdateEntryMethod()} instead. 
+  public static final io.grpc.MethodDescriptor<seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest,
+      seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse> METHOD_UPDATE_ENTRY = getUpdateEntryMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest,
+      seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse> getUpdateEntryMethod;
+
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest,
+      seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse> getUpdateEntryMethod() {
+    return getUpdateEntryMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest,
+      seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse> getUpdateEntryMethodHelper() {
+    io.grpc.MethodDescriptor<seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest, seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse> getUpdateEntryMethod;
+    if ((getUpdateEntryMethod = SeaweedFilerGrpc.getUpdateEntryMethod) == null) {
+      synchronized (SeaweedFilerGrpc.class) {
+        if ((getUpdateEntryMethod = SeaweedFilerGrpc.getUpdateEntryMethod) == null) {
+          SeaweedFilerGrpc.getUpdateEntryMethod = getUpdateEntryMethod = 
+              io.grpc.MethodDescriptor.<seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest, seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "filer_pb.SeaweedFiler", "UpdateEntry"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new SeaweedFilerMethodDescriptorSupplier("UpdateEntry"))
+                  .build();
+          }
+        }
+     }
+     return getUpdateEntryMethod;
   }
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
   @java.lang.Deprecated // Use {@link #getDeleteEntryMethod()} instead. 
@@ -211,6 +248,80 @@ public final class SeaweedFilerGrpc {
         }
      }
      return getDeleteEntryMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getAssignVolumeMethod()} instead. 
+  public static final io.grpc.MethodDescriptor<seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest,
+      seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse> METHOD_ASSIGN_VOLUME = getAssignVolumeMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest,
+      seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse> getAssignVolumeMethod;
+
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest,
+      seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse> getAssignVolumeMethod() {
+    return getAssignVolumeMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest,
+      seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse> getAssignVolumeMethodHelper() {
+    io.grpc.MethodDescriptor<seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest, seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse> getAssignVolumeMethod;
+    if ((getAssignVolumeMethod = SeaweedFilerGrpc.getAssignVolumeMethod) == null) {
+      synchronized (SeaweedFilerGrpc.class) {
+        if ((getAssignVolumeMethod = SeaweedFilerGrpc.getAssignVolumeMethod) == null) {
+          SeaweedFilerGrpc.getAssignVolumeMethod = getAssignVolumeMethod = 
+              io.grpc.MethodDescriptor.<seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest, seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "filer_pb.SeaweedFiler", "AssignVolume"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new SeaweedFilerMethodDescriptorSupplier("AssignVolume"))
+                  .build();
+          }
+        }
+     }
+     return getAssignVolumeMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getLookupVolumeMethod()} instead. 
+  public static final io.grpc.MethodDescriptor<seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest,
+      seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse> METHOD_LOOKUP_VOLUME = getLookupVolumeMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest,
+      seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse> getLookupVolumeMethod;
+
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest,
+      seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse> getLookupVolumeMethod() {
+    return getLookupVolumeMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest,
+      seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse> getLookupVolumeMethodHelper() {
+    io.grpc.MethodDescriptor<seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest, seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse> getLookupVolumeMethod;
+    if ((getLookupVolumeMethod = SeaweedFilerGrpc.getLookupVolumeMethod) == null) {
+      synchronized (SeaweedFilerGrpc.class) {
+        if ((getLookupVolumeMethod = SeaweedFilerGrpc.getLookupVolumeMethod) == null) {
+          SeaweedFilerGrpc.getLookupVolumeMethod = getLookupVolumeMethod = 
+              io.grpc.MethodDescriptor.<seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest, seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "filer_pb.SeaweedFiler", "LookupVolume"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new SeaweedFilerMethodDescriptorSupplier("LookupVolume"))
+                  .build();
+          }
+        }
+     }
+     return getLookupVolumeMethod;
   }
 
   /**
@@ -256,16 +367,23 @@ public final class SeaweedFilerGrpc {
 
     /**
      */
-    public void getFileAttributes(seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest request,
-        io.grpc.stub.StreamObserver<seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getGetFileAttributesMethodHelper(), responseObserver);
+    public void getEntryAttributes(seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest request,
+        io.grpc.stub.StreamObserver<seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getGetEntryAttributesMethodHelper(), responseObserver);
     }
 
     /**
      */
-    public void getFileContent(seaweedfs.filer.protos.SeaweedFilerProtos.GetFileContentRequest request,
-        io.grpc.stub.StreamObserver<seaweedfs.filer.protos.SeaweedFilerProtos.GetFileContentResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getGetFileContentMethodHelper(), responseObserver);
+    public void createEntry(seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest request,
+        io.grpc.stub.StreamObserver<seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getCreateEntryMethodHelper(), responseObserver);
+    }
+
+    /**
+     */
+    public void updateEntry(seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest request,
+        io.grpc.stub.StreamObserver<seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getUpdateEntryMethodHelper(), responseObserver);
     }
 
     /**
@@ -273,6 +391,20 @@ public final class SeaweedFilerGrpc {
     public void deleteEntry(seaweedfs.filer.protos.SeaweedFilerProtos.DeleteEntryRequest request,
         io.grpc.stub.StreamObserver<seaweedfs.filer.protos.SeaweedFilerProtos.DeleteEntryResponse> responseObserver) {
       asyncUnimplementedUnaryCall(getDeleteEntryMethodHelper(), responseObserver);
+    }
+
+    /**
+     */
+    public void assignVolume(seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest request,
+        io.grpc.stub.StreamObserver<seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getAssignVolumeMethodHelper(), responseObserver);
+    }
+
+    /**
+     */
+    public void lookupVolume(seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest request,
+        io.grpc.stub.StreamObserver<seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getLookupVolumeMethodHelper(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
@@ -292,19 +424,26 @@ public final class SeaweedFilerGrpc {
                 seaweedfs.filer.protos.SeaweedFilerProtos.ListEntriesResponse>(
                   this, METHODID_LIST_ENTRIES)))
           .addMethod(
-            getGetFileAttributesMethodHelper(),
+            getGetEntryAttributesMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
-                seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest,
-                seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse>(
-                  this, METHODID_GET_FILE_ATTRIBUTES)))
+                seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest,
+                seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse>(
+                  this, METHODID_GET_ENTRY_ATTRIBUTES)))
           .addMethod(
-            getGetFileContentMethodHelper(),
+            getCreateEntryMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
-                seaweedfs.filer.protos.SeaweedFilerProtos.GetFileContentRequest,
-                seaweedfs.filer.protos.SeaweedFilerProtos.GetFileContentResponse>(
-                  this, METHODID_GET_FILE_CONTENT)))
+                seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest,
+                seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse>(
+                  this, METHODID_CREATE_ENTRY)))
+          .addMethod(
+            getUpdateEntryMethodHelper(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest,
+                seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse>(
+                  this, METHODID_UPDATE_ENTRY)))
           .addMethod(
             getDeleteEntryMethodHelper(),
             asyncUnaryCall(
@@ -312,6 +451,20 @@ public final class SeaweedFilerGrpc {
                 seaweedfs.filer.protos.SeaweedFilerProtos.DeleteEntryRequest,
                 seaweedfs.filer.protos.SeaweedFilerProtos.DeleteEntryResponse>(
                   this, METHODID_DELETE_ENTRY)))
+          .addMethod(
+            getAssignVolumeMethodHelper(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest,
+                seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse>(
+                  this, METHODID_ASSIGN_VOLUME)))
+          .addMethod(
+            getLookupVolumeMethodHelper(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest,
+                seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse>(
+                  this, METHODID_LOOKUP_VOLUME)))
           .build();
     }
   }
@@ -352,18 +505,26 @@ public final class SeaweedFilerGrpc {
 
     /**
      */
-    public void getFileAttributes(seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest request,
-        io.grpc.stub.StreamObserver<seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse> responseObserver) {
+    public void getEntryAttributes(seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest request,
+        io.grpc.stub.StreamObserver<seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(getGetFileAttributesMethodHelper(), getCallOptions()), request, responseObserver);
+          getChannel().newCall(getGetEntryAttributesMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void getFileContent(seaweedfs.filer.protos.SeaweedFilerProtos.GetFileContentRequest request,
-        io.grpc.stub.StreamObserver<seaweedfs.filer.protos.SeaweedFilerProtos.GetFileContentResponse> responseObserver) {
+    public void createEntry(seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest request,
+        io.grpc.stub.StreamObserver<seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(getGetFileContentMethodHelper(), getCallOptions()), request, responseObserver);
+          getChannel().newCall(getCreateEntryMethodHelper(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void updateEntry(seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest request,
+        io.grpc.stub.StreamObserver<seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getUpdateEntryMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -372,6 +533,22 @@ public final class SeaweedFilerGrpc {
         io.grpc.stub.StreamObserver<seaweedfs.filer.protos.SeaweedFilerProtos.DeleteEntryResponse> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getDeleteEntryMethodHelper(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void assignVolume(seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest request,
+        io.grpc.stub.StreamObserver<seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getAssignVolumeMethodHelper(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void lookupVolume(seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest request,
+        io.grpc.stub.StreamObserver<seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getLookupVolumeMethodHelper(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -409,16 +586,23 @@ public final class SeaweedFilerGrpc {
 
     /**
      */
-    public seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse getFileAttributes(seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest request) {
+    public seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse getEntryAttributes(seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest request) {
       return blockingUnaryCall(
-          getChannel(), getGetFileAttributesMethodHelper(), getCallOptions(), request);
+          getChannel(), getGetEntryAttributesMethodHelper(), getCallOptions(), request);
     }
 
     /**
      */
-    public seaweedfs.filer.protos.SeaweedFilerProtos.GetFileContentResponse getFileContent(seaweedfs.filer.protos.SeaweedFilerProtos.GetFileContentRequest request) {
+    public seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse createEntry(seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest request) {
       return blockingUnaryCall(
-          getChannel(), getGetFileContentMethodHelper(), getCallOptions(), request);
+          getChannel(), getCreateEntryMethodHelper(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse updateEntry(seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest request) {
+      return blockingUnaryCall(
+          getChannel(), getUpdateEntryMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -426,6 +610,20 @@ public final class SeaweedFilerGrpc {
     public seaweedfs.filer.protos.SeaweedFilerProtos.DeleteEntryResponse deleteEntry(seaweedfs.filer.protos.SeaweedFilerProtos.DeleteEntryRequest request) {
       return blockingUnaryCall(
           getChannel(), getDeleteEntryMethodHelper(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse assignVolume(seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest request) {
+      return blockingUnaryCall(
+          getChannel(), getAssignVolumeMethodHelper(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse lookupVolume(seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest request) {
+      return blockingUnaryCall(
+          getChannel(), getLookupVolumeMethodHelper(), getCallOptions(), request);
     }
   }
 
@@ -465,18 +663,26 @@ public final class SeaweedFilerGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse> getFileAttributes(
-        seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest request) {
+    public com.google.common.util.concurrent.ListenableFuture<seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse> getEntryAttributes(
+        seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(getGetFileAttributesMethodHelper(), getCallOptions()), request);
+          getChannel().newCall(getGetEntryAttributesMethodHelper(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<seaweedfs.filer.protos.SeaweedFilerProtos.GetFileContentResponse> getFileContent(
-        seaweedfs.filer.protos.SeaweedFilerProtos.GetFileContentRequest request) {
+    public com.google.common.util.concurrent.ListenableFuture<seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse> createEntry(
+        seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(getGetFileContentMethodHelper(), getCallOptions()), request);
+          getChannel().newCall(getCreateEntryMethodHelper(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse> updateEntry(
+        seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(getUpdateEntryMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -486,13 +692,32 @@ public final class SeaweedFilerGrpc {
       return futureUnaryCall(
           getChannel().newCall(getDeleteEntryMethodHelper(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse> assignVolume(
+        seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(getAssignVolumeMethodHelper(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse> lookupVolume(
+        seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(getLookupVolumeMethodHelper(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_LOOKUP_DIRECTORY_ENTRY = 0;
   private static final int METHODID_LIST_ENTRIES = 1;
-  private static final int METHODID_GET_FILE_ATTRIBUTES = 2;
-  private static final int METHODID_GET_FILE_CONTENT = 3;
-  private static final int METHODID_DELETE_ENTRY = 4;
+  private static final int METHODID_GET_ENTRY_ATTRIBUTES = 2;
+  private static final int METHODID_CREATE_ENTRY = 3;
+  private static final int METHODID_UPDATE_ENTRY = 4;
+  private static final int METHODID_DELETE_ENTRY = 5;
+  private static final int METHODID_ASSIGN_VOLUME = 6;
+  private static final int METHODID_LOOKUP_VOLUME = 7;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -519,17 +744,29 @@ public final class SeaweedFilerGrpc {
           serviceImpl.listEntries((seaweedfs.filer.protos.SeaweedFilerProtos.ListEntriesRequest) request,
               (io.grpc.stub.StreamObserver<seaweedfs.filer.protos.SeaweedFilerProtos.ListEntriesResponse>) responseObserver);
           break;
-        case METHODID_GET_FILE_ATTRIBUTES:
-          serviceImpl.getFileAttributes((seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest) request,
-              (io.grpc.stub.StreamObserver<seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse>) responseObserver);
+        case METHODID_GET_ENTRY_ATTRIBUTES:
+          serviceImpl.getEntryAttributes((seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest) request,
+              (io.grpc.stub.StreamObserver<seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse>) responseObserver);
           break;
-        case METHODID_GET_FILE_CONTENT:
-          serviceImpl.getFileContent((seaweedfs.filer.protos.SeaweedFilerProtos.GetFileContentRequest) request,
-              (io.grpc.stub.StreamObserver<seaweedfs.filer.protos.SeaweedFilerProtos.GetFileContentResponse>) responseObserver);
+        case METHODID_CREATE_ENTRY:
+          serviceImpl.createEntry((seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest) request,
+              (io.grpc.stub.StreamObserver<seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse>) responseObserver);
+          break;
+        case METHODID_UPDATE_ENTRY:
+          serviceImpl.updateEntry((seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest) request,
+              (io.grpc.stub.StreamObserver<seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse>) responseObserver);
           break;
         case METHODID_DELETE_ENTRY:
           serviceImpl.deleteEntry((seaweedfs.filer.protos.SeaweedFilerProtos.DeleteEntryRequest) request,
               (io.grpc.stub.StreamObserver<seaweedfs.filer.protos.SeaweedFilerProtos.DeleteEntryResponse>) responseObserver);
+          break;
+        case METHODID_ASSIGN_VOLUME:
+          serviceImpl.assignVolume((seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest) request,
+              (io.grpc.stub.StreamObserver<seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse>) responseObserver);
+          break;
+        case METHODID_LOOKUP_VOLUME:
+          serviceImpl.lookupVolume((seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest) request,
+              (io.grpc.stub.StreamObserver<seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -594,9 +831,12 @@ public final class SeaweedFilerGrpc {
               .setSchemaDescriptor(new SeaweedFilerFileDescriptorSupplier())
               .addMethod(getLookupDirectoryEntryMethodHelper())
               .addMethod(getListEntriesMethodHelper())
-              .addMethod(getGetFileAttributesMethodHelper())
-              .addMethod(getGetFileContentMethodHelper())
+              .addMethod(getGetEntryAttributesMethodHelper())
+              .addMethod(getCreateEntryMethodHelper())
+              .addMethod(getUpdateEntryMethodHelper())
               .addMethod(getDeleteEntryMethodHelper())
+              .addMethod(getAssignVolumeMethodHelper())
+              .addMethod(getLookupVolumeMethodHelper())
               .build();
         }
       }

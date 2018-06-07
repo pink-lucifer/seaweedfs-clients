@@ -29,7 +29,7 @@ public class SeaweedFilerProtoUtil {
                 .build();
     }
 
-    public static SeaweedFilerProtos.GetFileAttributesRequest newGetFileAttributesRequest (String parentDir, String name, String fileId) throws IllegalArgumentException {
+    public static SeaweedFilerProtos.GetEntryAttributesRequest newGetEntryAttributesRequest (String parentDir, String name, String fileId) throws IllegalArgumentException {
         if(Strings.isNullOrEmpty(parentDir)){
             throw new IllegalArgumentException("parentDir can not be null or empty");
         }
@@ -40,7 +40,7 @@ public class SeaweedFilerProtoUtil {
             throw new IllegalArgumentException("fileId can not be null or empty");
         }
 
-        return SeaweedFilerProtos.GetFileAttributesRequest.newBuilder()
+        return SeaweedFilerProtos.GetEntryAttributesRequest.newBuilder()
                 .setParentDir(parentDir)
                 .setName(name)
                 .setFileId(fileId)
@@ -57,7 +57,7 @@ public class SeaweedFilerProtoUtil {
                 .build();
     }
 
-    public static SeaweedFilerProtos.DeleteEntryRequest newDeleteEntryRequest (String directory, String name, boolean isDirectory) throws IllegalArgumentException {
+    public static SeaweedFilerProtos.DeleteEntryRequest newDeleteEntryRequest (String directory, String name, boolean isDirectory, boolean isDeleteData) throws IllegalArgumentException {
         if(Strings.isNullOrEmpty(directory)){
             throw new IllegalArgumentException("directory can not be null or empty");
         }
@@ -69,6 +69,7 @@ public class SeaweedFilerProtoUtil {
                 .setDirectory(directory)
                 .setName(name)
                 .setIsDirectory(isDirectory)
+                .setIsDeleteData(isDeleteData)
                 .build();
     }
 }

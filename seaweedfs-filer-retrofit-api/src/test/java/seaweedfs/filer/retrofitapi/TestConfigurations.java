@@ -15,7 +15,7 @@ public class TestConfigurations {
     public static final Gson GSON = new GsonBuilder().create();
 
     private static final int DEFAULT_TIMEOUT = 20;
-    private static final String BASE_URL = "http://172.16.89.145:9006/";
+    private static final String BASE_URL = "http://127.0.0.1:9006/";
     private static final GsonConverterFactory GSON_CONVERTER_FACTORY = GsonConverterFactory.create(GSON);
 
     private static final OkHttpClient OK_HTTP_CLIENT =

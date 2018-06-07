@@ -2560,14 +2560,28 @@ public final class SeaweedFilerProtos {
     boolean getIsDirectory();
 
     /**
-     * <code>string file_id = 3;</code>
+     * <code>repeated .filer_pb.FileChunk chunks = 3;</code>
      */
-    java.lang.String getFileId();
+    java.util.List<seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk> 
+        getChunksList();
     /**
-     * <code>string file_id = 3;</code>
+     * <code>repeated .filer_pb.FileChunk chunks = 3;</code>
      */
-    com.google.protobuf.ByteString
-        getFileIdBytes();
+    seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk getChunks(int index);
+    /**
+     * <code>repeated .filer_pb.FileChunk chunks = 3;</code>
+     */
+    int getChunksCount();
+    /**
+     * <code>repeated .filer_pb.FileChunk chunks = 3;</code>
+     */
+    java.util.List<? extends seaweedfs.filer.protos.SeaweedFilerProtos.FileChunkOrBuilder> 
+        getChunksOrBuilderList();
+    /**
+     * <code>repeated .filer_pb.FileChunk chunks = 3;</code>
+     */
+    seaweedfs.filer.protos.SeaweedFilerProtos.FileChunkOrBuilder getChunksOrBuilder(
+        int index);
 
     /**
      * <code>.filer_pb.FuseAttributes attributes = 4;</code>
@@ -2597,7 +2611,7 @@ public final class SeaweedFilerProtos {
     private Entry() {
       name_ = "";
       isDirectory_ = false;
-      fileId_ = "";
+      chunks_ = java.util.Collections.emptyList();
     }
 
     @java.lang.Override
@@ -2643,9 +2657,12 @@ public final class SeaweedFilerProtos {
               break;
             }
             case 26: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              fileId_ = s;
+              if (!((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+                chunks_ = new java.util.ArrayList<seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk>();
+                mutable_bitField0_ |= 0x00000004;
+              }
+              chunks_.add(
+                  input.readMessage(seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk.parser(), extensionRegistry));
               break;
             }
             case 34: {
@@ -2669,6 +2686,9 @@ public final class SeaweedFilerProtos {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        if (((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+          chunks_ = java.util.Collections.unmodifiableList(chunks_);
+        }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
@@ -2685,6 +2705,7 @@ public final class SeaweedFilerProtos {
               seaweedfs.filer.protos.SeaweedFilerProtos.Entry.class, seaweedfs.filer.protos.SeaweedFilerProtos.Entry.Builder.class);
     }
 
+    private int bitField0_;
     public static final int NAME_FIELD_NUMBER = 1;
     private volatile java.lang.Object name_;
     /**
@@ -2728,38 +2749,39 @@ public final class SeaweedFilerProtos {
       return isDirectory_;
     }
 
-    public static final int FILE_ID_FIELD_NUMBER = 3;
-    private volatile java.lang.Object fileId_;
+    public static final int CHUNKS_FIELD_NUMBER = 3;
+    private java.util.List<seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk> chunks_;
     /**
-     * <code>string file_id = 3;</code>
+     * <code>repeated .filer_pb.FileChunk chunks = 3;</code>
      */
-    public java.lang.String getFileId() {
-      java.lang.Object ref = fileId_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        fileId_ = s;
-        return s;
-      }
+    public java.util.List<seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk> getChunksList() {
+      return chunks_;
     }
     /**
-     * <code>string file_id = 3;</code>
+     * <code>repeated .filer_pb.FileChunk chunks = 3;</code>
      */
-    public com.google.protobuf.ByteString
-        getFileIdBytes() {
-      java.lang.Object ref = fileId_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        fileId_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public java.util.List<? extends seaweedfs.filer.protos.SeaweedFilerProtos.FileChunkOrBuilder> 
+        getChunksOrBuilderList() {
+      return chunks_;
+    }
+    /**
+     * <code>repeated .filer_pb.FileChunk chunks = 3;</code>
+     */
+    public int getChunksCount() {
+      return chunks_.size();
+    }
+    /**
+     * <code>repeated .filer_pb.FileChunk chunks = 3;</code>
+     */
+    public seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk getChunks(int index) {
+      return chunks_.get(index);
+    }
+    /**
+     * <code>repeated .filer_pb.FileChunk chunks = 3;</code>
+     */
+    public seaweedfs.filer.protos.SeaweedFilerProtos.FileChunkOrBuilder getChunksOrBuilder(
+        int index) {
+      return chunks_.get(index);
     }
 
     public static final int ATTRIBUTES_FIELD_NUMBER = 4;
@@ -2801,8 +2823,8 @@ public final class SeaweedFilerProtos {
       if (isDirectory_ != false) {
         output.writeBool(2, isDirectory_);
       }
-      if (!getFileIdBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, fileId_);
+      for (int i = 0; i < chunks_.size(); i++) {
+        output.writeMessage(3, chunks_.get(i));
       }
       if (attributes_ != null) {
         output.writeMessage(4, getAttributes());
@@ -2822,8 +2844,9 @@ public final class SeaweedFilerProtos {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(2, isDirectory_);
       }
-      if (!getFileIdBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, fileId_);
+      for (int i = 0; i < chunks_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(3, chunks_.get(i));
       }
       if (attributes_ != null) {
         size += com.google.protobuf.CodedOutputStream
@@ -2849,8 +2872,8 @@ public final class SeaweedFilerProtos {
           .equals(other.getName());
       result = result && (getIsDirectory()
           == other.getIsDirectory());
-      result = result && getFileId()
-          .equals(other.getFileId());
+      result = result && getChunksList()
+          .equals(other.getChunksList());
       result = result && (hasAttributes() == other.hasAttributes());
       if (hasAttributes()) {
         result = result && getAttributes()
@@ -2872,8 +2895,10 @@ public final class SeaweedFilerProtos {
       hash = (37 * hash) + IS_DIRECTORY_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
           getIsDirectory());
-      hash = (37 * hash) + FILE_ID_FIELD_NUMBER;
-      hash = (53 * hash) + getFileId().hashCode();
+      if (getChunksCount() > 0) {
+        hash = (37 * hash) + CHUNKS_FIELD_NUMBER;
+        hash = (53 * hash) + getChunksList().hashCode();
+      }
       if (hasAttributes()) {
         hash = (37 * hash) + ATTRIBUTES_FIELD_NUMBER;
         hash = (53 * hash) + getAttributes().hashCode();
@@ -3003,6 +3028,7 @@ public final class SeaweedFilerProtos {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
+          getChunksFieldBuilder();
         }
       }
       public Builder clear() {
@@ -3011,8 +3037,12 @@ public final class SeaweedFilerProtos {
 
         isDirectory_ = false;
 
-        fileId_ = "";
-
+        if (chunksBuilder_ == null) {
+          chunks_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000004);
+        } else {
+          chunksBuilder_.clear();
+        }
         if (attributesBuilder_ == null) {
           attributes_ = null;
         } else {
@@ -3041,14 +3071,25 @@ public final class SeaweedFilerProtos {
 
       public seaweedfs.filer.protos.SeaweedFilerProtos.Entry buildPartial() {
         seaweedfs.filer.protos.SeaweedFilerProtos.Entry result = new seaweedfs.filer.protos.SeaweedFilerProtos.Entry(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
         result.name_ = name_;
         result.isDirectory_ = isDirectory_;
-        result.fileId_ = fileId_;
+        if (chunksBuilder_ == null) {
+          if (((bitField0_ & 0x00000004) == 0x00000004)) {
+            chunks_ = java.util.Collections.unmodifiableList(chunks_);
+            bitField0_ = (bitField0_ & ~0x00000004);
+          }
+          result.chunks_ = chunks_;
+        } else {
+          result.chunks_ = chunksBuilder_.build();
+        }
         if (attributesBuilder_ == null) {
           result.attributes_ = attributes_;
         } else {
           result.attributes_ = attributesBuilder_.build();
         }
+        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
@@ -3097,9 +3138,31 @@ public final class SeaweedFilerProtos {
         if (other.getIsDirectory() != false) {
           setIsDirectory(other.getIsDirectory());
         }
-        if (!other.getFileId().isEmpty()) {
-          fileId_ = other.fileId_;
-          onChanged();
+        if (chunksBuilder_ == null) {
+          if (!other.chunks_.isEmpty()) {
+            if (chunks_.isEmpty()) {
+              chunks_ = other.chunks_;
+              bitField0_ = (bitField0_ & ~0x00000004);
+            } else {
+              ensureChunksIsMutable();
+              chunks_.addAll(other.chunks_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.chunks_.isEmpty()) {
+            if (chunksBuilder_.isEmpty()) {
+              chunksBuilder_.dispose();
+              chunksBuilder_ = null;
+              chunks_ = other.chunks_;
+              bitField0_ = (bitField0_ & ~0x00000004);
+              chunksBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getChunksFieldBuilder() : null;
+            } else {
+              chunksBuilder_.addAllMessages(other.chunks_);
+            }
+          }
         }
         if (other.hasAttributes()) {
           mergeAttributes(other.getAttributes());
@@ -3130,6 +3193,7 @@ public final class SeaweedFilerProtos {
         }
         return this;
       }
+      private int bitField0_;
 
       private java.lang.Object name_ = "";
       /**
@@ -3226,73 +3290,244 @@ public final class SeaweedFilerProtos {
         return this;
       }
 
-      private java.lang.Object fileId_ = "";
+      private java.util.List<seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk> chunks_ =
+        java.util.Collections.emptyList();
+      private void ensureChunksIsMutable() {
+        if (!((bitField0_ & 0x00000004) == 0x00000004)) {
+          chunks_ = new java.util.ArrayList<seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk>(chunks_);
+          bitField0_ |= 0x00000004;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk, seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk.Builder, seaweedfs.filer.protos.SeaweedFilerProtos.FileChunkOrBuilder> chunksBuilder_;
+
       /**
-       * <code>string file_id = 3;</code>
+       * <code>repeated .filer_pb.FileChunk chunks = 3;</code>
        */
-      public java.lang.String getFileId() {
-        java.lang.Object ref = fileId_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          fileId_ = s;
-          return s;
+      public java.util.List<seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk> getChunksList() {
+        if (chunksBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(chunks_);
         } else {
-          return (java.lang.String) ref;
+          return chunksBuilder_.getMessageList();
         }
       }
       /**
-       * <code>string file_id = 3;</code>
+       * <code>repeated .filer_pb.FileChunk chunks = 3;</code>
        */
-      public com.google.protobuf.ByteString
-          getFileIdBytes() {
-        java.lang.Object ref = fileId_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          fileId_ = b;
-          return b;
+      public int getChunksCount() {
+        if (chunksBuilder_ == null) {
+          return chunks_.size();
         } else {
-          return (com.google.protobuf.ByteString) ref;
+          return chunksBuilder_.getCount();
         }
       }
       /**
-       * <code>string file_id = 3;</code>
+       * <code>repeated .filer_pb.FileChunk chunks = 3;</code>
        */
-      public Builder setFileId(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        fileId_ = value;
-        onChanged();
+      public seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk getChunks(int index) {
+        if (chunksBuilder_ == null) {
+          return chunks_.get(index);
+        } else {
+          return chunksBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .filer_pb.FileChunk chunks = 3;</code>
+       */
+      public Builder setChunks(
+          int index, seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk value) {
+        if (chunksBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureChunksIsMutable();
+          chunks_.set(index, value);
+          onChanged();
+        } else {
+          chunksBuilder_.setMessage(index, value);
+        }
         return this;
       }
       /**
-       * <code>string file_id = 3;</code>
+       * <code>repeated .filer_pb.FileChunk chunks = 3;</code>
        */
-      public Builder clearFileId() {
-        
-        fileId_ = getDefaultInstance().getFileId();
-        onChanged();
+      public Builder setChunks(
+          int index, seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk.Builder builderForValue) {
+        if (chunksBuilder_ == null) {
+          ensureChunksIsMutable();
+          chunks_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          chunksBuilder_.setMessage(index, builderForValue.build());
+        }
         return this;
       }
       /**
-       * <code>string file_id = 3;</code>
+       * <code>repeated .filer_pb.FileChunk chunks = 3;</code>
        */
-      public Builder setFileIdBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        fileId_ = value;
-        onChanged();
+      public Builder addChunks(seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk value) {
+        if (chunksBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureChunksIsMutable();
+          chunks_.add(value);
+          onChanged();
+        } else {
+          chunksBuilder_.addMessage(value);
+        }
         return this;
+      }
+      /**
+       * <code>repeated .filer_pb.FileChunk chunks = 3;</code>
+       */
+      public Builder addChunks(
+          int index, seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk value) {
+        if (chunksBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureChunksIsMutable();
+          chunks_.add(index, value);
+          onChanged();
+        } else {
+          chunksBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .filer_pb.FileChunk chunks = 3;</code>
+       */
+      public Builder addChunks(
+          seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk.Builder builderForValue) {
+        if (chunksBuilder_ == null) {
+          ensureChunksIsMutable();
+          chunks_.add(builderForValue.build());
+          onChanged();
+        } else {
+          chunksBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .filer_pb.FileChunk chunks = 3;</code>
+       */
+      public Builder addChunks(
+          int index, seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk.Builder builderForValue) {
+        if (chunksBuilder_ == null) {
+          ensureChunksIsMutable();
+          chunks_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          chunksBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .filer_pb.FileChunk chunks = 3;</code>
+       */
+      public Builder addAllChunks(
+          java.lang.Iterable<? extends seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk> values) {
+        if (chunksBuilder_ == null) {
+          ensureChunksIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, chunks_);
+          onChanged();
+        } else {
+          chunksBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .filer_pb.FileChunk chunks = 3;</code>
+       */
+      public Builder clearChunks() {
+        if (chunksBuilder_ == null) {
+          chunks_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000004);
+          onChanged();
+        } else {
+          chunksBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .filer_pb.FileChunk chunks = 3;</code>
+       */
+      public Builder removeChunks(int index) {
+        if (chunksBuilder_ == null) {
+          ensureChunksIsMutable();
+          chunks_.remove(index);
+          onChanged();
+        } else {
+          chunksBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .filer_pb.FileChunk chunks = 3;</code>
+       */
+      public seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk.Builder getChunksBuilder(
+          int index) {
+        return getChunksFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .filer_pb.FileChunk chunks = 3;</code>
+       */
+      public seaweedfs.filer.protos.SeaweedFilerProtos.FileChunkOrBuilder getChunksOrBuilder(
+          int index) {
+        if (chunksBuilder_ == null) {
+          return chunks_.get(index);  } else {
+          return chunksBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .filer_pb.FileChunk chunks = 3;</code>
+       */
+      public java.util.List<? extends seaweedfs.filer.protos.SeaweedFilerProtos.FileChunkOrBuilder> 
+           getChunksOrBuilderList() {
+        if (chunksBuilder_ != null) {
+          return chunksBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(chunks_);
+        }
+      }
+      /**
+       * <code>repeated .filer_pb.FileChunk chunks = 3;</code>
+       */
+      public seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk.Builder addChunksBuilder() {
+        return getChunksFieldBuilder().addBuilder(
+            seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .filer_pb.FileChunk chunks = 3;</code>
+       */
+      public seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk.Builder addChunksBuilder(
+          int index) {
+        return getChunksFieldBuilder().addBuilder(
+            index, seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .filer_pb.FileChunk chunks = 3;</code>
+       */
+      public java.util.List<seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk.Builder> 
+           getChunksBuilderList() {
+        return getChunksFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk, seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk.Builder, seaweedfs.filer.protos.SeaweedFilerProtos.FileChunkOrBuilder> 
+          getChunksFieldBuilder() {
+        if (chunksBuilder_ == null) {
+          chunksBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk, seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk.Builder, seaweedfs.filer.protos.SeaweedFilerProtos.FileChunkOrBuilder>(
+                  chunks_,
+                  ((bitField0_ & 0x00000004) == 0x00000004),
+                  getParentForChildren(),
+                  isClean());
+          chunks_ = null;
+        }
+        return chunksBuilder_;
       }
 
       private seaweedfs.filer.protos.SeaweedFilerProtos.FuseAttributes attributes_ = null;
@@ -3460,6 +3695,723 @@ public final class SeaweedFilerProtos {
 
   }
 
+  public interface FileChunkOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:filer_pb.FileChunk)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string file_id = 1;</code>
+     */
+    java.lang.String getFileId();
+    /**
+     * <code>string file_id = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getFileIdBytes();
+
+    /**
+     * <code>int64 offset = 2;</code>
+     */
+    long getOffset();
+
+    /**
+     * <code>uint64 size = 3;</code>
+     */
+    long getSize();
+
+    /**
+     * <code>int64 mtime = 4;</code>
+     */
+    long getMtime();
+  }
+  /**
+   * Protobuf type {@code filer_pb.FileChunk}
+   */
+  public  static final class FileChunk extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:filer_pb.FileChunk)
+      FileChunkOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use FileChunk.newBuilder() to construct.
+    private FileChunk(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private FileChunk() {
+      fileId_ = "";
+      offset_ = 0L;
+      size_ = 0L;
+      mtime_ = 0L;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private FileChunk(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              fileId_ = s;
+              break;
+            }
+            case 16: {
+
+              offset_ = input.readInt64();
+              break;
+            }
+            case 24: {
+
+              size_ = input.readUInt64();
+              break;
+            }
+            case 32: {
+
+              mtime_ = input.readInt64();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_FileChunk_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_FileChunk_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk.class, seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk.Builder.class);
+    }
+
+    public static final int FILE_ID_FIELD_NUMBER = 1;
+    private volatile java.lang.Object fileId_;
+    /**
+     * <code>string file_id = 1;</code>
+     */
+    public java.lang.String getFileId() {
+      java.lang.Object ref = fileId_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        fileId_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string file_id = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getFileIdBytes() {
+      java.lang.Object ref = fileId_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        fileId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int OFFSET_FIELD_NUMBER = 2;
+    private long offset_;
+    /**
+     * <code>int64 offset = 2;</code>
+     */
+    public long getOffset() {
+      return offset_;
+    }
+
+    public static final int SIZE_FIELD_NUMBER = 3;
+    private long size_;
+    /**
+     * <code>uint64 size = 3;</code>
+     */
+    public long getSize() {
+      return size_;
+    }
+
+    public static final int MTIME_FIELD_NUMBER = 4;
+    private long mtime_;
+    /**
+     * <code>int64 mtime = 4;</code>
+     */
+    public long getMtime() {
+      return mtime_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getFileIdBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, fileId_);
+      }
+      if (offset_ != 0L) {
+        output.writeInt64(2, offset_);
+      }
+      if (size_ != 0L) {
+        output.writeUInt64(3, size_);
+      }
+      if (mtime_ != 0L) {
+        output.writeInt64(4, mtime_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getFileIdBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, fileId_);
+      }
+      if (offset_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(2, offset_);
+      }
+      if (size_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(3, size_);
+      }
+      if (mtime_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(4, mtime_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk)) {
+        return super.equals(obj);
+      }
+      seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk other = (seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk) obj;
+
+      boolean result = true;
+      result = result && getFileId()
+          .equals(other.getFileId());
+      result = result && (getOffset()
+          == other.getOffset());
+      result = result && (getSize()
+          == other.getSize());
+      result = result && (getMtime()
+          == other.getMtime());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + FILE_ID_FIELD_NUMBER;
+      hash = (53 * hash) + getFileId().hashCode();
+      hash = (37 * hash) + OFFSET_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getOffset());
+      hash = (37 * hash) + SIZE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getSize());
+      hash = (37 * hash) + MTIME_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getMtime());
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code filer_pb.FileChunk}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:filer_pb.FileChunk)
+        seaweedfs.filer.protos.SeaweedFilerProtos.FileChunkOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_FileChunk_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_FileChunk_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk.class, seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk.Builder.class);
+      }
+
+      // Construct using seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        fileId_ = "";
+
+        offset_ = 0L;
+
+        size_ = 0L;
+
+        mtime_ = 0L;
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_FileChunk_descriptor;
+      }
+
+      public seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk getDefaultInstanceForType() {
+        return seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk.getDefaultInstance();
+      }
+
+      public seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk build() {
+        seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk buildPartial() {
+        seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk result = new seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk(this);
+        result.fileId_ = fileId_;
+        result.offset_ = offset_;
+        result.size_ = size_;
+        result.mtime_ = mtime_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk) {
+          return mergeFrom((seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk other) {
+        if (other == seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk.getDefaultInstance()) return this;
+        if (!other.getFileId().isEmpty()) {
+          fileId_ = other.fileId_;
+          onChanged();
+        }
+        if (other.getOffset() != 0L) {
+          setOffset(other.getOffset());
+        }
+        if (other.getSize() != 0L) {
+          setSize(other.getSize());
+        }
+        if (other.getMtime() != 0L) {
+          setMtime(other.getMtime());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object fileId_ = "";
+      /**
+       * <code>string file_id = 1;</code>
+       */
+      public java.lang.String getFileId() {
+        java.lang.Object ref = fileId_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          fileId_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string file_id = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getFileIdBytes() {
+        java.lang.Object ref = fileId_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          fileId_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string file_id = 1;</code>
+       */
+      public Builder setFileId(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        fileId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string file_id = 1;</code>
+       */
+      public Builder clearFileId() {
+        
+        fileId_ = getDefaultInstance().getFileId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string file_id = 1;</code>
+       */
+      public Builder setFileIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        fileId_ = value;
+        onChanged();
+        return this;
+      }
+
+      private long offset_ ;
+      /**
+       * <code>int64 offset = 2;</code>
+       */
+      public long getOffset() {
+        return offset_;
+      }
+      /**
+       * <code>int64 offset = 2;</code>
+       */
+      public Builder setOffset(long value) {
+        
+        offset_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 offset = 2;</code>
+       */
+      public Builder clearOffset() {
+        
+        offset_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private long size_ ;
+      /**
+       * <code>uint64 size = 3;</code>
+       */
+      public long getSize() {
+        return size_;
+      }
+      /**
+       * <code>uint64 size = 3;</code>
+       */
+      public Builder setSize(long value) {
+        
+        size_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>uint64 size = 3;</code>
+       */
+      public Builder clearSize() {
+        
+        size_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private long mtime_ ;
+      /**
+       * <code>int64 mtime = 4;</code>
+       */
+      public long getMtime() {
+        return mtime_;
+      }
+      /**
+       * <code>int64 mtime = 4;</code>
+       */
+      public Builder setMtime(long value) {
+        
+        mtime_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 mtime = 4;</code>
+       */
+      public Builder clearMtime() {
+        
+        mtime_ = 0L;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:filer_pb.FileChunk)
+    }
+
+    // @@protoc_insertion_point(class_scope:filer_pb.FileChunk)
+    private static final seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk();
+    }
+
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<FileChunk>
+        PARSER = new com.google.protobuf.AbstractParser<FileChunk>() {
+      public FileChunk parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new FileChunk(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<FileChunk> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<FileChunk> getParserForType() {
+      return PARSER;
+    }
+
+    public seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface FuseAttributesOrBuilder extends
       // @@protoc_insertion_point(interface_extends:filer_pb.FuseAttributes)
       com.google.protobuf.MessageOrBuilder {
@@ -3488,6 +4440,21 @@ public final class SeaweedFilerProtos {
      * <code>uint32 gid = 5;</code>
      */
     int getGid();
+
+    /**
+     * <code>int64 crtime = 6;</code>
+     */
+    long getCrtime();
+
+    /**
+     * <code>string mime = 7;</code>
+     */
+    java.lang.String getMime();
+    /**
+     * <code>string mime = 7;</code>
+     */
+    com.google.protobuf.ByteString
+        getMimeBytes();
   }
   /**
    * Protobuf type {@code filer_pb.FuseAttributes}
@@ -3507,6 +4474,8 @@ public final class SeaweedFilerProtos {
       fileMode_ = 0;
       uid_ = 0;
       gid_ = 0;
+      crtime_ = 0L;
+      mime_ = "";
     }
 
     @java.lang.Override
@@ -3563,6 +4532,17 @@ public final class SeaweedFilerProtos {
             case 40: {
 
               gid_ = input.readUInt32();
+              break;
+            }
+            case 48: {
+
+              crtime_ = input.readInt64();
+              break;
+            }
+            case 58: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              mime_ = s;
               break;
             }
           }
@@ -3634,6 +4614,49 @@ public final class SeaweedFilerProtos {
       return gid_;
     }
 
+    public static final int CRTIME_FIELD_NUMBER = 6;
+    private long crtime_;
+    /**
+     * <code>int64 crtime = 6;</code>
+     */
+    public long getCrtime() {
+      return crtime_;
+    }
+
+    public static final int MIME_FIELD_NUMBER = 7;
+    private volatile java.lang.Object mime_;
+    /**
+     * <code>string mime = 7;</code>
+     */
+    public java.lang.String getMime() {
+      java.lang.Object ref = mime_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        mime_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string mime = 7;</code>
+     */
+    public com.google.protobuf.ByteString
+        getMimeBytes() {
+      java.lang.Object ref = mime_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        mime_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -3660,6 +4683,12 @@ public final class SeaweedFilerProtos {
       }
       if (gid_ != 0) {
         output.writeUInt32(5, gid_);
+      }
+      if (crtime_ != 0L) {
+        output.writeInt64(6, crtime_);
+      }
+      if (!getMimeBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 7, mime_);
       }
       unknownFields.writeTo(output);
     }
@@ -3689,6 +4718,13 @@ public final class SeaweedFilerProtos {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(5, gid_);
       }
+      if (crtime_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(6, crtime_);
+      }
+      if (!getMimeBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, mime_);
+      }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
@@ -3715,6 +4751,10 @@ public final class SeaweedFilerProtos {
           == other.getUid());
       result = result && (getGid()
           == other.getGid());
+      result = result && (getCrtime()
+          == other.getCrtime());
+      result = result && getMime()
+          .equals(other.getMime());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -3738,6 +4778,11 @@ public final class SeaweedFilerProtos {
       hash = (53 * hash) + getUid();
       hash = (37 * hash) + GID_FIELD_NUMBER;
       hash = (53 * hash) + getGid();
+      hash = (37 * hash) + CRTIME_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getCrtime());
+      hash = (37 * hash) + MIME_FIELD_NUMBER;
+      hash = (53 * hash) + getMime().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -3877,6 +4922,10 @@ public final class SeaweedFilerProtos {
 
         gid_ = 0;
 
+        crtime_ = 0L;
+
+        mime_ = "";
+
         return this;
       }
 
@@ -3904,6 +4953,8 @@ public final class SeaweedFilerProtos {
         result.fileMode_ = fileMode_;
         result.uid_ = uid_;
         result.gid_ = gid_;
+        result.crtime_ = crtime_;
+        result.mime_ = mime_;
         onBuilt();
         return result;
       }
@@ -3959,6 +5010,13 @@ public final class SeaweedFilerProtos {
         }
         if (other.getGid() != 0) {
           setGid(other.getGid());
+        }
+        if (other.getCrtime() != 0L) {
+          setCrtime(other.getCrtime());
+        }
+        if (!other.getMime().isEmpty()) {
+          mime_ = other.mime_;
+          onChanged();
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -4116,6 +5174,101 @@ public final class SeaweedFilerProtos {
         onChanged();
         return this;
       }
+
+      private long crtime_ ;
+      /**
+       * <code>int64 crtime = 6;</code>
+       */
+      public long getCrtime() {
+        return crtime_;
+      }
+      /**
+       * <code>int64 crtime = 6;</code>
+       */
+      public Builder setCrtime(long value) {
+        
+        crtime_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 crtime = 6;</code>
+       */
+      public Builder clearCrtime() {
+        
+        crtime_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object mime_ = "";
+      /**
+       * <code>string mime = 7;</code>
+       */
+      public java.lang.String getMime() {
+        java.lang.Object ref = mime_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          mime_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string mime = 7;</code>
+       */
+      public com.google.protobuf.ByteString
+          getMimeBytes() {
+        java.lang.Object ref = mime_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          mime_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string mime = 7;</code>
+       */
+      public Builder setMime(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        mime_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string mime = 7;</code>
+       */
+      public Builder clearMime() {
+        
+        mime_ = getDefaultInstance().getMime();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string mime = 7;</code>
+       */
+      public Builder setMimeBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        mime_ = value;
+        onChanged();
+        return this;
+      }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFieldsProto3(unknownFields);
@@ -4165,8 +5318,8 @@ public final class SeaweedFilerProtos {
 
   }
 
-  public interface GetFileAttributesRequestOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:filer_pb.GetFileAttributesRequest)
+  public interface GetEntryAttributesRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:filer_pb.GetEntryAttributesRequest)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -4200,18 +5353,18 @@ public final class SeaweedFilerProtos {
         getFileIdBytes();
   }
   /**
-   * Protobuf type {@code filer_pb.GetFileAttributesRequest}
+   * Protobuf type {@code filer_pb.GetEntryAttributesRequest}
    */
-  public  static final class GetFileAttributesRequest extends
+  public  static final class GetEntryAttributesRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:filer_pb.GetFileAttributesRequest)
-      GetFileAttributesRequestOrBuilder {
+      // @@protoc_insertion_point(message_implements:filer_pb.GetEntryAttributesRequest)
+      GetEntryAttributesRequestOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use GetFileAttributesRequest.newBuilder() to construct.
-    private GetFileAttributesRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use GetEntryAttributesRequest.newBuilder() to construct.
+    private GetEntryAttributesRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private GetFileAttributesRequest() {
+    private GetEntryAttributesRequest() {
       name_ = "";
       parentDir_ = "";
       fileId_ = "";
@@ -4222,7 +5375,7 @@ public final class SeaweedFilerProtos {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private GetFileAttributesRequest(
+    private GetEntryAttributesRequest(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -4280,14 +5433,14 @@ public final class SeaweedFilerProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_GetFileAttributesRequest_descriptor;
+      return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_GetEntryAttributesRequest_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_GetFileAttributesRequest_fieldAccessorTable
+      return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_GetEntryAttributesRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest.class, seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest.Builder.class);
+              seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest.class, seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest.Builder.class);
     }
 
     public static final int NAME_FIELD_NUMBER = 1;
@@ -4440,10 +5593,10 @@ public final class SeaweedFilerProtos {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest)) {
+      if (!(obj instanceof seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest)) {
         return super.equals(obj);
       }
-      seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest other = (seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest) obj;
+      seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest other = (seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest) obj;
 
       boolean result = true;
       result = result && getName()
@@ -4474,69 +5627,69 @@ public final class SeaweedFilerProtos {
       return hash;
     }
 
-    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest parseFrom(
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest parseFrom(
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest parseFrom(
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest parseFrom(
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest parseFrom(byte[] data)
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest parseFrom(
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest parseFrom(java.io.InputStream input)
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest parseFrom(
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest parseDelimitedFrom(java.io.InputStream input)
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest parseDelimitedFrom(
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest parseFrom(
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest parseFrom(
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -4548,7 +5701,7 @@ public final class SeaweedFilerProtos {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest prototype) {
+    public static Builder newBuilder(seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() {
@@ -4563,25 +5716,25 @@ public final class SeaweedFilerProtos {
       return builder;
     }
     /**
-     * Protobuf type {@code filer_pb.GetFileAttributesRequest}
+     * Protobuf type {@code filer_pb.GetEntryAttributesRequest}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:filer_pb.GetFileAttributesRequest)
-        seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequestOrBuilder {
+        // @@protoc_insertion_point(builder_implements:filer_pb.GetEntryAttributesRequest)
+        seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequestOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_GetFileAttributesRequest_descriptor;
+        return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_GetEntryAttributesRequest_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_GetFileAttributesRequest_fieldAccessorTable
+        return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_GetEntryAttributesRequest_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest.class, seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest.Builder.class);
+                seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest.class, seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest.Builder.class);
       }
 
-      // Construct using seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest.newBuilder()
+      // Construct using seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -4609,23 +5762,23 @@ public final class SeaweedFilerProtos {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_GetFileAttributesRequest_descriptor;
+        return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_GetEntryAttributesRequest_descriptor;
       }
 
-      public seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest getDefaultInstanceForType() {
-        return seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest.getDefaultInstance();
+      public seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest getDefaultInstanceForType() {
+        return seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest.getDefaultInstance();
       }
 
-      public seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest build() {
-        seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest result = buildPartial();
+      public seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest build() {
+        seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest buildPartial() {
-        seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest result = new seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest(this);
+      public seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest buildPartial() {
+        seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest result = new seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest(this);
         result.name_ = name_;
         result.parentDir_ = parentDir_;
         result.fileId_ = fileId_;
@@ -4660,16 +5813,16 @@ public final class SeaweedFilerProtos {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest) {
-          return mergeFrom((seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest)other);
+        if (other instanceof seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest) {
+          return mergeFrom((seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest other) {
-        if (other == seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest.getDefaultInstance()) return this;
+      public Builder mergeFrom(seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest other) {
+        if (other == seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest.getDefaultInstance()) return this;
         if (!other.getName().isEmpty()) {
           name_ = other.name_;
           onChanged();
@@ -4695,11 +5848,11 @@ public final class SeaweedFilerProtos {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest parsedMessage = null;
+        seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest) e.getUnfinishedMessage();
+          parsedMessage = (seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -4926,46 +6079,46 @@ public final class SeaweedFilerProtos {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:filer_pb.GetFileAttributesRequest)
+      // @@protoc_insertion_point(builder_scope:filer_pb.GetEntryAttributesRequest)
     }
 
-    // @@protoc_insertion_point(class_scope:filer_pb.GetFileAttributesRequest)
-    private static final seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:filer_pb.GetEntryAttributesRequest)
+    private static final seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest();
+      DEFAULT_INSTANCE = new seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest();
     }
 
-    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest getDefaultInstance() {
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<GetFileAttributesRequest>
-        PARSER = new com.google.protobuf.AbstractParser<GetFileAttributesRequest>() {
-      public GetFileAttributesRequest parsePartialFrom(
+    private static final com.google.protobuf.Parser<GetEntryAttributesRequest>
+        PARSER = new com.google.protobuf.AbstractParser<GetEntryAttributesRequest>() {
+      public GetEntryAttributesRequest parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new GetFileAttributesRequest(input, extensionRegistry);
+        return new GetEntryAttributesRequest(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<GetFileAttributesRequest> parser() {
+    public static com.google.protobuf.Parser<GetEntryAttributesRequest> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<GetFileAttributesRequest> getParserForType() {
+    public com.google.protobuf.Parser<GetEntryAttributesRequest> getParserForType() {
       return PARSER;
     }
 
-    public seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesRequest getDefaultInstanceForType() {
+    public seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesRequest getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
-  public interface GetFileAttributesResponseOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:filer_pb.GetFileAttributesResponse)
+  public interface GetEntryAttributesResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:filer_pb.GetEntryAttributesResponse)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -4980,20 +6133,45 @@ public final class SeaweedFilerProtos {
      * <code>.filer_pb.FuseAttributes attributes = 1;</code>
      */
     seaweedfs.filer.protos.SeaweedFilerProtos.FuseAttributesOrBuilder getAttributesOrBuilder();
+
+    /**
+     * <code>repeated .filer_pb.FileChunk chunks = 2;</code>
+     */
+    java.util.List<seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk> 
+        getChunksList();
+    /**
+     * <code>repeated .filer_pb.FileChunk chunks = 2;</code>
+     */
+    seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk getChunks(int index);
+    /**
+     * <code>repeated .filer_pb.FileChunk chunks = 2;</code>
+     */
+    int getChunksCount();
+    /**
+     * <code>repeated .filer_pb.FileChunk chunks = 2;</code>
+     */
+    java.util.List<? extends seaweedfs.filer.protos.SeaweedFilerProtos.FileChunkOrBuilder> 
+        getChunksOrBuilderList();
+    /**
+     * <code>repeated .filer_pb.FileChunk chunks = 2;</code>
+     */
+    seaweedfs.filer.protos.SeaweedFilerProtos.FileChunkOrBuilder getChunksOrBuilder(
+        int index);
   }
   /**
-   * Protobuf type {@code filer_pb.GetFileAttributesResponse}
+   * Protobuf type {@code filer_pb.GetEntryAttributesResponse}
    */
-  public  static final class GetFileAttributesResponse extends
+  public  static final class GetEntryAttributesResponse extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:filer_pb.GetFileAttributesResponse)
-      GetFileAttributesResponseOrBuilder {
+      // @@protoc_insertion_point(message_implements:filer_pb.GetEntryAttributesResponse)
+      GetEntryAttributesResponseOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use GetFileAttributesResponse.newBuilder() to construct.
-    private GetFileAttributesResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use GetEntryAttributesResponse.newBuilder() to construct.
+    private GetEntryAttributesResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private GetFileAttributesResponse() {
+    private GetEntryAttributesResponse() {
+      chunks_ = java.util.Collections.emptyList();
     }
 
     @java.lang.Override
@@ -5001,7 +6179,7 @@ public final class SeaweedFilerProtos {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private GetFileAttributesResponse(
+    private GetEntryAttributesResponse(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -5040,6 +6218,15 @@ public final class SeaweedFilerProtos {
 
               break;
             }
+            case 18: {
+              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+                chunks_ = new java.util.ArrayList<seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk>();
+                mutable_bitField0_ |= 0x00000002;
+              }
+              chunks_.add(
+                  input.readMessage(seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk.parser(), extensionRegistry));
+              break;
+            }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -5048,22 +6235,26 @@ public final class SeaweedFilerProtos {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+          chunks_ = java.util.Collections.unmodifiableList(chunks_);
+        }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_GetFileAttributesResponse_descriptor;
+      return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_GetEntryAttributesResponse_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_GetFileAttributesResponse_fieldAccessorTable
+      return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_GetEntryAttributesResponse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse.class, seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse.Builder.class);
+              seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse.class, seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse.Builder.class);
     }
 
+    private int bitField0_;
     public static final int ATTRIBUTES_FIELD_NUMBER = 1;
     private seaweedfs.filer.protos.SeaweedFilerProtos.FuseAttributes attributes_;
     /**
@@ -5085,6 +6276,41 @@ public final class SeaweedFilerProtos {
       return getAttributes();
     }
 
+    public static final int CHUNKS_FIELD_NUMBER = 2;
+    private java.util.List<seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk> chunks_;
+    /**
+     * <code>repeated .filer_pb.FileChunk chunks = 2;</code>
+     */
+    public java.util.List<seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk> getChunksList() {
+      return chunks_;
+    }
+    /**
+     * <code>repeated .filer_pb.FileChunk chunks = 2;</code>
+     */
+    public java.util.List<? extends seaweedfs.filer.protos.SeaweedFilerProtos.FileChunkOrBuilder> 
+        getChunksOrBuilderList() {
+      return chunks_;
+    }
+    /**
+     * <code>repeated .filer_pb.FileChunk chunks = 2;</code>
+     */
+    public int getChunksCount() {
+      return chunks_.size();
+    }
+    /**
+     * <code>repeated .filer_pb.FileChunk chunks = 2;</code>
+     */
+    public seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk getChunks(int index) {
+      return chunks_.get(index);
+    }
+    /**
+     * <code>repeated .filer_pb.FileChunk chunks = 2;</code>
+     */
+    public seaweedfs.filer.protos.SeaweedFilerProtos.FileChunkOrBuilder getChunksOrBuilder(
+        int index) {
+      return chunks_.get(index);
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -5100,6 +6326,9 @@ public final class SeaweedFilerProtos {
       if (attributes_ != null) {
         output.writeMessage(1, getAttributes());
       }
+      for (int i = 0; i < chunks_.size(); i++) {
+        output.writeMessage(2, chunks_.get(i));
+      }
       unknownFields.writeTo(output);
     }
 
@@ -5112,6 +6341,10 @@ public final class SeaweedFilerProtos {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getAttributes());
       }
+      for (int i = 0; i < chunks_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, chunks_.get(i));
+      }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
@@ -5122,10 +6355,10 @@ public final class SeaweedFilerProtos {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse)) {
+      if (!(obj instanceof seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse)) {
         return super.equals(obj);
       }
-      seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse other = (seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse) obj;
+      seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse other = (seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse) obj;
 
       boolean result = true;
       result = result && (hasAttributes() == other.hasAttributes());
@@ -5133,6 +6366,8 @@ public final class SeaweedFilerProtos {
         result = result && getAttributes()
             .equals(other.getAttributes());
       }
+      result = result && getChunksList()
+          .equals(other.getChunksList());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -5148,74 +6383,78 @@ public final class SeaweedFilerProtos {
         hash = (37 * hash) + ATTRIBUTES_FIELD_NUMBER;
         hash = (53 * hash) + getAttributes().hashCode();
       }
+      if (getChunksCount() > 0) {
+        hash = (37 * hash) + CHUNKS_FIELD_NUMBER;
+        hash = (53 * hash) + getChunksList().hashCode();
+      }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse parseFrom(
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse parseFrom(
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse parseFrom(
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse parseFrom(
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse parseFrom(byte[] data)
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse parseFrom(
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse parseFrom(java.io.InputStream input)
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse parseFrom(
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse parseDelimitedFrom(java.io.InputStream input)
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse parseDelimitedFrom(
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse parseFrom(
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse parseFrom(
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -5227,7 +6466,7 @@ public final class SeaweedFilerProtos {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse prototype) {
+    public static Builder newBuilder(seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() {
@@ -5242,25 +6481,25 @@ public final class SeaweedFilerProtos {
       return builder;
     }
     /**
-     * Protobuf type {@code filer_pb.GetFileAttributesResponse}
+     * Protobuf type {@code filer_pb.GetEntryAttributesResponse}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:filer_pb.GetFileAttributesResponse)
-        seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponseOrBuilder {
+        // @@protoc_insertion_point(builder_implements:filer_pb.GetEntryAttributesResponse)
+        seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponseOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_GetFileAttributesResponse_descriptor;
+        return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_GetEntryAttributesResponse_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_GetFileAttributesResponse_fieldAccessorTable
+        return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_GetEntryAttributesResponse_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse.class, seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse.Builder.class);
+                seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse.class, seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse.Builder.class);
       }
 
-      // Construct using seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse.newBuilder()
+      // Construct using seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -5273,6 +6512,7 @@ public final class SeaweedFilerProtos {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
+          getChunksFieldBuilder();
         }
       }
       public Builder clear() {
@@ -5283,33 +6523,51 @@ public final class SeaweedFilerProtos {
           attributes_ = null;
           attributesBuilder_ = null;
         }
+        if (chunksBuilder_ == null) {
+          chunks_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+        } else {
+          chunksBuilder_.clear();
+        }
         return this;
       }
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_GetFileAttributesResponse_descriptor;
+        return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_GetEntryAttributesResponse_descriptor;
       }
 
-      public seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse getDefaultInstanceForType() {
-        return seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse.getDefaultInstance();
+      public seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse getDefaultInstanceForType() {
+        return seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse.getDefaultInstance();
       }
 
-      public seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse build() {
-        seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse result = buildPartial();
+      public seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse build() {
+        seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse buildPartial() {
-        seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse result = new seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse(this);
+      public seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse buildPartial() {
+        seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse result = new seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
         if (attributesBuilder_ == null) {
           result.attributes_ = attributes_;
         } else {
           result.attributes_ = attributesBuilder_.build();
         }
+        if (chunksBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+            chunks_ = java.util.Collections.unmodifiableList(chunks_);
+            bitField0_ = (bitField0_ & ~0x00000002);
+          }
+          result.chunks_ = chunks_;
+        } else {
+          result.chunks_ = chunksBuilder_.build();
+        }
+        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
@@ -5341,18 +6599,44 @@ public final class SeaweedFilerProtos {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse) {
-          return mergeFrom((seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse)other);
+        if (other instanceof seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse) {
+          return mergeFrom((seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse other) {
-        if (other == seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse.getDefaultInstance()) return this;
+      public Builder mergeFrom(seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse other) {
+        if (other == seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse.getDefaultInstance()) return this;
         if (other.hasAttributes()) {
           mergeAttributes(other.getAttributes());
+        }
+        if (chunksBuilder_ == null) {
+          if (!other.chunks_.isEmpty()) {
+            if (chunks_.isEmpty()) {
+              chunks_ = other.chunks_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+            } else {
+              ensureChunksIsMutable();
+              chunks_.addAll(other.chunks_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.chunks_.isEmpty()) {
+            if (chunksBuilder_.isEmpty()) {
+              chunksBuilder_.dispose();
+              chunksBuilder_ = null;
+              chunks_ = other.chunks_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+              chunksBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getChunksFieldBuilder() : null;
+            } else {
+              chunksBuilder_.addAllMessages(other.chunks_);
+            }
+          }
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -5367,11 +6651,11 @@ public final class SeaweedFilerProtos {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse parsedMessage = null;
+        seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse) e.getUnfinishedMessage();
+          parsedMessage = (seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -5380,6 +6664,7 @@ public final class SeaweedFilerProtos {
         }
         return this;
       }
+      private int bitField0_;
 
       private seaweedfs.filer.protos.SeaweedFilerProtos.FuseAttributes attributes_ = null;
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -5497,6 +6782,246 @@ public final class SeaweedFilerProtos {
         }
         return attributesBuilder_;
       }
+
+      private java.util.List<seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk> chunks_ =
+        java.util.Collections.emptyList();
+      private void ensureChunksIsMutable() {
+        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+          chunks_ = new java.util.ArrayList<seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk>(chunks_);
+          bitField0_ |= 0x00000002;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk, seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk.Builder, seaweedfs.filer.protos.SeaweedFilerProtos.FileChunkOrBuilder> chunksBuilder_;
+
+      /**
+       * <code>repeated .filer_pb.FileChunk chunks = 2;</code>
+       */
+      public java.util.List<seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk> getChunksList() {
+        if (chunksBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(chunks_);
+        } else {
+          return chunksBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .filer_pb.FileChunk chunks = 2;</code>
+       */
+      public int getChunksCount() {
+        if (chunksBuilder_ == null) {
+          return chunks_.size();
+        } else {
+          return chunksBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .filer_pb.FileChunk chunks = 2;</code>
+       */
+      public seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk getChunks(int index) {
+        if (chunksBuilder_ == null) {
+          return chunks_.get(index);
+        } else {
+          return chunksBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .filer_pb.FileChunk chunks = 2;</code>
+       */
+      public Builder setChunks(
+          int index, seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk value) {
+        if (chunksBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureChunksIsMutable();
+          chunks_.set(index, value);
+          onChanged();
+        } else {
+          chunksBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .filer_pb.FileChunk chunks = 2;</code>
+       */
+      public Builder setChunks(
+          int index, seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk.Builder builderForValue) {
+        if (chunksBuilder_ == null) {
+          ensureChunksIsMutable();
+          chunks_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          chunksBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .filer_pb.FileChunk chunks = 2;</code>
+       */
+      public Builder addChunks(seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk value) {
+        if (chunksBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureChunksIsMutable();
+          chunks_.add(value);
+          onChanged();
+        } else {
+          chunksBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .filer_pb.FileChunk chunks = 2;</code>
+       */
+      public Builder addChunks(
+          int index, seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk value) {
+        if (chunksBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureChunksIsMutable();
+          chunks_.add(index, value);
+          onChanged();
+        } else {
+          chunksBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .filer_pb.FileChunk chunks = 2;</code>
+       */
+      public Builder addChunks(
+          seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk.Builder builderForValue) {
+        if (chunksBuilder_ == null) {
+          ensureChunksIsMutable();
+          chunks_.add(builderForValue.build());
+          onChanged();
+        } else {
+          chunksBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .filer_pb.FileChunk chunks = 2;</code>
+       */
+      public Builder addChunks(
+          int index, seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk.Builder builderForValue) {
+        if (chunksBuilder_ == null) {
+          ensureChunksIsMutable();
+          chunks_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          chunksBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .filer_pb.FileChunk chunks = 2;</code>
+       */
+      public Builder addAllChunks(
+          java.lang.Iterable<? extends seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk> values) {
+        if (chunksBuilder_ == null) {
+          ensureChunksIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, chunks_);
+          onChanged();
+        } else {
+          chunksBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .filer_pb.FileChunk chunks = 2;</code>
+       */
+      public Builder clearChunks() {
+        if (chunksBuilder_ == null) {
+          chunks_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+          onChanged();
+        } else {
+          chunksBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .filer_pb.FileChunk chunks = 2;</code>
+       */
+      public Builder removeChunks(int index) {
+        if (chunksBuilder_ == null) {
+          ensureChunksIsMutable();
+          chunks_.remove(index);
+          onChanged();
+        } else {
+          chunksBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .filer_pb.FileChunk chunks = 2;</code>
+       */
+      public seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk.Builder getChunksBuilder(
+          int index) {
+        return getChunksFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .filer_pb.FileChunk chunks = 2;</code>
+       */
+      public seaweedfs.filer.protos.SeaweedFilerProtos.FileChunkOrBuilder getChunksOrBuilder(
+          int index) {
+        if (chunksBuilder_ == null) {
+          return chunks_.get(index);  } else {
+          return chunksBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .filer_pb.FileChunk chunks = 2;</code>
+       */
+      public java.util.List<? extends seaweedfs.filer.protos.SeaweedFilerProtos.FileChunkOrBuilder> 
+           getChunksOrBuilderList() {
+        if (chunksBuilder_ != null) {
+          return chunksBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(chunks_);
+        }
+      }
+      /**
+       * <code>repeated .filer_pb.FileChunk chunks = 2;</code>
+       */
+      public seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk.Builder addChunksBuilder() {
+        return getChunksFieldBuilder().addBuilder(
+            seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .filer_pb.FileChunk chunks = 2;</code>
+       */
+      public seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk.Builder addChunksBuilder(
+          int index) {
+        return getChunksFieldBuilder().addBuilder(
+            index, seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .filer_pb.FileChunk chunks = 2;</code>
+       */
+      public java.util.List<seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk.Builder> 
+           getChunksBuilderList() {
+        return getChunksFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk, seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk.Builder, seaweedfs.filer.protos.SeaweedFilerProtos.FileChunkOrBuilder> 
+          getChunksFieldBuilder() {
+        if (chunksBuilder_ == null) {
+          chunksBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk, seaweedfs.filer.protos.SeaweedFilerProtos.FileChunk.Builder, seaweedfs.filer.protos.SeaweedFilerProtos.FileChunkOrBuilder>(
+                  chunks_,
+                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  getParentForChildren(),
+                  isClean());
+          chunks_ = null;
+        }
+        return chunksBuilder_;
+      }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFieldsProto3(unknownFields);
@@ -5508,39 +7033,39 @@ public final class SeaweedFilerProtos {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:filer_pb.GetFileAttributesResponse)
+      // @@protoc_insertion_point(builder_scope:filer_pb.GetEntryAttributesResponse)
     }
 
-    // @@protoc_insertion_point(class_scope:filer_pb.GetFileAttributesResponse)
-    private static final seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:filer_pb.GetEntryAttributesResponse)
+    private static final seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse();
+      DEFAULT_INSTANCE = new seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse();
     }
 
-    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse getDefaultInstance() {
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<GetFileAttributesResponse>
-        PARSER = new com.google.protobuf.AbstractParser<GetFileAttributesResponse>() {
-      public GetFileAttributesResponse parsePartialFrom(
+    private static final com.google.protobuf.Parser<GetEntryAttributesResponse>
+        PARSER = new com.google.protobuf.AbstractParser<GetEntryAttributesResponse>() {
+      public GetEntryAttributesResponse parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new GetFileAttributesResponse(input, extensionRegistry);
+        return new GetEntryAttributesResponse(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<GetFileAttributesResponse> parser() {
+    public static com.google.protobuf.Parser<GetEntryAttributesResponse> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<GetFileAttributesResponse> getParserForType() {
+    public com.google.protobuf.Parser<GetEntryAttributesResponse> getParserForType() {
       return PARSER;
     }
 
-    public seaweedfs.filer.protos.SeaweedFilerProtos.GetFileAttributesResponse getDefaultInstanceForType() {
+    public seaweedfs.filer.protos.SeaweedFilerProtos.GetEntryAttributesResponse getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -6525,6 +8050,2218 @@ public final class SeaweedFilerProtos {
 
   }
 
+  public interface CreateEntryRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:filer_pb.CreateEntryRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string directory = 1;</code>
+     */
+    java.lang.String getDirectory();
+    /**
+     * <code>string directory = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getDirectoryBytes();
+
+    /**
+     * <code>.filer_pb.Entry entry = 2;</code>
+     */
+    boolean hasEntry();
+    /**
+     * <code>.filer_pb.Entry entry = 2;</code>
+     */
+    seaweedfs.filer.protos.SeaweedFilerProtos.Entry getEntry();
+    /**
+     * <code>.filer_pb.Entry entry = 2;</code>
+     */
+    seaweedfs.filer.protos.SeaweedFilerProtos.EntryOrBuilder getEntryOrBuilder();
+  }
+  /**
+   * Protobuf type {@code filer_pb.CreateEntryRequest}
+   */
+  public  static final class CreateEntryRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:filer_pb.CreateEntryRequest)
+      CreateEntryRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use CreateEntryRequest.newBuilder() to construct.
+    private CreateEntryRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private CreateEntryRequest() {
+      directory_ = "";
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private CreateEntryRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              directory_ = s;
+              break;
+            }
+            case 18: {
+              seaweedfs.filer.protos.SeaweedFilerProtos.Entry.Builder subBuilder = null;
+              if (entry_ != null) {
+                subBuilder = entry_.toBuilder();
+              }
+              entry_ = input.readMessage(seaweedfs.filer.protos.SeaweedFilerProtos.Entry.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(entry_);
+                entry_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_CreateEntryRequest_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_CreateEntryRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest.class, seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest.Builder.class);
+    }
+
+    public static final int DIRECTORY_FIELD_NUMBER = 1;
+    private volatile java.lang.Object directory_;
+    /**
+     * <code>string directory = 1;</code>
+     */
+    public java.lang.String getDirectory() {
+      java.lang.Object ref = directory_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        directory_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string directory = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getDirectoryBytes() {
+      java.lang.Object ref = directory_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        directory_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int ENTRY_FIELD_NUMBER = 2;
+    private seaweedfs.filer.protos.SeaweedFilerProtos.Entry entry_;
+    /**
+     * <code>.filer_pb.Entry entry = 2;</code>
+     */
+    public boolean hasEntry() {
+      return entry_ != null;
+    }
+    /**
+     * <code>.filer_pb.Entry entry = 2;</code>
+     */
+    public seaweedfs.filer.protos.SeaweedFilerProtos.Entry getEntry() {
+      return entry_ == null ? seaweedfs.filer.protos.SeaweedFilerProtos.Entry.getDefaultInstance() : entry_;
+    }
+    /**
+     * <code>.filer_pb.Entry entry = 2;</code>
+     */
+    public seaweedfs.filer.protos.SeaweedFilerProtos.EntryOrBuilder getEntryOrBuilder() {
+      return getEntry();
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getDirectoryBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, directory_);
+      }
+      if (entry_ != null) {
+        output.writeMessage(2, getEntry());
+      }
+      unknownFields.writeTo(output);
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getDirectoryBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, directory_);
+      }
+      if (entry_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, getEntry());
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest)) {
+        return super.equals(obj);
+      }
+      seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest other = (seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest) obj;
+
+      boolean result = true;
+      result = result && getDirectory()
+          .equals(other.getDirectory());
+      result = result && (hasEntry() == other.hasEntry());
+      if (hasEntry()) {
+        result = result && getEntry()
+            .equals(other.getEntry());
+      }
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + DIRECTORY_FIELD_NUMBER;
+      hash = (53 * hash) + getDirectory().hashCode();
+      if (hasEntry()) {
+        hash = (37 * hash) + ENTRY_FIELD_NUMBER;
+        hash = (53 * hash) + getEntry().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code filer_pb.CreateEntryRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:filer_pb.CreateEntryRequest)
+        seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_CreateEntryRequest_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_CreateEntryRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest.class, seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest.Builder.class);
+      }
+
+      // Construct using seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        directory_ = "";
+
+        if (entryBuilder_ == null) {
+          entry_ = null;
+        } else {
+          entry_ = null;
+          entryBuilder_ = null;
+        }
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_CreateEntryRequest_descriptor;
+      }
+
+      public seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest getDefaultInstanceForType() {
+        return seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest.getDefaultInstance();
+      }
+
+      public seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest build() {
+        seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest buildPartial() {
+        seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest result = new seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest(this);
+        result.directory_ = directory_;
+        if (entryBuilder_ == null) {
+          result.entry_ = entry_;
+        } else {
+          result.entry_ = entryBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest) {
+          return mergeFrom((seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest other) {
+        if (other == seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest.getDefaultInstance()) return this;
+        if (!other.getDirectory().isEmpty()) {
+          directory_ = other.directory_;
+          onChanged();
+        }
+        if (other.hasEntry()) {
+          mergeEntry(other.getEntry());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object directory_ = "";
+      /**
+       * <code>string directory = 1;</code>
+       */
+      public java.lang.String getDirectory() {
+        java.lang.Object ref = directory_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          directory_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string directory = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getDirectoryBytes() {
+        java.lang.Object ref = directory_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          directory_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string directory = 1;</code>
+       */
+      public Builder setDirectory(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        directory_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string directory = 1;</code>
+       */
+      public Builder clearDirectory() {
+        
+        directory_ = getDefaultInstance().getDirectory();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string directory = 1;</code>
+       */
+      public Builder setDirectoryBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        directory_ = value;
+        onChanged();
+        return this;
+      }
+
+      private seaweedfs.filer.protos.SeaweedFilerProtos.Entry entry_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          seaweedfs.filer.protos.SeaweedFilerProtos.Entry, seaweedfs.filer.protos.SeaweedFilerProtos.Entry.Builder, seaweedfs.filer.protos.SeaweedFilerProtos.EntryOrBuilder> entryBuilder_;
+      /**
+       * <code>.filer_pb.Entry entry = 2;</code>
+       */
+      public boolean hasEntry() {
+        return entryBuilder_ != null || entry_ != null;
+      }
+      /**
+       * <code>.filer_pb.Entry entry = 2;</code>
+       */
+      public seaweedfs.filer.protos.SeaweedFilerProtos.Entry getEntry() {
+        if (entryBuilder_ == null) {
+          return entry_ == null ? seaweedfs.filer.protos.SeaweedFilerProtos.Entry.getDefaultInstance() : entry_;
+        } else {
+          return entryBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.filer_pb.Entry entry = 2;</code>
+       */
+      public Builder setEntry(seaweedfs.filer.protos.SeaweedFilerProtos.Entry value) {
+        if (entryBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          entry_ = value;
+          onChanged();
+        } else {
+          entryBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.filer_pb.Entry entry = 2;</code>
+       */
+      public Builder setEntry(
+          seaweedfs.filer.protos.SeaweedFilerProtos.Entry.Builder builderForValue) {
+        if (entryBuilder_ == null) {
+          entry_ = builderForValue.build();
+          onChanged();
+        } else {
+          entryBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.filer_pb.Entry entry = 2;</code>
+       */
+      public Builder mergeEntry(seaweedfs.filer.protos.SeaweedFilerProtos.Entry value) {
+        if (entryBuilder_ == null) {
+          if (entry_ != null) {
+            entry_ =
+              seaweedfs.filer.protos.SeaweedFilerProtos.Entry.newBuilder(entry_).mergeFrom(value).buildPartial();
+          } else {
+            entry_ = value;
+          }
+          onChanged();
+        } else {
+          entryBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.filer_pb.Entry entry = 2;</code>
+       */
+      public Builder clearEntry() {
+        if (entryBuilder_ == null) {
+          entry_ = null;
+          onChanged();
+        } else {
+          entry_ = null;
+          entryBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.filer_pb.Entry entry = 2;</code>
+       */
+      public seaweedfs.filer.protos.SeaweedFilerProtos.Entry.Builder getEntryBuilder() {
+        
+        onChanged();
+        return getEntryFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.filer_pb.Entry entry = 2;</code>
+       */
+      public seaweedfs.filer.protos.SeaweedFilerProtos.EntryOrBuilder getEntryOrBuilder() {
+        if (entryBuilder_ != null) {
+          return entryBuilder_.getMessageOrBuilder();
+        } else {
+          return entry_ == null ?
+              seaweedfs.filer.protos.SeaweedFilerProtos.Entry.getDefaultInstance() : entry_;
+        }
+      }
+      /**
+       * <code>.filer_pb.Entry entry = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          seaweedfs.filer.protos.SeaweedFilerProtos.Entry, seaweedfs.filer.protos.SeaweedFilerProtos.Entry.Builder, seaweedfs.filer.protos.SeaweedFilerProtos.EntryOrBuilder> 
+          getEntryFieldBuilder() {
+        if (entryBuilder_ == null) {
+          entryBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              seaweedfs.filer.protos.SeaweedFilerProtos.Entry, seaweedfs.filer.protos.SeaweedFilerProtos.Entry.Builder, seaweedfs.filer.protos.SeaweedFilerProtos.EntryOrBuilder>(
+                  getEntry(),
+                  getParentForChildren(),
+                  isClean());
+          entry_ = null;
+        }
+        return entryBuilder_;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:filer_pb.CreateEntryRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:filer_pb.CreateEntryRequest)
+    private static final seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest();
+    }
+
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<CreateEntryRequest>
+        PARSER = new com.google.protobuf.AbstractParser<CreateEntryRequest>() {
+      public CreateEntryRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new CreateEntryRequest(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<CreateEntryRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<CreateEntryRequest> getParserForType() {
+      return PARSER;
+    }
+
+    public seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface CreateEntryResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:filer_pb.CreateEntryResponse)
+      com.google.protobuf.MessageOrBuilder {
+  }
+  /**
+   * Protobuf type {@code filer_pb.CreateEntryResponse}
+   */
+  public  static final class CreateEntryResponse extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:filer_pb.CreateEntryResponse)
+      CreateEntryResponseOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use CreateEntryResponse.newBuilder() to construct.
+    private CreateEntryResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private CreateEntryResponse() {
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private CreateEntryResponse(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_CreateEntryResponse_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_CreateEntryResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse.class, seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse.Builder.class);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      unknownFields.writeTo(output);
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse)) {
+        return super.equals(obj);
+      }
+      seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse other = (seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse) obj;
+
+      boolean result = true;
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code filer_pb.CreateEntryResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:filer_pb.CreateEntryResponse)
+        seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_CreateEntryResponse_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_CreateEntryResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse.class, seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse.Builder.class);
+      }
+
+      // Construct using seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_CreateEntryResponse_descriptor;
+      }
+
+      public seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse getDefaultInstanceForType() {
+        return seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse.getDefaultInstance();
+      }
+
+      public seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse build() {
+        seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse buildPartial() {
+        seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse result = new seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse(this);
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse) {
+          return mergeFrom((seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse other) {
+        if (other == seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse.getDefaultInstance()) return this;
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:filer_pb.CreateEntryResponse)
+    }
+
+    // @@protoc_insertion_point(class_scope:filer_pb.CreateEntryResponse)
+    private static final seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse();
+    }
+
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<CreateEntryResponse>
+        PARSER = new com.google.protobuf.AbstractParser<CreateEntryResponse>() {
+      public CreateEntryResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new CreateEntryResponse(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<CreateEntryResponse> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<CreateEntryResponse> getParserForType() {
+      return PARSER;
+    }
+
+    public seaweedfs.filer.protos.SeaweedFilerProtos.CreateEntryResponse getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface UpdateEntryRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:filer_pb.UpdateEntryRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string directory = 1;</code>
+     */
+    java.lang.String getDirectory();
+    /**
+     * <code>string directory = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getDirectoryBytes();
+
+    /**
+     * <code>.filer_pb.Entry entry = 2;</code>
+     */
+    boolean hasEntry();
+    /**
+     * <code>.filer_pb.Entry entry = 2;</code>
+     */
+    seaweedfs.filer.protos.SeaweedFilerProtos.Entry getEntry();
+    /**
+     * <code>.filer_pb.Entry entry = 2;</code>
+     */
+    seaweedfs.filer.protos.SeaweedFilerProtos.EntryOrBuilder getEntryOrBuilder();
+  }
+  /**
+   * Protobuf type {@code filer_pb.UpdateEntryRequest}
+   */
+  public  static final class UpdateEntryRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:filer_pb.UpdateEntryRequest)
+      UpdateEntryRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use UpdateEntryRequest.newBuilder() to construct.
+    private UpdateEntryRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private UpdateEntryRequest() {
+      directory_ = "";
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private UpdateEntryRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              directory_ = s;
+              break;
+            }
+            case 18: {
+              seaweedfs.filer.protos.SeaweedFilerProtos.Entry.Builder subBuilder = null;
+              if (entry_ != null) {
+                subBuilder = entry_.toBuilder();
+              }
+              entry_ = input.readMessage(seaweedfs.filer.protos.SeaweedFilerProtos.Entry.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(entry_);
+                entry_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_UpdateEntryRequest_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_UpdateEntryRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest.class, seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest.Builder.class);
+    }
+
+    public static final int DIRECTORY_FIELD_NUMBER = 1;
+    private volatile java.lang.Object directory_;
+    /**
+     * <code>string directory = 1;</code>
+     */
+    public java.lang.String getDirectory() {
+      java.lang.Object ref = directory_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        directory_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string directory = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getDirectoryBytes() {
+      java.lang.Object ref = directory_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        directory_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int ENTRY_FIELD_NUMBER = 2;
+    private seaweedfs.filer.protos.SeaweedFilerProtos.Entry entry_;
+    /**
+     * <code>.filer_pb.Entry entry = 2;</code>
+     */
+    public boolean hasEntry() {
+      return entry_ != null;
+    }
+    /**
+     * <code>.filer_pb.Entry entry = 2;</code>
+     */
+    public seaweedfs.filer.protos.SeaweedFilerProtos.Entry getEntry() {
+      return entry_ == null ? seaweedfs.filer.protos.SeaweedFilerProtos.Entry.getDefaultInstance() : entry_;
+    }
+    /**
+     * <code>.filer_pb.Entry entry = 2;</code>
+     */
+    public seaweedfs.filer.protos.SeaweedFilerProtos.EntryOrBuilder getEntryOrBuilder() {
+      return getEntry();
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getDirectoryBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, directory_);
+      }
+      if (entry_ != null) {
+        output.writeMessage(2, getEntry());
+      }
+      unknownFields.writeTo(output);
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getDirectoryBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, directory_);
+      }
+      if (entry_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, getEntry());
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest)) {
+        return super.equals(obj);
+      }
+      seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest other = (seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest) obj;
+
+      boolean result = true;
+      result = result && getDirectory()
+          .equals(other.getDirectory());
+      result = result && (hasEntry() == other.hasEntry());
+      if (hasEntry()) {
+        result = result && getEntry()
+            .equals(other.getEntry());
+      }
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + DIRECTORY_FIELD_NUMBER;
+      hash = (53 * hash) + getDirectory().hashCode();
+      if (hasEntry()) {
+        hash = (37 * hash) + ENTRY_FIELD_NUMBER;
+        hash = (53 * hash) + getEntry().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code filer_pb.UpdateEntryRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:filer_pb.UpdateEntryRequest)
+        seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_UpdateEntryRequest_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_UpdateEntryRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest.class, seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest.Builder.class);
+      }
+
+      // Construct using seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        directory_ = "";
+
+        if (entryBuilder_ == null) {
+          entry_ = null;
+        } else {
+          entry_ = null;
+          entryBuilder_ = null;
+        }
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_UpdateEntryRequest_descriptor;
+      }
+
+      public seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest getDefaultInstanceForType() {
+        return seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest.getDefaultInstance();
+      }
+
+      public seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest build() {
+        seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest buildPartial() {
+        seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest result = new seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest(this);
+        result.directory_ = directory_;
+        if (entryBuilder_ == null) {
+          result.entry_ = entry_;
+        } else {
+          result.entry_ = entryBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest) {
+          return mergeFrom((seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest other) {
+        if (other == seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest.getDefaultInstance()) return this;
+        if (!other.getDirectory().isEmpty()) {
+          directory_ = other.directory_;
+          onChanged();
+        }
+        if (other.hasEntry()) {
+          mergeEntry(other.getEntry());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object directory_ = "";
+      /**
+       * <code>string directory = 1;</code>
+       */
+      public java.lang.String getDirectory() {
+        java.lang.Object ref = directory_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          directory_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string directory = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getDirectoryBytes() {
+        java.lang.Object ref = directory_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          directory_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string directory = 1;</code>
+       */
+      public Builder setDirectory(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        directory_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string directory = 1;</code>
+       */
+      public Builder clearDirectory() {
+        
+        directory_ = getDefaultInstance().getDirectory();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string directory = 1;</code>
+       */
+      public Builder setDirectoryBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        directory_ = value;
+        onChanged();
+        return this;
+      }
+
+      private seaweedfs.filer.protos.SeaweedFilerProtos.Entry entry_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          seaweedfs.filer.protos.SeaweedFilerProtos.Entry, seaweedfs.filer.protos.SeaweedFilerProtos.Entry.Builder, seaweedfs.filer.protos.SeaweedFilerProtos.EntryOrBuilder> entryBuilder_;
+      /**
+       * <code>.filer_pb.Entry entry = 2;</code>
+       */
+      public boolean hasEntry() {
+        return entryBuilder_ != null || entry_ != null;
+      }
+      /**
+       * <code>.filer_pb.Entry entry = 2;</code>
+       */
+      public seaweedfs.filer.protos.SeaweedFilerProtos.Entry getEntry() {
+        if (entryBuilder_ == null) {
+          return entry_ == null ? seaweedfs.filer.protos.SeaweedFilerProtos.Entry.getDefaultInstance() : entry_;
+        } else {
+          return entryBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.filer_pb.Entry entry = 2;</code>
+       */
+      public Builder setEntry(seaweedfs.filer.protos.SeaweedFilerProtos.Entry value) {
+        if (entryBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          entry_ = value;
+          onChanged();
+        } else {
+          entryBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.filer_pb.Entry entry = 2;</code>
+       */
+      public Builder setEntry(
+          seaweedfs.filer.protos.SeaweedFilerProtos.Entry.Builder builderForValue) {
+        if (entryBuilder_ == null) {
+          entry_ = builderForValue.build();
+          onChanged();
+        } else {
+          entryBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.filer_pb.Entry entry = 2;</code>
+       */
+      public Builder mergeEntry(seaweedfs.filer.protos.SeaweedFilerProtos.Entry value) {
+        if (entryBuilder_ == null) {
+          if (entry_ != null) {
+            entry_ =
+              seaweedfs.filer.protos.SeaweedFilerProtos.Entry.newBuilder(entry_).mergeFrom(value).buildPartial();
+          } else {
+            entry_ = value;
+          }
+          onChanged();
+        } else {
+          entryBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.filer_pb.Entry entry = 2;</code>
+       */
+      public Builder clearEntry() {
+        if (entryBuilder_ == null) {
+          entry_ = null;
+          onChanged();
+        } else {
+          entry_ = null;
+          entryBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.filer_pb.Entry entry = 2;</code>
+       */
+      public seaweedfs.filer.protos.SeaweedFilerProtos.Entry.Builder getEntryBuilder() {
+        
+        onChanged();
+        return getEntryFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.filer_pb.Entry entry = 2;</code>
+       */
+      public seaweedfs.filer.protos.SeaweedFilerProtos.EntryOrBuilder getEntryOrBuilder() {
+        if (entryBuilder_ != null) {
+          return entryBuilder_.getMessageOrBuilder();
+        } else {
+          return entry_ == null ?
+              seaweedfs.filer.protos.SeaweedFilerProtos.Entry.getDefaultInstance() : entry_;
+        }
+      }
+      /**
+       * <code>.filer_pb.Entry entry = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          seaweedfs.filer.protos.SeaweedFilerProtos.Entry, seaweedfs.filer.protos.SeaweedFilerProtos.Entry.Builder, seaweedfs.filer.protos.SeaweedFilerProtos.EntryOrBuilder> 
+          getEntryFieldBuilder() {
+        if (entryBuilder_ == null) {
+          entryBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              seaweedfs.filer.protos.SeaweedFilerProtos.Entry, seaweedfs.filer.protos.SeaweedFilerProtos.Entry.Builder, seaweedfs.filer.protos.SeaweedFilerProtos.EntryOrBuilder>(
+                  getEntry(),
+                  getParentForChildren(),
+                  isClean());
+          entry_ = null;
+        }
+        return entryBuilder_;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:filer_pb.UpdateEntryRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:filer_pb.UpdateEntryRequest)
+    private static final seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest();
+    }
+
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<UpdateEntryRequest>
+        PARSER = new com.google.protobuf.AbstractParser<UpdateEntryRequest>() {
+      public UpdateEntryRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new UpdateEntryRequest(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<UpdateEntryRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<UpdateEntryRequest> getParserForType() {
+      return PARSER;
+    }
+
+    public seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface UpdateEntryResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:filer_pb.UpdateEntryResponse)
+      com.google.protobuf.MessageOrBuilder {
+  }
+  /**
+   * Protobuf type {@code filer_pb.UpdateEntryResponse}
+   */
+  public  static final class UpdateEntryResponse extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:filer_pb.UpdateEntryResponse)
+      UpdateEntryResponseOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use UpdateEntryResponse.newBuilder() to construct.
+    private UpdateEntryResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private UpdateEntryResponse() {
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private UpdateEntryResponse(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_UpdateEntryResponse_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_UpdateEntryResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse.class, seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse.Builder.class);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      unknownFields.writeTo(output);
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse)) {
+        return super.equals(obj);
+      }
+      seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse other = (seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse) obj;
+
+      boolean result = true;
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code filer_pb.UpdateEntryResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:filer_pb.UpdateEntryResponse)
+        seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_UpdateEntryResponse_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_UpdateEntryResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse.class, seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse.Builder.class);
+      }
+
+      // Construct using seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_UpdateEntryResponse_descriptor;
+      }
+
+      public seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse getDefaultInstanceForType() {
+        return seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse.getDefaultInstance();
+      }
+
+      public seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse build() {
+        seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse buildPartial() {
+        seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse result = new seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse(this);
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse) {
+          return mergeFrom((seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse other) {
+        if (other == seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse.getDefaultInstance()) return this;
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:filer_pb.UpdateEntryResponse)
+    }
+
+    // @@protoc_insertion_point(class_scope:filer_pb.UpdateEntryResponse)
+    private static final seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse();
+    }
+
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<UpdateEntryResponse>
+        PARSER = new com.google.protobuf.AbstractParser<UpdateEntryResponse>() {
+      public UpdateEntryResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new UpdateEntryResponse(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<UpdateEntryResponse> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<UpdateEntryResponse> getParserForType() {
+      return PARSER;
+    }
+
+    public seaweedfs.filer.protos.SeaweedFilerProtos.UpdateEntryResponse getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface DeleteEntryRequestOrBuilder extends
       // @@protoc_insertion_point(interface_extends:filer_pb.DeleteEntryRequest)
       com.google.protobuf.MessageOrBuilder {
@@ -6553,6 +10290,11 @@ public final class SeaweedFilerProtos {
      * <code>bool is_directory = 3;</code>
      */
     boolean getIsDirectory();
+
+    /**
+     * <code>bool is_delete_data = 4;</code>
+     */
+    boolean getIsDeleteData();
   }
   /**
    * Protobuf type {@code filer_pb.DeleteEntryRequest}
@@ -6570,6 +10312,7 @@ public final class SeaweedFilerProtos {
       directory_ = "";
       name_ = "";
       isDirectory_ = false;
+      isDeleteData_ = false;
     }
 
     @java.lang.Override
@@ -6618,6 +10361,11 @@ public final class SeaweedFilerProtos {
             case 24: {
 
               isDirectory_ = input.readBool();
+              break;
+            }
+            case 32: {
+
+              isDeleteData_ = input.readBool();
               break;
             }
           }
@@ -6721,6 +10469,15 @@ public final class SeaweedFilerProtos {
       return isDirectory_;
     }
 
+    public static final int IS_DELETE_DATA_FIELD_NUMBER = 4;
+    private boolean isDeleteData_;
+    /**
+     * <code>bool is_delete_data = 4;</code>
+     */
+    public boolean getIsDeleteData() {
+      return isDeleteData_;
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -6742,6 +10499,9 @@ public final class SeaweedFilerProtos {
       if (isDirectory_ != false) {
         output.writeBool(3, isDirectory_);
       }
+      if (isDeleteData_ != false) {
+        output.writeBool(4, isDeleteData_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -6759,6 +10519,10 @@ public final class SeaweedFilerProtos {
       if (isDirectory_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(3, isDirectory_);
+      }
+      if (isDeleteData_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(4, isDeleteData_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -6782,6 +10546,8 @@ public final class SeaweedFilerProtos {
           .equals(other.getName());
       result = result && (getIsDirectory()
           == other.getIsDirectory());
+      result = result && (getIsDeleteData()
+          == other.getIsDeleteData());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -6800,6 +10566,9 @@ public final class SeaweedFilerProtos {
       hash = (37 * hash) + IS_DIRECTORY_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
           getIsDirectory());
+      hash = (37 * hash) + IS_DELETE_DATA_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getIsDeleteData());
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -6935,6 +10704,8 @@ public final class SeaweedFilerProtos {
 
         isDirectory_ = false;
 
+        isDeleteData_ = false;
+
         return this;
       }
 
@@ -6960,6 +10731,7 @@ public final class SeaweedFilerProtos {
         result.directory_ = directory_;
         result.name_ = name_;
         result.isDirectory_ = isDirectory_;
+        result.isDeleteData_ = isDeleteData_;
         onBuilt();
         return result;
       }
@@ -7011,6 +10783,9 @@ public final class SeaweedFilerProtos {
         }
         if (other.getIsDirectory() != false) {
           setIsDirectory(other.getIsDirectory());
+        }
+        if (other.getIsDeleteData() != false) {
+          setIsDeleteData(other.getIsDeleteData());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -7199,6 +10974,32 @@ public final class SeaweedFilerProtos {
       public Builder clearIsDirectory() {
         
         isDirectory_ = false;
+        onChanged();
+        return this;
+      }
+
+      private boolean isDeleteData_ ;
+      /**
+       * <code>bool is_delete_data = 4;</code>
+       */
+      public boolean getIsDeleteData() {
+        return isDeleteData_;
+      }
+      /**
+       * <code>bool is_delete_data = 4;</code>
+       */
+      public Builder setIsDeleteData(boolean value) {
+        
+        isDeleteData_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bool is_delete_data = 4;</code>
+       */
+      public Builder clearIsDeleteData() {
+        
+        isDeleteData_ = false;
         onChanged();
         return this;
       }
@@ -7638,6 +11439,4287 @@ public final class SeaweedFilerProtos {
 
   }
 
+  public interface AssignVolumeRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:filer_pb.AssignVolumeRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>int32 count = 1;</code>
+     */
+    int getCount();
+
+    /**
+     * <code>string collection = 2;</code>
+     */
+    java.lang.String getCollection();
+    /**
+     * <code>string collection = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getCollectionBytes();
+
+    /**
+     * <code>string replication = 3;</code>
+     */
+    java.lang.String getReplication();
+    /**
+     * <code>string replication = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getReplicationBytes();
+  }
+  /**
+   * Protobuf type {@code filer_pb.AssignVolumeRequest}
+   */
+  public  static final class AssignVolumeRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:filer_pb.AssignVolumeRequest)
+      AssignVolumeRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use AssignVolumeRequest.newBuilder() to construct.
+    private AssignVolumeRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private AssignVolumeRequest() {
+      count_ = 0;
+      collection_ = "";
+      replication_ = "";
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private AssignVolumeRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+
+              count_ = input.readInt32();
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              collection_ = s;
+              break;
+            }
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              replication_ = s;
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_AssignVolumeRequest_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_AssignVolumeRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest.class, seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest.Builder.class);
+    }
+
+    public static final int COUNT_FIELD_NUMBER = 1;
+    private int count_;
+    /**
+     * <code>int32 count = 1;</code>
+     */
+    public int getCount() {
+      return count_;
+    }
+
+    public static final int COLLECTION_FIELD_NUMBER = 2;
+    private volatile java.lang.Object collection_;
+    /**
+     * <code>string collection = 2;</code>
+     */
+    public java.lang.String getCollection() {
+      java.lang.Object ref = collection_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        collection_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string collection = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getCollectionBytes() {
+      java.lang.Object ref = collection_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        collection_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int REPLICATION_FIELD_NUMBER = 3;
+    private volatile java.lang.Object replication_;
+    /**
+     * <code>string replication = 3;</code>
+     */
+    public java.lang.String getReplication() {
+      java.lang.Object ref = replication_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        replication_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string replication = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getReplicationBytes() {
+      java.lang.Object ref = replication_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        replication_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (count_ != 0) {
+        output.writeInt32(1, count_);
+      }
+      if (!getCollectionBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, collection_);
+      }
+      if (!getReplicationBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, replication_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (count_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, count_);
+      }
+      if (!getCollectionBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, collection_);
+      }
+      if (!getReplicationBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, replication_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest)) {
+        return super.equals(obj);
+      }
+      seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest other = (seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest) obj;
+
+      boolean result = true;
+      result = result && (getCount()
+          == other.getCount());
+      result = result && getCollection()
+          .equals(other.getCollection());
+      result = result && getReplication()
+          .equals(other.getReplication());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + COUNT_FIELD_NUMBER;
+      hash = (53 * hash) + getCount();
+      hash = (37 * hash) + COLLECTION_FIELD_NUMBER;
+      hash = (53 * hash) + getCollection().hashCode();
+      hash = (37 * hash) + REPLICATION_FIELD_NUMBER;
+      hash = (53 * hash) + getReplication().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code filer_pb.AssignVolumeRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:filer_pb.AssignVolumeRequest)
+        seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_AssignVolumeRequest_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_AssignVolumeRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest.class, seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest.Builder.class);
+      }
+
+      // Construct using seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        count_ = 0;
+
+        collection_ = "";
+
+        replication_ = "";
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_AssignVolumeRequest_descriptor;
+      }
+
+      public seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest getDefaultInstanceForType() {
+        return seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest.getDefaultInstance();
+      }
+
+      public seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest build() {
+        seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest buildPartial() {
+        seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest result = new seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest(this);
+        result.count_ = count_;
+        result.collection_ = collection_;
+        result.replication_ = replication_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest) {
+          return mergeFrom((seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest other) {
+        if (other == seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest.getDefaultInstance()) return this;
+        if (other.getCount() != 0) {
+          setCount(other.getCount());
+        }
+        if (!other.getCollection().isEmpty()) {
+          collection_ = other.collection_;
+          onChanged();
+        }
+        if (!other.getReplication().isEmpty()) {
+          replication_ = other.replication_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private int count_ ;
+      /**
+       * <code>int32 count = 1;</code>
+       */
+      public int getCount() {
+        return count_;
+      }
+      /**
+       * <code>int32 count = 1;</code>
+       */
+      public Builder setCount(int value) {
+        
+        count_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 count = 1;</code>
+       */
+      public Builder clearCount() {
+        
+        count_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object collection_ = "";
+      /**
+       * <code>string collection = 2;</code>
+       */
+      public java.lang.String getCollection() {
+        java.lang.Object ref = collection_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          collection_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string collection = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getCollectionBytes() {
+        java.lang.Object ref = collection_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          collection_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string collection = 2;</code>
+       */
+      public Builder setCollection(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        collection_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string collection = 2;</code>
+       */
+      public Builder clearCollection() {
+        
+        collection_ = getDefaultInstance().getCollection();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string collection = 2;</code>
+       */
+      public Builder setCollectionBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        collection_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object replication_ = "";
+      /**
+       * <code>string replication = 3;</code>
+       */
+      public java.lang.String getReplication() {
+        java.lang.Object ref = replication_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          replication_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string replication = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getReplicationBytes() {
+        java.lang.Object ref = replication_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          replication_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string replication = 3;</code>
+       */
+      public Builder setReplication(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        replication_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string replication = 3;</code>
+       */
+      public Builder clearReplication() {
+        
+        replication_ = getDefaultInstance().getReplication();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string replication = 3;</code>
+       */
+      public Builder setReplicationBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        replication_ = value;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:filer_pb.AssignVolumeRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:filer_pb.AssignVolumeRequest)
+    private static final seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest();
+    }
+
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<AssignVolumeRequest>
+        PARSER = new com.google.protobuf.AbstractParser<AssignVolumeRequest>() {
+      public AssignVolumeRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new AssignVolumeRequest(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<AssignVolumeRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<AssignVolumeRequest> getParserForType() {
+      return PARSER;
+    }
+
+    public seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface AssignVolumeResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:filer_pb.AssignVolumeResponse)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string file_id = 1;</code>
+     */
+    java.lang.String getFileId();
+    /**
+     * <code>string file_id = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getFileIdBytes();
+
+    /**
+     * <code>string url = 2;</code>
+     */
+    java.lang.String getUrl();
+    /**
+     * <code>string url = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getUrlBytes();
+
+    /**
+     * <code>string public_url = 3;</code>
+     */
+    java.lang.String getPublicUrl();
+    /**
+     * <code>string public_url = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getPublicUrlBytes();
+
+    /**
+     * <code>int32 count = 4;</code>
+     */
+    int getCount();
+  }
+  /**
+   * Protobuf type {@code filer_pb.AssignVolumeResponse}
+   */
+  public  static final class AssignVolumeResponse extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:filer_pb.AssignVolumeResponse)
+      AssignVolumeResponseOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use AssignVolumeResponse.newBuilder() to construct.
+    private AssignVolumeResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private AssignVolumeResponse() {
+      fileId_ = "";
+      url_ = "";
+      publicUrl_ = "";
+      count_ = 0;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private AssignVolumeResponse(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              fileId_ = s;
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              url_ = s;
+              break;
+            }
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              publicUrl_ = s;
+              break;
+            }
+            case 32: {
+
+              count_ = input.readInt32();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_AssignVolumeResponse_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_AssignVolumeResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse.class, seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse.Builder.class);
+    }
+
+    public static final int FILE_ID_FIELD_NUMBER = 1;
+    private volatile java.lang.Object fileId_;
+    /**
+     * <code>string file_id = 1;</code>
+     */
+    public java.lang.String getFileId() {
+      java.lang.Object ref = fileId_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        fileId_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string file_id = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getFileIdBytes() {
+      java.lang.Object ref = fileId_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        fileId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int URL_FIELD_NUMBER = 2;
+    private volatile java.lang.Object url_;
+    /**
+     * <code>string url = 2;</code>
+     */
+    public java.lang.String getUrl() {
+      java.lang.Object ref = url_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        url_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string url = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getUrlBytes() {
+      java.lang.Object ref = url_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        url_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int PUBLIC_URL_FIELD_NUMBER = 3;
+    private volatile java.lang.Object publicUrl_;
+    /**
+     * <code>string public_url = 3;</code>
+     */
+    public java.lang.String getPublicUrl() {
+      java.lang.Object ref = publicUrl_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        publicUrl_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string public_url = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getPublicUrlBytes() {
+      java.lang.Object ref = publicUrl_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        publicUrl_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int COUNT_FIELD_NUMBER = 4;
+    private int count_;
+    /**
+     * <code>int32 count = 4;</code>
+     */
+    public int getCount() {
+      return count_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getFileIdBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, fileId_);
+      }
+      if (!getUrlBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, url_);
+      }
+      if (!getPublicUrlBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, publicUrl_);
+      }
+      if (count_ != 0) {
+        output.writeInt32(4, count_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getFileIdBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, fileId_);
+      }
+      if (!getUrlBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, url_);
+      }
+      if (!getPublicUrlBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, publicUrl_);
+      }
+      if (count_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(4, count_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse)) {
+        return super.equals(obj);
+      }
+      seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse other = (seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse) obj;
+
+      boolean result = true;
+      result = result && getFileId()
+          .equals(other.getFileId());
+      result = result && getUrl()
+          .equals(other.getUrl());
+      result = result && getPublicUrl()
+          .equals(other.getPublicUrl());
+      result = result && (getCount()
+          == other.getCount());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + FILE_ID_FIELD_NUMBER;
+      hash = (53 * hash) + getFileId().hashCode();
+      hash = (37 * hash) + URL_FIELD_NUMBER;
+      hash = (53 * hash) + getUrl().hashCode();
+      hash = (37 * hash) + PUBLIC_URL_FIELD_NUMBER;
+      hash = (53 * hash) + getPublicUrl().hashCode();
+      hash = (37 * hash) + COUNT_FIELD_NUMBER;
+      hash = (53 * hash) + getCount();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code filer_pb.AssignVolumeResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:filer_pb.AssignVolumeResponse)
+        seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_AssignVolumeResponse_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_AssignVolumeResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse.class, seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse.Builder.class);
+      }
+
+      // Construct using seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        fileId_ = "";
+
+        url_ = "";
+
+        publicUrl_ = "";
+
+        count_ = 0;
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_AssignVolumeResponse_descriptor;
+      }
+
+      public seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse getDefaultInstanceForType() {
+        return seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse.getDefaultInstance();
+      }
+
+      public seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse build() {
+        seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse buildPartial() {
+        seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse result = new seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse(this);
+        result.fileId_ = fileId_;
+        result.url_ = url_;
+        result.publicUrl_ = publicUrl_;
+        result.count_ = count_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse) {
+          return mergeFrom((seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse other) {
+        if (other == seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse.getDefaultInstance()) return this;
+        if (!other.getFileId().isEmpty()) {
+          fileId_ = other.fileId_;
+          onChanged();
+        }
+        if (!other.getUrl().isEmpty()) {
+          url_ = other.url_;
+          onChanged();
+        }
+        if (!other.getPublicUrl().isEmpty()) {
+          publicUrl_ = other.publicUrl_;
+          onChanged();
+        }
+        if (other.getCount() != 0) {
+          setCount(other.getCount());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object fileId_ = "";
+      /**
+       * <code>string file_id = 1;</code>
+       */
+      public java.lang.String getFileId() {
+        java.lang.Object ref = fileId_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          fileId_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string file_id = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getFileIdBytes() {
+        java.lang.Object ref = fileId_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          fileId_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string file_id = 1;</code>
+       */
+      public Builder setFileId(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        fileId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string file_id = 1;</code>
+       */
+      public Builder clearFileId() {
+        
+        fileId_ = getDefaultInstance().getFileId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string file_id = 1;</code>
+       */
+      public Builder setFileIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        fileId_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object url_ = "";
+      /**
+       * <code>string url = 2;</code>
+       */
+      public java.lang.String getUrl() {
+        java.lang.Object ref = url_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          url_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string url = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getUrlBytes() {
+        java.lang.Object ref = url_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          url_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string url = 2;</code>
+       */
+      public Builder setUrl(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        url_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string url = 2;</code>
+       */
+      public Builder clearUrl() {
+        
+        url_ = getDefaultInstance().getUrl();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string url = 2;</code>
+       */
+      public Builder setUrlBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        url_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object publicUrl_ = "";
+      /**
+       * <code>string public_url = 3;</code>
+       */
+      public java.lang.String getPublicUrl() {
+        java.lang.Object ref = publicUrl_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          publicUrl_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string public_url = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getPublicUrlBytes() {
+        java.lang.Object ref = publicUrl_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          publicUrl_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string public_url = 3;</code>
+       */
+      public Builder setPublicUrl(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        publicUrl_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string public_url = 3;</code>
+       */
+      public Builder clearPublicUrl() {
+        
+        publicUrl_ = getDefaultInstance().getPublicUrl();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string public_url = 3;</code>
+       */
+      public Builder setPublicUrlBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        publicUrl_ = value;
+        onChanged();
+        return this;
+      }
+
+      private int count_ ;
+      /**
+       * <code>int32 count = 4;</code>
+       */
+      public int getCount() {
+        return count_;
+      }
+      /**
+       * <code>int32 count = 4;</code>
+       */
+      public Builder setCount(int value) {
+        
+        count_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 count = 4;</code>
+       */
+      public Builder clearCount() {
+        
+        count_ = 0;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:filer_pb.AssignVolumeResponse)
+    }
+
+    // @@protoc_insertion_point(class_scope:filer_pb.AssignVolumeResponse)
+    private static final seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse();
+    }
+
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<AssignVolumeResponse>
+        PARSER = new com.google.protobuf.AbstractParser<AssignVolumeResponse>() {
+      public AssignVolumeResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new AssignVolumeResponse(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<AssignVolumeResponse> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<AssignVolumeResponse> getParserForType() {
+      return PARSER;
+    }
+
+    public seaweedfs.filer.protos.SeaweedFilerProtos.AssignVolumeResponse getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface LookupVolumeRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:filer_pb.LookupVolumeRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>repeated string volume_ids = 1;</code>
+     */
+    java.util.List<java.lang.String>
+        getVolumeIdsList();
+    /**
+     * <code>repeated string volume_ids = 1;</code>
+     */
+    int getVolumeIdsCount();
+    /**
+     * <code>repeated string volume_ids = 1;</code>
+     */
+    java.lang.String getVolumeIds(int index);
+    /**
+     * <code>repeated string volume_ids = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getVolumeIdsBytes(int index);
+  }
+  /**
+   * Protobuf type {@code filer_pb.LookupVolumeRequest}
+   */
+  public  static final class LookupVolumeRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:filer_pb.LookupVolumeRequest)
+      LookupVolumeRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use LookupVolumeRequest.newBuilder() to construct.
+    private LookupVolumeRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private LookupVolumeRequest() {
+      volumeIds_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private LookupVolumeRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+                volumeIds_ = new com.google.protobuf.LazyStringArrayList();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              volumeIds_.add(s);
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+          volumeIds_ = volumeIds_.getUnmodifiableView();
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_LookupVolumeRequest_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_LookupVolumeRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest.class, seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest.Builder.class);
+    }
+
+    public static final int VOLUME_IDS_FIELD_NUMBER = 1;
+    private com.google.protobuf.LazyStringList volumeIds_;
+    /**
+     * <code>repeated string volume_ids = 1;</code>
+     */
+    public com.google.protobuf.ProtocolStringList
+        getVolumeIdsList() {
+      return volumeIds_;
+    }
+    /**
+     * <code>repeated string volume_ids = 1;</code>
+     */
+    public int getVolumeIdsCount() {
+      return volumeIds_.size();
+    }
+    /**
+     * <code>repeated string volume_ids = 1;</code>
+     */
+    public java.lang.String getVolumeIds(int index) {
+      return volumeIds_.get(index);
+    }
+    /**
+     * <code>repeated string volume_ids = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getVolumeIdsBytes(int index) {
+      return volumeIds_.getByteString(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      for (int i = 0; i < volumeIds_.size(); i++) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, volumeIds_.getRaw(i));
+      }
+      unknownFields.writeTo(output);
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      {
+        int dataSize = 0;
+        for (int i = 0; i < volumeIds_.size(); i++) {
+          dataSize += computeStringSizeNoTag(volumeIds_.getRaw(i));
+        }
+        size += dataSize;
+        size += 1 * getVolumeIdsList().size();
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest)) {
+        return super.equals(obj);
+      }
+      seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest other = (seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest) obj;
+
+      boolean result = true;
+      result = result && getVolumeIdsList()
+          .equals(other.getVolumeIdsList());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (getVolumeIdsCount() > 0) {
+        hash = (37 * hash) + VOLUME_IDS_FIELD_NUMBER;
+        hash = (53 * hash) + getVolumeIdsList().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code filer_pb.LookupVolumeRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:filer_pb.LookupVolumeRequest)
+        seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_LookupVolumeRequest_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_LookupVolumeRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest.class, seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest.Builder.class);
+      }
+
+      // Construct using seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        volumeIds_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_LookupVolumeRequest_descriptor;
+      }
+
+      public seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest getDefaultInstanceForType() {
+        return seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest.getDefaultInstance();
+      }
+
+      public seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest build() {
+        seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest buildPartial() {
+        seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest result = new seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest(this);
+        int from_bitField0_ = bitField0_;
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          volumeIds_ = volumeIds_.getUnmodifiableView();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        }
+        result.volumeIds_ = volumeIds_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest) {
+          return mergeFrom((seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest other) {
+        if (other == seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest.getDefaultInstance()) return this;
+        if (!other.volumeIds_.isEmpty()) {
+          if (volumeIds_.isEmpty()) {
+            volumeIds_ = other.volumeIds_;
+            bitField0_ = (bitField0_ & ~0x00000001);
+          } else {
+            ensureVolumeIdsIsMutable();
+            volumeIds_.addAll(other.volumeIds_);
+          }
+          onChanged();
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private com.google.protobuf.LazyStringList volumeIds_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private void ensureVolumeIdsIsMutable() {
+        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+          volumeIds_ = new com.google.protobuf.LazyStringArrayList(volumeIds_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+      /**
+       * <code>repeated string volume_ids = 1;</code>
+       */
+      public com.google.protobuf.ProtocolStringList
+          getVolumeIdsList() {
+        return volumeIds_.getUnmodifiableView();
+      }
+      /**
+       * <code>repeated string volume_ids = 1;</code>
+       */
+      public int getVolumeIdsCount() {
+        return volumeIds_.size();
+      }
+      /**
+       * <code>repeated string volume_ids = 1;</code>
+       */
+      public java.lang.String getVolumeIds(int index) {
+        return volumeIds_.get(index);
+      }
+      /**
+       * <code>repeated string volume_ids = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getVolumeIdsBytes(int index) {
+        return volumeIds_.getByteString(index);
+      }
+      /**
+       * <code>repeated string volume_ids = 1;</code>
+       */
+      public Builder setVolumeIds(
+          int index, java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureVolumeIdsIsMutable();
+        volumeIds_.set(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string volume_ids = 1;</code>
+       */
+      public Builder addVolumeIds(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureVolumeIdsIsMutable();
+        volumeIds_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string volume_ids = 1;</code>
+       */
+      public Builder addAllVolumeIds(
+          java.lang.Iterable<java.lang.String> values) {
+        ensureVolumeIdsIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, volumeIds_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string volume_ids = 1;</code>
+       */
+      public Builder clearVolumeIds() {
+        volumeIds_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string volume_ids = 1;</code>
+       */
+      public Builder addVolumeIdsBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        ensureVolumeIdsIsMutable();
+        volumeIds_.add(value);
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:filer_pb.LookupVolumeRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:filer_pb.LookupVolumeRequest)
+    private static final seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest();
+    }
+
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<LookupVolumeRequest>
+        PARSER = new com.google.protobuf.AbstractParser<LookupVolumeRequest>() {
+      public LookupVolumeRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new LookupVolumeRequest(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<LookupVolumeRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<LookupVolumeRequest> getParserForType() {
+      return PARSER;
+    }
+
+    public seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface LocationsOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:filer_pb.Locations)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>repeated .filer_pb.Location locations = 1;</code>
+     */
+    java.util.List<seaweedfs.filer.protos.SeaweedFilerProtos.Location> 
+        getLocationsList();
+    /**
+     * <code>repeated .filer_pb.Location locations = 1;</code>
+     */
+    seaweedfs.filer.protos.SeaweedFilerProtos.Location getLocations(int index);
+    /**
+     * <code>repeated .filer_pb.Location locations = 1;</code>
+     */
+    int getLocationsCount();
+    /**
+     * <code>repeated .filer_pb.Location locations = 1;</code>
+     */
+    java.util.List<? extends seaweedfs.filer.protos.SeaweedFilerProtos.LocationOrBuilder> 
+        getLocationsOrBuilderList();
+    /**
+     * <code>repeated .filer_pb.Location locations = 1;</code>
+     */
+    seaweedfs.filer.protos.SeaweedFilerProtos.LocationOrBuilder getLocationsOrBuilder(
+        int index);
+  }
+  /**
+   * Protobuf type {@code filer_pb.Locations}
+   */
+  public  static final class Locations extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:filer_pb.Locations)
+      LocationsOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use Locations.newBuilder() to construct.
+    private Locations(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private Locations() {
+      locations_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private Locations(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+                locations_ = new java.util.ArrayList<seaweedfs.filer.protos.SeaweedFilerProtos.Location>();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              locations_.add(
+                  input.readMessage(seaweedfs.filer.protos.SeaweedFilerProtos.Location.parser(), extensionRegistry));
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+          locations_ = java.util.Collections.unmodifiableList(locations_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_Locations_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_Locations_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              seaweedfs.filer.protos.SeaweedFilerProtos.Locations.class, seaweedfs.filer.protos.SeaweedFilerProtos.Locations.Builder.class);
+    }
+
+    public static final int LOCATIONS_FIELD_NUMBER = 1;
+    private java.util.List<seaweedfs.filer.protos.SeaweedFilerProtos.Location> locations_;
+    /**
+     * <code>repeated .filer_pb.Location locations = 1;</code>
+     */
+    public java.util.List<seaweedfs.filer.protos.SeaweedFilerProtos.Location> getLocationsList() {
+      return locations_;
+    }
+    /**
+     * <code>repeated .filer_pb.Location locations = 1;</code>
+     */
+    public java.util.List<? extends seaweedfs.filer.protos.SeaweedFilerProtos.LocationOrBuilder> 
+        getLocationsOrBuilderList() {
+      return locations_;
+    }
+    /**
+     * <code>repeated .filer_pb.Location locations = 1;</code>
+     */
+    public int getLocationsCount() {
+      return locations_.size();
+    }
+    /**
+     * <code>repeated .filer_pb.Location locations = 1;</code>
+     */
+    public seaweedfs.filer.protos.SeaweedFilerProtos.Location getLocations(int index) {
+      return locations_.get(index);
+    }
+    /**
+     * <code>repeated .filer_pb.Location locations = 1;</code>
+     */
+    public seaweedfs.filer.protos.SeaweedFilerProtos.LocationOrBuilder getLocationsOrBuilder(
+        int index) {
+      return locations_.get(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      for (int i = 0; i < locations_.size(); i++) {
+        output.writeMessage(1, locations_.get(i));
+      }
+      unknownFields.writeTo(output);
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      for (int i = 0; i < locations_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, locations_.get(i));
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof seaweedfs.filer.protos.SeaweedFilerProtos.Locations)) {
+        return super.equals(obj);
+      }
+      seaweedfs.filer.protos.SeaweedFilerProtos.Locations other = (seaweedfs.filer.protos.SeaweedFilerProtos.Locations) obj;
+
+      boolean result = true;
+      result = result && getLocationsList()
+          .equals(other.getLocationsList());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (getLocationsCount() > 0) {
+        hash = (37 * hash) + LOCATIONS_FIELD_NUMBER;
+        hash = (53 * hash) + getLocationsList().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.Locations parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.Locations parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.Locations parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.Locations parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.Locations parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.Locations parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.Locations parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.Locations parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.Locations parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.Locations parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.Locations parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.Locations parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(seaweedfs.filer.protos.SeaweedFilerProtos.Locations prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code filer_pb.Locations}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:filer_pb.Locations)
+        seaweedfs.filer.protos.SeaweedFilerProtos.LocationsOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_Locations_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_Locations_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                seaweedfs.filer.protos.SeaweedFilerProtos.Locations.class, seaweedfs.filer.protos.SeaweedFilerProtos.Locations.Builder.class);
+      }
+
+      // Construct using seaweedfs.filer.protos.SeaweedFilerProtos.Locations.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+          getLocationsFieldBuilder();
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        if (locationsBuilder_ == null) {
+          locations_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          locationsBuilder_.clear();
+        }
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_Locations_descriptor;
+      }
+
+      public seaweedfs.filer.protos.SeaweedFilerProtos.Locations getDefaultInstanceForType() {
+        return seaweedfs.filer.protos.SeaweedFilerProtos.Locations.getDefaultInstance();
+      }
+
+      public seaweedfs.filer.protos.SeaweedFilerProtos.Locations build() {
+        seaweedfs.filer.protos.SeaweedFilerProtos.Locations result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public seaweedfs.filer.protos.SeaweedFilerProtos.Locations buildPartial() {
+        seaweedfs.filer.protos.SeaweedFilerProtos.Locations result = new seaweedfs.filer.protos.SeaweedFilerProtos.Locations(this);
+        int from_bitField0_ = bitField0_;
+        if (locationsBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) == 0x00000001)) {
+            locations_ = java.util.Collections.unmodifiableList(locations_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.locations_ = locations_;
+        } else {
+          result.locations_ = locationsBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof seaweedfs.filer.protos.SeaweedFilerProtos.Locations) {
+          return mergeFrom((seaweedfs.filer.protos.SeaweedFilerProtos.Locations)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(seaweedfs.filer.protos.SeaweedFilerProtos.Locations other) {
+        if (other == seaweedfs.filer.protos.SeaweedFilerProtos.Locations.getDefaultInstance()) return this;
+        if (locationsBuilder_ == null) {
+          if (!other.locations_.isEmpty()) {
+            if (locations_.isEmpty()) {
+              locations_ = other.locations_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureLocationsIsMutable();
+              locations_.addAll(other.locations_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.locations_.isEmpty()) {
+            if (locationsBuilder_.isEmpty()) {
+              locationsBuilder_.dispose();
+              locationsBuilder_ = null;
+              locations_ = other.locations_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              locationsBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getLocationsFieldBuilder() : null;
+            } else {
+              locationsBuilder_.addAllMessages(other.locations_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        seaweedfs.filer.protos.SeaweedFilerProtos.Locations parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (seaweedfs.filer.protos.SeaweedFilerProtos.Locations) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private java.util.List<seaweedfs.filer.protos.SeaweedFilerProtos.Location> locations_ =
+        java.util.Collections.emptyList();
+      private void ensureLocationsIsMutable() {
+        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+          locations_ = new java.util.ArrayList<seaweedfs.filer.protos.SeaweedFilerProtos.Location>(locations_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          seaweedfs.filer.protos.SeaweedFilerProtos.Location, seaweedfs.filer.protos.SeaweedFilerProtos.Location.Builder, seaweedfs.filer.protos.SeaweedFilerProtos.LocationOrBuilder> locationsBuilder_;
+
+      /**
+       * <code>repeated .filer_pb.Location locations = 1;</code>
+       */
+      public java.util.List<seaweedfs.filer.protos.SeaweedFilerProtos.Location> getLocationsList() {
+        if (locationsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(locations_);
+        } else {
+          return locationsBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .filer_pb.Location locations = 1;</code>
+       */
+      public int getLocationsCount() {
+        if (locationsBuilder_ == null) {
+          return locations_.size();
+        } else {
+          return locationsBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .filer_pb.Location locations = 1;</code>
+       */
+      public seaweedfs.filer.protos.SeaweedFilerProtos.Location getLocations(int index) {
+        if (locationsBuilder_ == null) {
+          return locations_.get(index);
+        } else {
+          return locationsBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .filer_pb.Location locations = 1;</code>
+       */
+      public Builder setLocations(
+          int index, seaweedfs.filer.protos.SeaweedFilerProtos.Location value) {
+        if (locationsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureLocationsIsMutable();
+          locations_.set(index, value);
+          onChanged();
+        } else {
+          locationsBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .filer_pb.Location locations = 1;</code>
+       */
+      public Builder setLocations(
+          int index, seaweedfs.filer.protos.SeaweedFilerProtos.Location.Builder builderForValue) {
+        if (locationsBuilder_ == null) {
+          ensureLocationsIsMutable();
+          locations_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          locationsBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .filer_pb.Location locations = 1;</code>
+       */
+      public Builder addLocations(seaweedfs.filer.protos.SeaweedFilerProtos.Location value) {
+        if (locationsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureLocationsIsMutable();
+          locations_.add(value);
+          onChanged();
+        } else {
+          locationsBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .filer_pb.Location locations = 1;</code>
+       */
+      public Builder addLocations(
+          int index, seaweedfs.filer.protos.SeaweedFilerProtos.Location value) {
+        if (locationsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureLocationsIsMutable();
+          locations_.add(index, value);
+          onChanged();
+        } else {
+          locationsBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .filer_pb.Location locations = 1;</code>
+       */
+      public Builder addLocations(
+          seaweedfs.filer.protos.SeaweedFilerProtos.Location.Builder builderForValue) {
+        if (locationsBuilder_ == null) {
+          ensureLocationsIsMutable();
+          locations_.add(builderForValue.build());
+          onChanged();
+        } else {
+          locationsBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .filer_pb.Location locations = 1;</code>
+       */
+      public Builder addLocations(
+          int index, seaweedfs.filer.protos.SeaweedFilerProtos.Location.Builder builderForValue) {
+        if (locationsBuilder_ == null) {
+          ensureLocationsIsMutable();
+          locations_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          locationsBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .filer_pb.Location locations = 1;</code>
+       */
+      public Builder addAllLocations(
+          java.lang.Iterable<? extends seaweedfs.filer.protos.SeaweedFilerProtos.Location> values) {
+        if (locationsBuilder_ == null) {
+          ensureLocationsIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, locations_);
+          onChanged();
+        } else {
+          locationsBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .filer_pb.Location locations = 1;</code>
+       */
+      public Builder clearLocations() {
+        if (locationsBuilder_ == null) {
+          locations_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          locationsBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .filer_pb.Location locations = 1;</code>
+       */
+      public Builder removeLocations(int index) {
+        if (locationsBuilder_ == null) {
+          ensureLocationsIsMutable();
+          locations_.remove(index);
+          onChanged();
+        } else {
+          locationsBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .filer_pb.Location locations = 1;</code>
+       */
+      public seaweedfs.filer.protos.SeaweedFilerProtos.Location.Builder getLocationsBuilder(
+          int index) {
+        return getLocationsFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .filer_pb.Location locations = 1;</code>
+       */
+      public seaweedfs.filer.protos.SeaweedFilerProtos.LocationOrBuilder getLocationsOrBuilder(
+          int index) {
+        if (locationsBuilder_ == null) {
+          return locations_.get(index);  } else {
+          return locationsBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .filer_pb.Location locations = 1;</code>
+       */
+      public java.util.List<? extends seaweedfs.filer.protos.SeaweedFilerProtos.LocationOrBuilder> 
+           getLocationsOrBuilderList() {
+        if (locationsBuilder_ != null) {
+          return locationsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(locations_);
+        }
+      }
+      /**
+       * <code>repeated .filer_pb.Location locations = 1;</code>
+       */
+      public seaweedfs.filer.protos.SeaweedFilerProtos.Location.Builder addLocationsBuilder() {
+        return getLocationsFieldBuilder().addBuilder(
+            seaweedfs.filer.protos.SeaweedFilerProtos.Location.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .filer_pb.Location locations = 1;</code>
+       */
+      public seaweedfs.filer.protos.SeaweedFilerProtos.Location.Builder addLocationsBuilder(
+          int index) {
+        return getLocationsFieldBuilder().addBuilder(
+            index, seaweedfs.filer.protos.SeaweedFilerProtos.Location.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .filer_pb.Location locations = 1;</code>
+       */
+      public java.util.List<seaweedfs.filer.protos.SeaweedFilerProtos.Location.Builder> 
+           getLocationsBuilderList() {
+        return getLocationsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          seaweedfs.filer.protos.SeaweedFilerProtos.Location, seaweedfs.filer.protos.SeaweedFilerProtos.Location.Builder, seaweedfs.filer.protos.SeaweedFilerProtos.LocationOrBuilder> 
+          getLocationsFieldBuilder() {
+        if (locationsBuilder_ == null) {
+          locationsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              seaweedfs.filer.protos.SeaweedFilerProtos.Location, seaweedfs.filer.protos.SeaweedFilerProtos.Location.Builder, seaweedfs.filer.protos.SeaweedFilerProtos.LocationOrBuilder>(
+                  locations_,
+                  ((bitField0_ & 0x00000001) == 0x00000001),
+                  getParentForChildren(),
+                  isClean());
+          locations_ = null;
+        }
+        return locationsBuilder_;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:filer_pb.Locations)
+    }
+
+    // @@protoc_insertion_point(class_scope:filer_pb.Locations)
+    private static final seaweedfs.filer.protos.SeaweedFilerProtos.Locations DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new seaweedfs.filer.protos.SeaweedFilerProtos.Locations();
+    }
+
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.Locations getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Locations>
+        PARSER = new com.google.protobuf.AbstractParser<Locations>() {
+      public Locations parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new Locations(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<Locations> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Locations> getParserForType() {
+      return PARSER;
+    }
+
+    public seaweedfs.filer.protos.SeaweedFilerProtos.Locations getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface LocationOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:filer_pb.Location)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string url = 1;</code>
+     */
+    java.lang.String getUrl();
+    /**
+     * <code>string url = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getUrlBytes();
+
+    /**
+     * <code>string public_url = 2;</code>
+     */
+    java.lang.String getPublicUrl();
+    /**
+     * <code>string public_url = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getPublicUrlBytes();
+  }
+  /**
+   * Protobuf type {@code filer_pb.Location}
+   */
+  public  static final class Location extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:filer_pb.Location)
+      LocationOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use Location.newBuilder() to construct.
+    private Location(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private Location() {
+      url_ = "";
+      publicUrl_ = "";
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private Location(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              url_ = s;
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              publicUrl_ = s;
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_Location_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_Location_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              seaweedfs.filer.protos.SeaweedFilerProtos.Location.class, seaweedfs.filer.protos.SeaweedFilerProtos.Location.Builder.class);
+    }
+
+    public static final int URL_FIELD_NUMBER = 1;
+    private volatile java.lang.Object url_;
+    /**
+     * <code>string url = 1;</code>
+     */
+    public java.lang.String getUrl() {
+      java.lang.Object ref = url_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        url_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string url = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getUrlBytes() {
+      java.lang.Object ref = url_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        url_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int PUBLIC_URL_FIELD_NUMBER = 2;
+    private volatile java.lang.Object publicUrl_;
+    /**
+     * <code>string public_url = 2;</code>
+     */
+    public java.lang.String getPublicUrl() {
+      java.lang.Object ref = publicUrl_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        publicUrl_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string public_url = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getPublicUrlBytes() {
+      java.lang.Object ref = publicUrl_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        publicUrl_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getUrlBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, url_);
+      }
+      if (!getPublicUrlBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, publicUrl_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getUrlBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, url_);
+      }
+      if (!getPublicUrlBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, publicUrl_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof seaweedfs.filer.protos.SeaweedFilerProtos.Location)) {
+        return super.equals(obj);
+      }
+      seaweedfs.filer.protos.SeaweedFilerProtos.Location other = (seaweedfs.filer.protos.SeaweedFilerProtos.Location) obj;
+
+      boolean result = true;
+      result = result && getUrl()
+          .equals(other.getUrl());
+      result = result && getPublicUrl()
+          .equals(other.getPublicUrl());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + URL_FIELD_NUMBER;
+      hash = (53 * hash) + getUrl().hashCode();
+      hash = (37 * hash) + PUBLIC_URL_FIELD_NUMBER;
+      hash = (53 * hash) + getPublicUrl().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.Location parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.Location parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.Location parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.Location parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.Location parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.Location parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.Location parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.Location parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.Location parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.Location parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.Location parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.Location parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(seaweedfs.filer.protos.SeaweedFilerProtos.Location prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code filer_pb.Location}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:filer_pb.Location)
+        seaweedfs.filer.protos.SeaweedFilerProtos.LocationOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_Location_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_Location_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                seaweedfs.filer.protos.SeaweedFilerProtos.Location.class, seaweedfs.filer.protos.SeaweedFilerProtos.Location.Builder.class);
+      }
+
+      // Construct using seaweedfs.filer.protos.SeaweedFilerProtos.Location.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        url_ = "";
+
+        publicUrl_ = "";
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_Location_descriptor;
+      }
+
+      public seaweedfs.filer.protos.SeaweedFilerProtos.Location getDefaultInstanceForType() {
+        return seaweedfs.filer.protos.SeaweedFilerProtos.Location.getDefaultInstance();
+      }
+
+      public seaweedfs.filer.protos.SeaweedFilerProtos.Location build() {
+        seaweedfs.filer.protos.SeaweedFilerProtos.Location result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public seaweedfs.filer.protos.SeaweedFilerProtos.Location buildPartial() {
+        seaweedfs.filer.protos.SeaweedFilerProtos.Location result = new seaweedfs.filer.protos.SeaweedFilerProtos.Location(this);
+        result.url_ = url_;
+        result.publicUrl_ = publicUrl_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof seaweedfs.filer.protos.SeaweedFilerProtos.Location) {
+          return mergeFrom((seaweedfs.filer.protos.SeaweedFilerProtos.Location)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(seaweedfs.filer.protos.SeaweedFilerProtos.Location other) {
+        if (other == seaweedfs.filer.protos.SeaweedFilerProtos.Location.getDefaultInstance()) return this;
+        if (!other.getUrl().isEmpty()) {
+          url_ = other.url_;
+          onChanged();
+        }
+        if (!other.getPublicUrl().isEmpty()) {
+          publicUrl_ = other.publicUrl_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        seaweedfs.filer.protos.SeaweedFilerProtos.Location parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (seaweedfs.filer.protos.SeaweedFilerProtos.Location) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object url_ = "";
+      /**
+       * <code>string url = 1;</code>
+       */
+      public java.lang.String getUrl() {
+        java.lang.Object ref = url_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          url_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string url = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getUrlBytes() {
+        java.lang.Object ref = url_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          url_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string url = 1;</code>
+       */
+      public Builder setUrl(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        url_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string url = 1;</code>
+       */
+      public Builder clearUrl() {
+        
+        url_ = getDefaultInstance().getUrl();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string url = 1;</code>
+       */
+      public Builder setUrlBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        url_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object publicUrl_ = "";
+      /**
+       * <code>string public_url = 2;</code>
+       */
+      public java.lang.String getPublicUrl() {
+        java.lang.Object ref = publicUrl_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          publicUrl_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string public_url = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getPublicUrlBytes() {
+        java.lang.Object ref = publicUrl_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          publicUrl_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string public_url = 2;</code>
+       */
+      public Builder setPublicUrl(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        publicUrl_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string public_url = 2;</code>
+       */
+      public Builder clearPublicUrl() {
+        
+        publicUrl_ = getDefaultInstance().getPublicUrl();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string public_url = 2;</code>
+       */
+      public Builder setPublicUrlBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        publicUrl_ = value;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:filer_pb.Location)
+    }
+
+    // @@protoc_insertion_point(class_scope:filer_pb.Location)
+    private static final seaweedfs.filer.protos.SeaweedFilerProtos.Location DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new seaweedfs.filer.protos.SeaweedFilerProtos.Location();
+    }
+
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.Location getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Location>
+        PARSER = new com.google.protobuf.AbstractParser<Location>() {
+      public Location parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new Location(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<Location> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Location> getParserForType() {
+      return PARSER;
+    }
+
+    public seaweedfs.filer.protos.SeaweedFilerProtos.Location getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface LookupVolumeResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:filer_pb.LookupVolumeResponse)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>map&lt;string, .filer_pb.Locations&gt; locations_map = 1;</code>
+     */
+    int getLocationsMapCount();
+    /**
+     * <code>map&lt;string, .filer_pb.Locations&gt; locations_map = 1;</code>
+     */
+    boolean containsLocationsMap(
+        java.lang.String key);
+    /**
+     * Use {@link #getLocationsMapMap()} instead.
+     */
+    @java.lang.Deprecated
+    java.util.Map<java.lang.String, seaweedfs.filer.protos.SeaweedFilerProtos.Locations>
+    getLocationsMap();
+    /**
+     * <code>map&lt;string, .filer_pb.Locations&gt; locations_map = 1;</code>
+     */
+    java.util.Map<java.lang.String, seaweedfs.filer.protos.SeaweedFilerProtos.Locations>
+    getLocationsMapMap();
+    /**
+     * <code>map&lt;string, .filer_pb.Locations&gt; locations_map = 1;</code>
+     */
+
+    seaweedfs.filer.protos.SeaweedFilerProtos.Locations getLocationsMapOrDefault(
+        java.lang.String key,
+        seaweedfs.filer.protos.SeaweedFilerProtos.Locations defaultValue);
+    /**
+     * <code>map&lt;string, .filer_pb.Locations&gt; locations_map = 1;</code>
+     */
+
+    seaweedfs.filer.protos.SeaweedFilerProtos.Locations getLocationsMapOrThrow(
+        java.lang.String key);
+  }
+  /**
+   * Protobuf type {@code filer_pb.LookupVolumeResponse}
+   */
+  public  static final class LookupVolumeResponse extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:filer_pb.LookupVolumeResponse)
+      LookupVolumeResponseOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use LookupVolumeResponse.newBuilder() to construct.
+    private LookupVolumeResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private LookupVolumeResponse() {
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private LookupVolumeResponse(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+                locationsMap_ = com.google.protobuf.MapField.newMapField(
+                    LocationsMapDefaultEntryHolder.defaultEntry);
+                mutable_bitField0_ |= 0x00000001;
+              }
+              com.google.protobuf.MapEntry<java.lang.String, seaweedfs.filer.protos.SeaweedFilerProtos.Locations>
+              locationsMap__ = input.readMessage(
+                  LocationsMapDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
+              locationsMap_.getMutableMap().put(
+                  locationsMap__.getKey(), locationsMap__.getValue());
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_LookupVolumeResponse_descriptor;
+    }
+
+    @SuppressWarnings({"rawtypes"})
+    protected com.google.protobuf.MapField internalGetMapField(
+        int number) {
+      switch (number) {
+        case 1:
+          return internalGetLocationsMap();
+        default:
+          throw new RuntimeException(
+              "Invalid map field number: " + number);
+      }
+    }
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_LookupVolumeResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse.class, seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse.Builder.class);
+    }
+
+    public static final int LOCATIONS_MAP_FIELD_NUMBER = 1;
+    private static final class LocationsMapDefaultEntryHolder {
+      static final com.google.protobuf.MapEntry<
+          java.lang.String, seaweedfs.filer.protos.SeaweedFilerProtos.Locations> defaultEntry =
+              com.google.protobuf.MapEntry
+              .<java.lang.String, seaweedfs.filer.protos.SeaweedFilerProtos.Locations>newDefaultInstance(
+                  seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_LookupVolumeResponse_LocationsMapEntry_descriptor, 
+                  com.google.protobuf.WireFormat.FieldType.STRING,
+                  "",
+                  com.google.protobuf.WireFormat.FieldType.MESSAGE,
+                  seaweedfs.filer.protos.SeaweedFilerProtos.Locations.getDefaultInstance());
+    }
+    private com.google.protobuf.MapField<
+        java.lang.String, seaweedfs.filer.protos.SeaweedFilerProtos.Locations> locationsMap_;
+    private com.google.protobuf.MapField<java.lang.String, seaweedfs.filer.protos.SeaweedFilerProtos.Locations>
+    internalGetLocationsMap() {
+      if (locationsMap_ == null) {
+        return com.google.protobuf.MapField.emptyMapField(
+            LocationsMapDefaultEntryHolder.defaultEntry);
+      }
+      return locationsMap_;
+    }
+
+    public int getLocationsMapCount() {
+      return internalGetLocationsMap().getMap().size();
+    }
+    /**
+     * <code>map&lt;string, .filer_pb.Locations&gt; locations_map = 1;</code>
+     */
+
+    public boolean containsLocationsMap(
+        java.lang.String key) {
+      if (key == null) { throw new java.lang.NullPointerException(); }
+      return internalGetLocationsMap().getMap().containsKey(key);
+    }
+    /**
+     * Use {@link #getLocationsMapMap()} instead.
+     */
+    @java.lang.Deprecated
+    public java.util.Map<java.lang.String, seaweedfs.filer.protos.SeaweedFilerProtos.Locations> getLocationsMap() {
+      return getLocationsMapMap();
+    }
+    /**
+     * <code>map&lt;string, .filer_pb.Locations&gt; locations_map = 1;</code>
+     */
+
+    public java.util.Map<java.lang.String, seaweedfs.filer.protos.SeaweedFilerProtos.Locations> getLocationsMapMap() {
+      return internalGetLocationsMap().getMap();
+    }
+    /**
+     * <code>map&lt;string, .filer_pb.Locations&gt; locations_map = 1;</code>
+     */
+
+    public seaweedfs.filer.protos.SeaweedFilerProtos.Locations getLocationsMapOrDefault(
+        java.lang.String key,
+        seaweedfs.filer.protos.SeaweedFilerProtos.Locations defaultValue) {
+      if (key == null) { throw new java.lang.NullPointerException(); }
+      java.util.Map<java.lang.String, seaweedfs.filer.protos.SeaweedFilerProtos.Locations> map =
+          internalGetLocationsMap().getMap();
+      return map.containsKey(key) ? map.get(key) : defaultValue;
+    }
+    /**
+     * <code>map&lt;string, .filer_pb.Locations&gt; locations_map = 1;</code>
+     */
+
+    public seaweedfs.filer.protos.SeaweedFilerProtos.Locations getLocationsMapOrThrow(
+        java.lang.String key) {
+      if (key == null) { throw new java.lang.NullPointerException(); }
+      java.util.Map<java.lang.String, seaweedfs.filer.protos.SeaweedFilerProtos.Locations> map =
+          internalGetLocationsMap().getMap();
+      if (!map.containsKey(key)) {
+        throw new java.lang.IllegalArgumentException();
+      }
+      return map.get(key);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      com.google.protobuf.GeneratedMessageV3
+        .serializeStringMapTo(
+          output,
+          internalGetLocationsMap(),
+          LocationsMapDefaultEntryHolder.defaultEntry,
+          1);
+      unknownFields.writeTo(output);
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      for (java.util.Map.Entry<java.lang.String, seaweedfs.filer.protos.SeaweedFilerProtos.Locations> entry
+           : internalGetLocationsMap().getMap().entrySet()) {
+        com.google.protobuf.MapEntry<java.lang.String, seaweedfs.filer.protos.SeaweedFilerProtos.Locations>
+        locationsMap__ = LocationsMapDefaultEntryHolder.defaultEntry.newBuilderForType()
+            .setKey(entry.getKey())
+            .setValue(entry.getValue())
+            .build();
+        size += com.google.protobuf.CodedOutputStream
+            .computeMessageSize(1, locationsMap__);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse)) {
+        return super.equals(obj);
+      }
+      seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse other = (seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse) obj;
+
+      boolean result = true;
+      result = result && internalGetLocationsMap().equals(
+          other.internalGetLocationsMap());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (!internalGetLocationsMap().getMap().isEmpty()) {
+        hash = (37 * hash) + LOCATIONS_MAP_FIELD_NUMBER;
+        hash = (53 * hash) + internalGetLocationsMap().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code filer_pb.LookupVolumeResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:filer_pb.LookupVolumeResponse)
+        seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_LookupVolumeResponse_descriptor;
+      }
+
+      @SuppressWarnings({"rawtypes"})
+      protected com.google.protobuf.MapField internalGetMapField(
+          int number) {
+        switch (number) {
+          case 1:
+            return internalGetLocationsMap();
+          default:
+            throw new RuntimeException(
+                "Invalid map field number: " + number);
+        }
+      }
+      @SuppressWarnings({"rawtypes"})
+      protected com.google.protobuf.MapField internalGetMutableMapField(
+          int number) {
+        switch (number) {
+          case 1:
+            return internalGetMutableLocationsMap();
+          default:
+            throw new RuntimeException(
+                "Invalid map field number: " + number);
+        }
+      }
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_LookupVolumeResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse.class, seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse.Builder.class);
+      }
+
+      // Construct using seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        internalGetMutableLocationsMap().clear();
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return seaweedfs.filer.protos.SeaweedFilerProtos.internal_static_filer_pb_LookupVolumeResponse_descriptor;
+      }
+
+      public seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse getDefaultInstanceForType() {
+        return seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse.getDefaultInstance();
+      }
+
+      public seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse build() {
+        seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse buildPartial() {
+        seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse result = new seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse(this);
+        int from_bitField0_ = bitField0_;
+        result.locationsMap_ = internalGetLocationsMap();
+        result.locationsMap_.makeImmutable();
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse) {
+          return mergeFrom((seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse other) {
+        if (other == seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse.getDefaultInstance()) return this;
+        internalGetMutableLocationsMap().mergeFrom(
+            other.internalGetLocationsMap());
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private com.google.protobuf.MapField<
+          java.lang.String, seaweedfs.filer.protos.SeaweedFilerProtos.Locations> locationsMap_;
+      private com.google.protobuf.MapField<java.lang.String, seaweedfs.filer.protos.SeaweedFilerProtos.Locations>
+      internalGetLocationsMap() {
+        if (locationsMap_ == null) {
+          return com.google.protobuf.MapField.emptyMapField(
+              LocationsMapDefaultEntryHolder.defaultEntry);
+        }
+        return locationsMap_;
+      }
+      private com.google.protobuf.MapField<java.lang.String, seaweedfs.filer.protos.SeaweedFilerProtos.Locations>
+      internalGetMutableLocationsMap() {
+        onChanged();;
+        if (locationsMap_ == null) {
+          locationsMap_ = com.google.protobuf.MapField.newMapField(
+              LocationsMapDefaultEntryHolder.defaultEntry);
+        }
+        if (!locationsMap_.isMutable()) {
+          locationsMap_ = locationsMap_.copy();
+        }
+        return locationsMap_;
+      }
+
+      public int getLocationsMapCount() {
+        return internalGetLocationsMap().getMap().size();
+      }
+      /**
+       * <code>map&lt;string, .filer_pb.Locations&gt; locations_map = 1;</code>
+       */
+
+      public boolean containsLocationsMap(
+          java.lang.String key) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        return internalGetLocationsMap().getMap().containsKey(key);
+      }
+      /**
+       * Use {@link #getLocationsMapMap()} instead.
+       */
+      @java.lang.Deprecated
+      public java.util.Map<java.lang.String, seaweedfs.filer.protos.SeaweedFilerProtos.Locations> getLocationsMap() {
+        return getLocationsMapMap();
+      }
+      /**
+       * <code>map&lt;string, .filer_pb.Locations&gt; locations_map = 1;</code>
+       */
+
+      public java.util.Map<java.lang.String, seaweedfs.filer.protos.SeaweedFilerProtos.Locations> getLocationsMapMap() {
+        return internalGetLocationsMap().getMap();
+      }
+      /**
+       * <code>map&lt;string, .filer_pb.Locations&gt; locations_map = 1;</code>
+       */
+
+      public seaweedfs.filer.protos.SeaweedFilerProtos.Locations getLocationsMapOrDefault(
+          java.lang.String key,
+          seaweedfs.filer.protos.SeaweedFilerProtos.Locations defaultValue) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        java.util.Map<java.lang.String, seaweedfs.filer.protos.SeaweedFilerProtos.Locations> map =
+            internalGetLocationsMap().getMap();
+        return map.containsKey(key) ? map.get(key) : defaultValue;
+      }
+      /**
+       * <code>map&lt;string, .filer_pb.Locations&gt; locations_map = 1;</code>
+       */
+
+      public seaweedfs.filer.protos.SeaweedFilerProtos.Locations getLocationsMapOrThrow(
+          java.lang.String key) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        java.util.Map<java.lang.String, seaweedfs.filer.protos.SeaweedFilerProtos.Locations> map =
+            internalGetLocationsMap().getMap();
+        if (!map.containsKey(key)) {
+          throw new java.lang.IllegalArgumentException();
+        }
+        return map.get(key);
+      }
+
+      public Builder clearLocationsMap() {
+        internalGetMutableLocationsMap().getMutableMap()
+            .clear();
+        return this;
+      }
+      /**
+       * <code>map&lt;string, .filer_pb.Locations&gt; locations_map = 1;</code>
+       */
+
+      public Builder removeLocationsMap(
+          java.lang.String key) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        internalGetMutableLocationsMap().getMutableMap()
+            .remove(key);
+        return this;
+      }
+      /**
+       * Use alternate mutation accessors instead.
+       */
+      @java.lang.Deprecated
+      public java.util.Map<java.lang.String, seaweedfs.filer.protos.SeaweedFilerProtos.Locations>
+      getMutableLocationsMap() {
+        return internalGetMutableLocationsMap().getMutableMap();
+      }
+      /**
+       * <code>map&lt;string, .filer_pb.Locations&gt; locations_map = 1;</code>
+       */
+      public Builder putLocationsMap(
+          java.lang.String key,
+          seaweedfs.filer.protos.SeaweedFilerProtos.Locations value) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (value == null) { throw new java.lang.NullPointerException(); }
+        internalGetMutableLocationsMap().getMutableMap()
+            .put(key, value);
+        return this;
+      }
+      /**
+       * <code>map&lt;string, .filer_pb.Locations&gt; locations_map = 1;</code>
+       */
+
+      public Builder putAllLocationsMap(
+          java.util.Map<java.lang.String, seaweedfs.filer.protos.SeaweedFilerProtos.Locations> values) {
+        internalGetMutableLocationsMap().getMutableMap()
+            .putAll(values);
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:filer_pb.LookupVolumeResponse)
+    }
+
+    // @@protoc_insertion_point(class_scope:filer_pb.LookupVolumeResponse)
+    private static final seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse();
+    }
+
+    public static seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<LookupVolumeResponse>
+        PARSER = new com.google.protobuf.AbstractParser<LookupVolumeResponse>() {
+      public LookupVolumeResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new LookupVolumeResponse(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<LookupVolumeResponse> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<LookupVolumeResponse> getParserForType() {
+      return PARSER;
+    }
+
+    public seaweedfs.filer.protos.SeaweedFilerProtos.LookupVolumeResponse getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_filer_pb_LookupDirectoryEntryRequest_descriptor;
   private static final 
@@ -7664,20 +15746,25 @@ public final class SeaweedFilerProtos {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_filer_pb_Entry_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_filer_pb_FileChunk_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_filer_pb_FileChunk_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_filer_pb_FuseAttributes_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_filer_pb_FuseAttributes_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_filer_pb_GetFileAttributesRequest_descriptor;
+    internal_static_filer_pb_GetEntryAttributesRequest_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_filer_pb_GetFileAttributesRequest_fieldAccessorTable;
+      internal_static_filer_pb_GetEntryAttributesRequest_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_filer_pb_GetFileAttributesResponse_descriptor;
+    internal_static_filer_pb_GetEntryAttributesResponse_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_filer_pb_GetFileAttributesResponse_fieldAccessorTable;
+      internal_static_filer_pb_GetEntryAttributesResponse_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_filer_pb_GetFileContentRequest_descriptor;
   private static final 
@@ -7689,6 +15776,26 @@ public final class SeaweedFilerProtos {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_filer_pb_GetFileContentResponse_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_filer_pb_CreateEntryRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_filer_pb_CreateEntryRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_filer_pb_CreateEntryResponse_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_filer_pb_CreateEntryResponse_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_filer_pb_UpdateEntryRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_filer_pb_UpdateEntryRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_filer_pb_UpdateEntryResponse_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_filer_pb_UpdateEntryResponse_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_filer_pb_DeleteEntryRequest_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -7698,6 +15805,41 @@ public final class SeaweedFilerProtos {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_filer_pb_DeleteEntryResponse_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_filer_pb_AssignVolumeRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_filer_pb_AssignVolumeRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_filer_pb_AssignVolumeResponse_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_filer_pb_AssignVolumeResponse_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_filer_pb_LookupVolumeRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_filer_pb_LookupVolumeRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_filer_pb_Locations_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_filer_pb_Locations_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_filer_pb_Location_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_filer_pb_Location_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_filer_pb_LookupVolumeResponse_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_filer_pb_LookupVolumeResponse_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_filer_pb_LookupVolumeResponse_LocationsMapEntry_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_filer_pb_LookupVolumeResponse_LocationsMapEntry_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -7713,33 +15855,61 @@ public final class SeaweedFilerProtos {
       "\036\n\005entry\030\001 \001(\0132\017.filer_pb.Entry\"\'\n\022ListE" +
       "ntriesRequest\022\021\n\tdirectory\030\001 \001(\t\"7\n\023List" +
       "EntriesResponse\022 \n\007entries\030\001 \003(\0132\017.filer" +
-      "_pb.Entry\"j\n\005Entry\022\014\n\004name\030\001 \001(\t\022\024\n\014is_d" +
-      "irectory\030\002 \001(\010\022\017\n\007file_id\030\003 \001(\t\022,\n\nattri" +
-      "butes\030\004 \001(\0132\030.filer_pb.FuseAttributes\"_\n" +
-      "\016FuseAttributes\022\021\n\tfile_size\030\001 \001(\004\022\r\n\005mt" +
-      "ime\030\002 \001(\003\022\021\n\tfile_mode\030\003 \001(\r\022\013\n\003uid\030\004 \001(" +
-      "\r\022\013\n\003gid\030\005 \001(\r\"M\n\030GetFileAttributesReque" +
-      "st\022\014\n\004name\030\001 \001(\t\022\022\n\nparent_dir\030\002 \001(\t\022\017\n\007" +
-      "file_id\030\003 \001(\t\"I\n\031GetFileAttributesRespon" +
-      "se\022,\n\nattributes\030\001 \001(\0132\030.filer_pb.FuseAt" +
-      "tributes\"(\n\025GetFileContentRequest\022\017\n\007fil" +
-      "e_id\030\001 \001(\t\")\n\026GetFileContentResponse\022\017\n\007" +
-      "content\030\001 \001(\014\"K\n\022DeleteEntryRequest\022\021\n\td" +
-      "irectory\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\024\n\014is_direc" +
-      "tory\030\003 \001(\010\"\025\n\023DeleteEntryResponse2\312\003\n\014Se" +
-      "aweedFiler\022g\n\024LookupDirectoryEntry\022%.fil" +
-      "er_pb.LookupDirectoryEntryRequest\032&.file" +
-      "r_pb.LookupDirectoryEntryResponse\"\000\022L\n\013L" +
-      "istEntries\022\034.filer_pb.ListEntriesRequest" +
-      "\032\035.filer_pb.ListEntriesResponse\"\000\022^\n\021Get" +
-      "FileAttributes\022\".filer_pb.GetFileAttribu" +
-      "tesRequest\032#.filer_pb.GetFileAttributesR" +
-      "esponse\"\000\022U\n\016GetFileContent\022\037.filer_pb.G" +
-      "etFileContentRequest\032 .filer_pb.GetFileC" +
-      "ontentResponse\"\000\022L\n\013DeleteEntry\022\034.filer_" +
-      "pb.DeleteEntryRequest\032\035.filer_pb.DeleteE" +
-      "ntryResponse\"\000B,\n\026seaweedfs.filer.protos" +
-      "B\022SeaweedFilerProtosb\006proto3"
+      "_pb.Entry\"~\n\005Entry\022\014\n\004name\030\001 \001(\t\022\024\n\014is_d" +
+      "irectory\030\002 \001(\010\022#\n\006chunks\030\003 \003(\0132\023.filer_p" +
+      "b.FileChunk\022,\n\nattributes\030\004 \001(\0132\030.filer_" +
+      "pb.FuseAttributes\"I\n\tFileChunk\022\017\n\007file_i" +
+      "d\030\001 \001(\t\022\016\n\006offset\030\002 \001(\003\022\014\n\004size\030\003 \001(\004\022\r\n" +
+      "\005mtime\030\004 \001(\003\"}\n\016FuseAttributes\022\021\n\tfile_s" +
+      "ize\030\001 \001(\004\022\r\n\005mtime\030\002 \001(\003\022\021\n\tfile_mode\030\003 " +
+      "\001(\r\022\013\n\003uid\030\004 \001(\r\022\013\n\003gid\030\005 \001(\r\022\016\n\006crtime\030" +
+      "\006 \001(\003\022\014\n\004mime\030\007 \001(\t\"N\n\031GetEntryAttribute" +
+      "sRequest\022\014\n\004name\030\001 \001(\t\022\022\n\nparent_dir\030\002 \001" +
+      "(\t\022\017\n\007file_id\030\003 \001(\t\"o\n\032GetEntryAttribute" +
+      "sResponse\022,\n\nattributes\030\001 \001(\0132\030.filer_pb" +
+      ".FuseAttributes\022#\n\006chunks\030\002 \003(\0132\023.filer_" +
+      "pb.FileChunk\"(\n\025GetFileContentRequest\022\017\n" +
+      "\007file_id\030\001 \001(\t\")\n\026GetFileContentResponse" +
+      "\022\017\n\007content\030\001 \001(\014\"G\n\022CreateEntryRequest\022" +
+      "\021\n\tdirectory\030\001 \001(\t\022\036\n\005entry\030\002 \001(\0132\017.file" +
+      "r_pb.Entry\"\025\n\023CreateEntryResponse\"G\n\022Upd" +
+      "ateEntryRequest\022\021\n\tdirectory\030\001 \001(\t\022\036\n\005en" +
+      "try\030\002 \001(\0132\017.filer_pb.Entry\"\025\n\023UpdateEntr" +
+      "yResponse\"c\n\022DeleteEntryRequest\022\021\n\tdirec" +
+      "tory\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\024\n\014is_directory" +
+      "\030\003 \001(\010\022\026\n\016is_delete_data\030\004 \001(\010\"\025\n\023Delete" +
+      "EntryResponse\"M\n\023AssignVolumeRequest\022\r\n\005" +
+      "count\030\001 \001(\005\022\022\n\ncollection\030\002 \001(\t\022\023\n\013repli" +
+      "cation\030\003 \001(\t\"W\n\024AssignVolumeResponse\022\017\n\007" +
+      "file_id\030\001 \001(\t\022\013\n\003url\030\002 \001(\t\022\022\n\npublic_url" +
+      "\030\003 \001(\t\022\r\n\005count\030\004 \001(\005\")\n\023LookupVolumeReq" +
+      "uest\022\022\n\nvolume_ids\030\001 \003(\t\"2\n\tLocations\022%\n" +
+      "\tlocations\030\001 \003(\0132\022.filer_pb.Location\"+\n\010" +
+      "Location\022\013\n\003url\030\001 \001(\t\022\022\n\npublic_url\030\002 \001(" +
+      "\t\"\251\001\n\024LookupVolumeResponse\022G\n\rlocations_" +
+      "map\030\001 \003(\01320.filer_pb.LookupVolumeRespons" +
+      "e.LocationsMapEntry\032H\n\021LocationsMapEntry" +
+      "\022\013\n\003key\030\001 \001(\t\022\"\n\005value\030\002 \001(\0132\023.filer_pb." +
+      "Locations:\0028\0012\264\005\n\014SeaweedFiler\022g\n\024Lookup" +
+      "DirectoryEntry\022%.filer_pb.LookupDirector" +
+      "yEntryRequest\032&.filer_pb.LookupDirectory" +
+      "EntryResponse\"\000\022L\n\013ListEntries\022\034.filer_p" +
+      "b.ListEntriesRequest\032\035.filer_pb.ListEntr" +
+      "iesResponse\"\000\022a\n\022GetEntryAttributes\022#.fi" +
+      "ler_pb.GetEntryAttributesRequest\032$.filer" +
+      "_pb.GetEntryAttributesResponse\"\000\022L\n\013Crea" +
+      "teEntry\022\034.filer_pb.CreateEntryRequest\032\035." +
+      "filer_pb.CreateEntryResponse\"\000\022L\n\013Update" +
+      "Entry\022\034.filer_pb.UpdateEntryRequest\032\035.fi" +
+      "ler_pb.UpdateEntryResponse\"\000\022L\n\013DeleteEn" +
+      "try\022\034.filer_pb.DeleteEntryRequest\032\035.file" +
+      "r_pb.DeleteEntryResponse\"\000\022O\n\014AssignVolu" +
+      "me\022\035.filer_pb.AssignVolumeRequest\032\036.file" +
+      "r_pb.AssignVolumeResponse\"\000\022O\n\014LookupVol" +
+      "ume\022\035.filer_pb.LookupVolumeRequest\032\036.fil" +
+      "er_pb.LookupVolumeResponse\"\000B,\n\026seaweedf" +
+      "s.filer.protosB\022SeaweedFilerProtosb\006prot" +
+      "o3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -7782,49 +15952,121 @@ public final class SeaweedFilerProtos {
     internal_static_filer_pb_Entry_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_filer_pb_Entry_descriptor,
-        new java.lang.String[] { "Name", "IsDirectory", "FileId", "Attributes", });
-    internal_static_filer_pb_FuseAttributes_descriptor =
+        new java.lang.String[] { "Name", "IsDirectory", "Chunks", "Attributes", });
+    internal_static_filer_pb_FileChunk_descriptor =
       getDescriptor().getMessageTypes().get(5);
+    internal_static_filer_pb_FileChunk_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_filer_pb_FileChunk_descriptor,
+        new java.lang.String[] { "FileId", "Offset", "Size", "Mtime", });
+    internal_static_filer_pb_FuseAttributes_descriptor =
+      getDescriptor().getMessageTypes().get(6);
     internal_static_filer_pb_FuseAttributes_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_filer_pb_FuseAttributes_descriptor,
-        new java.lang.String[] { "FileSize", "Mtime", "FileMode", "Uid", "Gid", });
-    internal_static_filer_pb_GetFileAttributesRequest_descriptor =
-      getDescriptor().getMessageTypes().get(6);
-    internal_static_filer_pb_GetFileAttributesRequest_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_filer_pb_GetFileAttributesRequest_descriptor,
-        new java.lang.String[] { "Name", "ParentDir", "FileId", });
-    internal_static_filer_pb_GetFileAttributesResponse_descriptor =
+        new java.lang.String[] { "FileSize", "Mtime", "FileMode", "Uid", "Gid", "Crtime", "Mime", });
+    internal_static_filer_pb_GetEntryAttributesRequest_descriptor =
       getDescriptor().getMessageTypes().get(7);
-    internal_static_filer_pb_GetFileAttributesResponse_fieldAccessorTable = new
+    internal_static_filer_pb_GetEntryAttributesRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_filer_pb_GetFileAttributesResponse_descriptor,
-        new java.lang.String[] { "Attributes", });
-    internal_static_filer_pb_GetFileContentRequest_descriptor =
+        internal_static_filer_pb_GetEntryAttributesRequest_descriptor,
+        new java.lang.String[] { "Name", "ParentDir", "FileId", });
+    internal_static_filer_pb_GetEntryAttributesResponse_descriptor =
       getDescriptor().getMessageTypes().get(8);
+    internal_static_filer_pb_GetEntryAttributesResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_filer_pb_GetEntryAttributesResponse_descriptor,
+        new java.lang.String[] { "Attributes", "Chunks", });
+    internal_static_filer_pb_GetFileContentRequest_descriptor =
+      getDescriptor().getMessageTypes().get(9);
     internal_static_filer_pb_GetFileContentRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_filer_pb_GetFileContentRequest_descriptor,
         new java.lang.String[] { "FileId", });
     internal_static_filer_pb_GetFileContentResponse_descriptor =
-      getDescriptor().getMessageTypes().get(9);
+      getDescriptor().getMessageTypes().get(10);
     internal_static_filer_pb_GetFileContentResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_filer_pb_GetFileContentResponse_descriptor,
         new java.lang.String[] { "Content", });
+    internal_static_filer_pb_CreateEntryRequest_descriptor =
+      getDescriptor().getMessageTypes().get(11);
+    internal_static_filer_pb_CreateEntryRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_filer_pb_CreateEntryRequest_descriptor,
+        new java.lang.String[] { "Directory", "Entry", });
+    internal_static_filer_pb_CreateEntryResponse_descriptor =
+      getDescriptor().getMessageTypes().get(12);
+    internal_static_filer_pb_CreateEntryResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_filer_pb_CreateEntryResponse_descriptor,
+        new java.lang.String[] { });
+    internal_static_filer_pb_UpdateEntryRequest_descriptor =
+      getDescriptor().getMessageTypes().get(13);
+    internal_static_filer_pb_UpdateEntryRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_filer_pb_UpdateEntryRequest_descriptor,
+        new java.lang.String[] { "Directory", "Entry", });
+    internal_static_filer_pb_UpdateEntryResponse_descriptor =
+      getDescriptor().getMessageTypes().get(14);
+    internal_static_filer_pb_UpdateEntryResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_filer_pb_UpdateEntryResponse_descriptor,
+        new java.lang.String[] { });
     internal_static_filer_pb_DeleteEntryRequest_descriptor =
-      getDescriptor().getMessageTypes().get(10);
+      getDescriptor().getMessageTypes().get(15);
     internal_static_filer_pb_DeleteEntryRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_filer_pb_DeleteEntryRequest_descriptor,
-        new java.lang.String[] { "Directory", "Name", "IsDirectory", });
+        new java.lang.String[] { "Directory", "Name", "IsDirectory", "IsDeleteData", });
     internal_static_filer_pb_DeleteEntryResponse_descriptor =
-      getDescriptor().getMessageTypes().get(11);
+      getDescriptor().getMessageTypes().get(16);
     internal_static_filer_pb_DeleteEntryResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_filer_pb_DeleteEntryResponse_descriptor,
         new java.lang.String[] { });
+    internal_static_filer_pb_AssignVolumeRequest_descriptor =
+      getDescriptor().getMessageTypes().get(17);
+    internal_static_filer_pb_AssignVolumeRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_filer_pb_AssignVolumeRequest_descriptor,
+        new java.lang.String[] { "Count", "Collection", "Replication", });
+    internal_static_filer_pb_AssignVolumeResponse_descriptor =
+      getDescriptor().getMessageTypes().get(18);
+    internal_static_filer_pb_AssignVolumeResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_filer_pb_AssignVolumeResponse_descriptor,
+        new java.lang.String[] { "FileId", "Url", "PublicUrl", "Count", });
+    internal_static_filer_pb_LookupVolumeRequest_descriptor =
+      getDescriptor().getMessageTypes().get(19);
+    internal_static_filer_pb_LookupVolumeRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_filer_pb_LookupVolumeRequest_descriptor,
+        new java.lang.String[] { "VolumeIds", });
+    internal_static_filer_pb_Locations_descriptor =
+      getDescriptor().getMessageTypes().get(20);
+    internal_static_filer_pb_Locations_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_filer_pb_Locations_descriptor,
+        new java.lang.String[] { "Locations", });
+    internal_static_filer_pb_Location_descriptor =
+      getDescriptor().getMessageTypes().get(21);
+    internal_static_filer_pb_Location_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_filer_pb_Location_descriptor,
+        new java.lang.String[] { "Url", "PublicUrl", });
+    internal_static_filer_pb_LookupVolumeResponse_descriptor =
+      getDescriptor().getMessageTypes().get(22);
+    internal_static_filer_pb_LookupVolumeResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_filer_pb_LookupVolumeResponse_descriptor,
+        new java.lang.String[] { "LocationsMap", });
+    internal_static_filer_pb_LookupVolumeResponse_LocationsMapEntry_descriptor =
+      internal_static_filer_pb_LookupVolumeResponse_descriptor.getNestedTypes().get(0);
+    internal_static_filer_pb_LookupVolumeResponse_LocationsMapEntry_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_filer_pb_LookupVolumeResponse_LocationsMapEntry_descriptor,
+        new java.lang.String[] { "Key", "Value", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)
