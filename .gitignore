@@ -210,3 +210,5 @@ seaweedfs-filer-retrofit-api/build
 seaweedfs-filer-retrofit-api/out
 seaweedfs-spring-boot-starter/build
 seaweedfs-spring-boot-starter/out
+seaweedfs-spring-boot-autoconfigure/build
+seaweedfs-spring-boot-autoconfigure/out
