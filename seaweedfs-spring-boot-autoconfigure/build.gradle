@@ -34,7 +34,7 @@ dependencyRecommendations {
 }
 
 dependencies {
-    compile('org.springframework.boot:spring-boot-autoconfigure')
-    compile('org.springframework.boot:spring-boot-configuration-processor')
+    implementation('org.springframework.boot:spring-boot-autoconfigure')
+    implementation('org.springframework.boot:spring-boot-configuration-processor')
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }

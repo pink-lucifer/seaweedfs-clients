@@ -37,11 +37,11 @@ repositories {
 }
 
 dependencies {
-    compile ("io.grpc:grpc-stub:${grpcVersion}")
-    compile ("io.grpc:grpc-protobuf:${grpcVersion}")
-    compile ("io.grpc:grpc-netty-shaded:${grpcVersion}")
-    compile ("com.google.protobuf:protobuf-java:${protocVersion}")
-    compile ("com.google.protobuf:protobuf-java-util:${protocVersion}")
+    implementation ("io.grpc:grpc-stub:${grpcVersion}")
+    implementation ("io.grpc:grpc-protobuf:${grpcVersion}")
+    implementation ("io.grpc:grpc-netty-shaded:${grpcVersion}")
+    implementation ("com.google.protobuf:protobuf-java:${protocVersion}")
+    implementation ("com.google.protobuf:protobuf-java-util:${protocVersion}")
 }
 
 sourceSets {

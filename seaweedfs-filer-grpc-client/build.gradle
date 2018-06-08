@@ -32,13 +32,13 @@ dependencyRecommendations {
 }
 
 dependencies {
-    compile ('io.grpc:grpc-stub')
-    compile ('io.grpc:grpc-protobuf')
-    compile ('io.grpc:grpc-netty-shaded')
-    compile ('com.google.protobuf:protobuf-java')
-    compile ('com.google.protobuf:protobuf-java-util')
-    compile ('org.slf4j:slf4j-api')
-    compile ('ch.qos.logback:logback-classic')
+    implementation ('io.grpc:grpc-stub')
+    implementation ('io.grpc:grpc-protobuf')
+    implementation ('io.grpc:grpc-netty-shaded')
+    implementation ('com.google.protobuf:protobuf-java')
+    implementation ('com.google.protobuf:protobuf-java-util')
+    implementation ('org.slf4j:slf4j-api')
+    implementation ('ch.qos.logback:logback-classic')
     compileOnly('org.projectlombok:lombok')
     testCompile("junit:junit:${junitVersion}")
     testCompileOnly('org.projectlombok:lombok')
