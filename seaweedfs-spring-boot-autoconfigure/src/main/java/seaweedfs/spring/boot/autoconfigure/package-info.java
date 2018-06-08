@@ -1,0 +1,1 @@
+package seaweedfs.spring.boot.autoconfigure;
