@@ -214,3 +214,5 @@ seaweedfs-spring-boot-autoconfigure/build
 seaweedfs-spring-boot-autoconfigure/out
 seaweedfs-spring/build
 seaweedfs-spring/out
+seaweedfs-filer-reactor-api/build
+seaweedfs-filer-reactor-api/out

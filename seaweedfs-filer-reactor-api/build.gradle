@@ -28,27 +28,13 @@ repositories {
 dependencyRecommendations {
     strictMode = false
     mavenBom module: "com.github.lufs.seaweedfs:seaweedfs-clients-bom:${seaweedfsClientVersion}"
+    mavenBom module: "io.projectreactor:reactor-bom:${reactorVersion}"
 }
 
 dependencies {
     implementation ('io.github.openfeign:feign-core')
+    implementation ('io.projectreactor.ipc:reactor-netty')
     compileOnly('org.projectlombok:lombok')
-
-    testImplementation ('io.github.openfeign.form:feign-form')
-    testImplementation ('io.github.openfeign:feign-okhttp'){
-        exclude group:'com.squareup.okhttp3', module: 'okhttp'
-    }
-    testImplementation ('io.github.openfeign:feign-slf4j')
-    testImplementation ('io.github.openfeign:feign-gson'){
-        exclude group:'com.google.code.gson', module: 'gson'
-    }
-    testImplementation ('org.slf4j:slf4j-api')
-    testImplementation ('ch.qos.logback:logback-classic')
-    testImplementation ('junit:junit:4.12')
-    testImplementation ('com.google.code.gson:gson')
-    testImplementation ('io.reactivex.rxjava2:rxjava')
-    testImplementation ('com.squareup.okhttp3:okhttp')
-    testImplementation ('com.squareup.okhttp3:logging-interceptor')
 
     testCompileOnly('org.projectlombok:lombok')
 }
