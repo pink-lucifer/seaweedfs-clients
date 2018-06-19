@@ -11,7 +11,11 @@ public interface SeaweedFsFiler {
 
     @RequestLine("PUT /{dir}/{name}")
     @Headers("Content-Type: multipart/form-data")
-    FilerPostResult upload(@Param("dir") String dir, @Param("name") String name, @Param("file") File file);
+    FilerPostResult uploadFile(@Param("dir") String dir, @Param("name") String name, @Param("file") File file);
+
+    @RequestLine("PUT /{dir}/{name}")
+    @Headers("Content-Type: multipart/form-data")
+    FilerPostResult uploadByteArray(@Param("dir") String dir, @Param("name") String name, @Param("file") byte[] file);
 
     @RequestLine("POST /{dir}/{name}")
     @Headers("Content-Type: multipart/form-data")

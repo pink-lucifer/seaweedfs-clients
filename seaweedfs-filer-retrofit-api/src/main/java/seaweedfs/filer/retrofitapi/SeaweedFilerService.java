@@ -1,6 +1,5 @@
 package seaweedfs.filer.retrofitapi;
 
-import io.reactivex.Flowable;
 import io.reactivex.Single;
 import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
@@ -12,7 +11,7 @@ public interface SeaweedFilerService {
 
     @Multipart
     @PUT
-    Flowable<FilerPostResult> upload(@Url String url, @Part MultipartBody.Part part);
+    Single<Response<FilerPostResult>> upload(@Url String url, @Part MultipartBody.Part part);
 
     @Multipart
     @POST

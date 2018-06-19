@@ -7,4 +7,5 @@ include 'seaweedfs-filer-feign-api'
 include 'seaweedfs-spring-boot-autoconfigure'
 include 'seaweedfs-spring'
 include 'seaweedfs-filer-reactor-api'
+include 'seaweedfs-clients-core'
 

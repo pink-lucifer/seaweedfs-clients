@@ -1,6 +1,5 @@
 package seaweedfs.filer.retrofitapi;
 
-import io.reactivex.Flowable;
 import io.reactivex.Single;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.MediaType;
@@ -8,16 +7,16 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import okio.BufferedSink;
+import okio.BufferedSource;
 import okio.Okio;
+import okio.Source;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.BlockJUnit4ClassRunner;
 import retrofit2.Call;
 import retrofit2.Response;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 
 @Slf4j
 @RunWith(BlockJUnit4ClassRunner.class)
@@ -34,10 +33,55 @@ public class SeaweedFilerServiceTest {
         File file = new File(filePath);
         RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
         MultipartBody.Part part = MultipartBody.Part.create(requestBody);
-        Flowable<FilerPostResult> resultFlowable = service.upload(path, part);
+        Single<Response<FilerPostResult>> resultSingle = service.upload(path, part);
+        resultSingle.doOnSuccess(r->{
+            if(r.isSuccessful()){
+                FilerPostResult body = r.body();
+                log.debug(body.toString());
+            }else {
+                ResponseBody responseBody = r.errorBody();
+                log.debug(responseBody.string());
+            }
+        }).doOnError(r->{
+            r.getCause().printStackTrace();
+        }).doFinally(
+                ()->log.debug("finally")
+        ).doAfterTerminate(
+                ()->log.debug("Terminated")
+        ).subscribe();
+    }
 
-        FilerPostResult result = resultFlowable.single(new FilerPostResult()).blockingGet();
-        //log.debug(" %s\n", result);
+    @Test
+    public void upload2() throws FileNotFoundException {
+        //System.getenv().entrySet().forEach(e->System.out.printf("env key: %s, value: %s\n", e.getKey(), e.getValue()));
+        String pwd = System.getenv("PWD");
+        String path = "avatar/png/";
+        String filePath = pwd + "/src/test/resources/images/awesome-vscode-logo.png";
+        File file = new File(filePath);
+        //Source source = Okio.source(file);
+
+        //BufferedSource bufferedSource = Okio.buffer(source);
+        //InputStream inputStream = bufferedSource.inputStream();
+
+        RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        MultipartBody.Part part = MultipartBody.Part.create(requestBody);
+        Single<Response<FilerPostResult>> resultSingle = service.upload(path, part);
+
+        resultSingle.doOnSuccess(r->{
+            if(r.isSuccessful()){
+                FilerPostResult body = r.body();
+                log.debug(body.toString());
+            }else {
+                ResponseBody responseBody = r.errorBody();
+                log.debug(responseBody.string());
+            }
+        }).doOnError(r->{
+            r.getCause().printStackTrace();
+        }).doFinally(
+                ()->log.debug("finally")
+        ).doAfterTerminate(
+                ()->log.debug("Terminated")
+        ).subscribe();
     }
 
     @Test

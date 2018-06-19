@@ -216,3 +216,5 @@ seaweedfs-spring/build
 seaweedfs-spring/out
 seaweedfs-filer-reactor-api/build
 seaweedfs-filer-reactor-api/out
+seaweedfs-clients-core/build
+seaweedfs-clients-core/out

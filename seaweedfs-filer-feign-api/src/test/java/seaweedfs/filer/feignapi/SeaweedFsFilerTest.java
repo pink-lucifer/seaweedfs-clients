@@ -2,7 +2,6 @@ package seaweedfs.filer.feignapi;
 
 import feign.Response;
 import lombok.extern.slf4j.Slf4j;
-import okio.Buffer;
 import okio.BufferedSink;
 import okio.Okio;
 import org.junit.Assert;
@@ -25,7 +24,20 @@ public class SeaweedFsFilerTest {
         String filename = "awesome-vscode-logo.png";
         String filePath = pwd + "/../test/images/awesome-vscode-logo.png";
         File file = new File(filePath);
-        FilerPostResult result = SEAWEED_FS_FILER_OKHTTP3.upload(dir, filename, file);
+        FilerPostResult result = SEAWEED_FS_FILER_OKHTTP3.uploadFile(dir, filename, file);
+        Assert.assertNotNull(result);
+        log.debug(result.toString());
+    }
+
+    @Test
+    public void uploadByteArray() throws IOException {
+        String pwd = System.getenv("PWD");
+        String dir = "avatar/png";
+        String filename = "awesome-vscode-logo.png";
+        String filePath = pwd + "/../test/images/awesome-vscode-logo.png";
+        File file = new File(filePath);
+        byte[] bytes = Okio.buffer(Okio.source(file)).readByteArray();
+        FilerPostResult result = SEAWEED_FS_FILER_OKHTTP3.uploadByteArray(dir, filename, bytes);
         Assert.assertNotNull(result);
         log.debug(result.toString());
     }
