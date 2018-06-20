@@ -218,3 +218,5 @@ seaweedfs-filer-reactor-api/build
 seaweedfs-filer-reactor-api/out
 seaweedfs-clients-core/build
 seaweedfs-clients-core/out
+seaweedfs-clients-core/shaded/build
+seaweedfs-clients-core/shaded/out

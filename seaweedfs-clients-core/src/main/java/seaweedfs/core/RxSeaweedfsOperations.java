@@ -1,6 +1,6 @@
 package seaweedfs.core;
 
-import io.reactivex.Single;
+import rx.Single;
 import seaweedfs.core.document.Document;
 import seaweedfs.core.message.ErrorResult;
 import seaweedfs.core.message.FilerPostResult;

@@ -8,4 +8,8 @@ include 'seaweedfs-spring-boot-autoconfigure'
 include 'seaweedfs-spring'
 include 'seaweedfs-filer-reactor-api'
 include 'seaweedfs-clients-core'
+include 'seaweedfs-clients-rxnetty'
+include('seaweedfs-clients-core-shaded')
+
+project(':seaweedfs-clients-core-shaded').projectDir = "$rootDir/seaweedfs-clients-core/shaded" as File
 

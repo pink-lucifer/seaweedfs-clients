@@ -13,7 +13,7 @@ plugins {
     id "nebula.dependency-recommender" version "5.2.0"
     id "nebula.maven-resolved-dependencies" version "7.1.0"
     id "nebula.maven-publish" version "7.1.0"
-    id  'maven-publish'
+    id 'maven-publish'
 }
 
 configurations {
@@ -41,13 +41,13 @@ publishing {
             nebulaDependencyManagement.withDependencies {
                 ['com.github.ben-manes.caffeine:caffeine:2.6.2',
                  'com.google.guava:guava:20.0',
-                 'io.zipkin.brave:brave-instrumentation-okhttp3:4.19.2',
-                 'io.zipkin.brave:brave-spring-beans:4.19.2',
+                 'io.zipkin.brave:brave-instrumentation-okhttp3:5.1.0',
+                 'io.zipkin.brave:brave-spring-beans:5.1.0',
                  'io.springfox:springfox-swagger2:2.8.0',
                  'io.springfox:springfox-swagger-ui:2.8.0',
                  'org.apache.commons:commons-pool2:2.5.0',
                  'io.swagger:swagger-annotations:1.5.14',
-                 'com.google.code.gson:gson:2.8.2',
+                 'com.google.code.gson:gson:2.8.5',
                  'com.squareup.retrofit2:retrofit:2.4.0',
                  'com.squareup.retrofit2:converter-gson:2.4.0',
                  'com.squareup.retrofit2:adapter-rxjava2:2.4.0',
@@ -75,6 +75,15 @@ publishing {
                  'io.github.openfeign:feign-gson:9.7.0',
                  'io.github.openfeign:feign-jackson:9.7.0',
                  'io.github.openfeign.form:feign-form:3.3.0',
+                 'io.reactivex:rxjava:1.3.8',
+                 'io.reactivex:rxnetty-http:0.5.2',
+                 'io.reactivex:rxnetty-tcp:0.5.2',
+                 'io.reactivex:rxnetty-common:0.5.2',
+                 'io.netty:netty-handler:4.1.25.Final',
+                 'io.netty:netty-codec-http:4.1.25.Final',
+                 'io.netty:netty-transport-native-epoll:4.1.25.Final',
+                 'io.netty:netty-buffer:4.1.25.Final',
+                 'io.netty:netty-common:4.1.25.Final',
                  'com.google.protobuf:protobuf-java:3.5.1',
                  'com.google.protobuf:protobuf-java-util:3.5.1',
                  'org.projectlombok:lombok:1.18.0',

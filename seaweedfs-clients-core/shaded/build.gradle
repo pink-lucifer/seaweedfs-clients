@@ -1,0 +1,50 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        jcenter()
+    }
+    dependencies { classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.4' }
+}
+
+plugins {
+    id "nebula.dependency-recommender" version "5.2.0"
+    id "nebula.maven-resolved-dependencies" version "7.1.0"
+    id "nebula.maven-publish" version "7.1.0"
+    id 'maven-publish'
+    id 'java'
+}
+
+apply plugin: 'com.github.johnrengelman.shadow'
+
+description = "Seaweedfs Client Core: Netty Shaded"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencyRecommendations {
+    strictMode = false
+    mavenBom module: "com.github.lufs.seaweedfs:seaweedfs-clients-bom:${seaweedfsClientVersion}"
+}
+
+dependencies {
+    implementation project(':seaweedfs-clients-core')
+    shadow ('io.reactivex:rxjava')
+}
+
+artifacts {archives shadowJar }
+
+shadowJar {
+    classifier = null
+    dependencies {
+        include(project(':seaweedfs-clients-core'))
+        include(dependency('io.netty:'))
+        exclude(dependency('io.reactivex:'))
+    }
+    relocate 'io.netty', 'seaweedfs.core.shaded.io.netty'
+    mergeServiceFiles()
+}

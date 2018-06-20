@@ -31,7 +31,9 @@ dependencyRecommendations {
 }
 
 dependencies {
-    implementation ('io.reactivex.rxjava2:rxjava')
+    implementation('io.reactivex:rxjava')
+    implementation('io.netty:netty-buffer')
+    //implementation ('io.reactivex.rxjava2:rxjava')
     compileOnly('org.projectlombok:lombok')
     testCompileOnly('org.projectlombok:lombok')
 }

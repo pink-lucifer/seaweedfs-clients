@@ -1,0 +1,57 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+        jcenter()
+        mavenCentral()
+    }
+}
+
+plugins {
+    id 'java'
+    id "nebula.dependency-recommender" version "5.2.0"
+    id "nebula.maven-resolved-dependencies" version "7.1.0"
+    id "nebula.maven-publish" version "7.1.0"
+    id "nebula.optional-base" version "3.3.0"
+    id  'maven-publish'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencyRecommendations {
+    strictMode = false
+    mavenBom module: "com.github.lufs.seaweedfs:seaweedfs-clients-bom:${seaweedfsClientVersion}"
+}
+
+dependencies {
+    implementation group: 'io.reactivex', name: 'rxnetty-http', {
+        transitive=true
+        exclude group: 'io.netty', module: 'netty-codec-http'
+    }
+    implementation group: 'io.netty', name: 'netty-codec-http'
+    implementation group: 'io.reactivex', name: 'rxnetty-common', {
+        transitive=true
+        exclude group: 'io.netty', module: 'netty-handler'
+        exclude group: 'io.netty', module: 'netty-transport-native-epoll'
+        exclude group: 'org.slf4j', module: 'slf4j-api'
+    }
+    implementation group: 'io.netty', name: 'netty-handler'
+    implementation group: 'io.netty', name: 'netty-transport-native-epoll'
+    implementation ('com.google.code.gson:gson')
+    implementation ('io.reactivex:rxjava')
+    implementation ('org.slf4j:slf4j-api')
+    implementation ('ch.qos.logback:logback-classic', optional)
+
+    implementation project(':seaweedfs-clients-core')
+    testImplementation('junit:junit:4.12')
+    compileOnly('org.projectlombok:lombok')
+    testCompileOnly('org.projectlombok:lombok')
+}

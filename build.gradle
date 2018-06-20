@@ -7,11 +7,11 @@ subprojects {
 
     buildscript {
         ext {
-            springBootVersion = '2.0.2.RELEASE'
-            springCloudVersion = 'Finchley.M9'
-            springDataVersion = 'Kay-SR7'
-            springVersion = '5.0.6.RELEASE'
-            reactorVersion = 'Bismuth-SR9'
+            springBootVersion = '2.0.3.RELEASE'
+            springCloudVersion = 'Finchley.RELEASE'
+            springDataVersion = 'Kay-SR7'//'Lovelace-SR3'
+            springVersion = '5.0.7.RELEASE'
+            reactorVersion = 'Bismuth-SR10'
             guavaVersion = '20.0'
 
             protocVersion = '3.5.1'
