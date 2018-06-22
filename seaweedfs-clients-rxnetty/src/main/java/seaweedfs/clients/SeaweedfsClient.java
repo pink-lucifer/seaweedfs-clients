@@ -40,18 +40,19 @@ public class SeaweedfsClient implements SeaweedfsOperations {
                 .setTransferEncodingChunked()
                 .writeContent(Observable.just(d.bytebuf()))
                 .flatMap(br -> {
+                            ContentSource<ByteBuf> content = br.getContent();
                             if (HttpResponseStatus.CREATED.equals(br.getStatus())
                                     || HttpResponseStatus.OK.equals(br.getStatus())) {
-                                return br.getContent().map(b -> gson.fromJson(b.toString(Charset.forName("utf-8")), FilerPostResult.class));
+                                return content.map(b -> gson.fromJson(b.toString(Charset.forName("utf-8")), FilerPostResult.class));
                             } else {
-                                return br.getContent().map(b -> gson.fromJson(b.toString(Charset.forName("utf-8")), JsonElement.class))
+                                return content.map(b -> gson.fromJson(b.toString(Charset.forName("utf-8")), JsonElement.class))
                                         .map(j -> {
                                             FilerPostResult filerPostResult = new FilerPostResult();
                                             JsonObject object = j.getAsJsonObject();
                                             String error = object.get("error").getAsString();
                                             filerPostResult.setError(error);
                                             return filerPostResult;
-                                        });
+                                        }).singleOrDefault(new FilerPostResult(br.getStatus().toString()));
                             }
                         }
 
@@ -82,8 +83,6 @@ public class SeaweedfsClient implements SeaweedfsOperations {
                         d.from(compositeByteBuf);
                         return null;
                     } else {
-                        //DisposableContentSource<ByteBuf> replayable = content.replayable();
-
                         return content.map(b -> gson.fromJson(b.toString(Charset.forName("utf-8")), JsonElement.class))
                                 .map(j -> {
                                     ErrorResult errorResult = new ErrorResult();
@@ -91,7 +90,7 @@ public class SeaweedfsClient implements SeaweedfsOperations {
                                     String error = object.get("error").getAsString();
                                     errorResult.setError(error);
                                     return errorResult;
-                                });
+                                }).singleOrDefault(new ErrorResult(br.getStatus().toString()));
                     }
                 }).toBlocking().single();
 

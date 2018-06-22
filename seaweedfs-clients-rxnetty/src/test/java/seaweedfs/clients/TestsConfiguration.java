@@ -13,7 +13,7 @@ public class TestsConfiguration {
     public static final int DEFAULT_PORT = 9006;
     public static final Gson GSON = new GsonBuilder().setLenient().create();
 
-    public static final SocketAddress SOCKET_ADDRESS = InetSocketAddress.createUnresolved("127.0.0.1", DEFAULT_PORT);
+    public static final SocketAddress SOCKET_ADDRESS = InetSocketAddress.createUnresolved("172.16.89.145", DEFAULT_PORT);
     public static final HttpClient<ByteBuf, ByteBuf> HTTP_CLIENT = HttpClient.newClient(SOCKET_ADDRESS)
             .enableWireLogging("seaweedfs-client", LogLevel.INFO);
 }

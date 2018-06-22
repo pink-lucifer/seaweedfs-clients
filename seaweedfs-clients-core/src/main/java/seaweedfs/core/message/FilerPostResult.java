@@ -1,10 +1,12 @@
 package seaweedfs.core.message;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
 @Data
+@NoArgsConstructor
 public class FilerPostResult implements Serializable {
     private static final long serialVersionUID = 992252084874844015L;
     private String name;
@@ -12,6 +14,10 @@ public class FilerPostResult implements Serializable {
     private String fid;
     private String url;
     private String error;
+
+    public FilerPostResult(String error) {
+        this.error = error;
+    }
 
     @Override
     public String toString() {
