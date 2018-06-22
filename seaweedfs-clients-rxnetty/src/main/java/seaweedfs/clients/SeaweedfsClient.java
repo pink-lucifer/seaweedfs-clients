@@ -14,6 +14,10 @@ import io.reactivex.netty.protocol.http.client.HttpClient;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import rx.Observable;
+import rx.Scheduler;
+import rx.Single;
+import rx.schedulers.Schedulers;
+import rx.subjects.ReplaySubject;
 import seaweedfs.core.SeaweedfsOperations;
 import seaweedfs.core.document.Document;
 import seaweedfs.core.message.ErrorResult;
@@ -40,7 +44,7 @@ public class SeaweedfsClient implements SeaweedfsOperations {
                 .setTransferEncodingChunked()
                 .writeContent(Observable.just(d.bytebuf()))
                 .flatMap(br -> {
-                            ContentSource<ByteBuf> content = br.getContent();
+                    ContentSource<ByteBuf> content = br.getContent();
                             if (HttpResponseStatus.CREATED.equals(br.getStatus())
                                     || HttpResponseStatus.OK.equals(br.getStatus())) {
                                 return content.map(b -> gson.fromJson(b.toString(Charset.forName("utf-8")), FilerPostResult.class));
@@ -66,7 +70,39 @@ public class SeaweedfsClient implements SeaweedfsOperations {
 
     @Override
     public <D extends Document<?>> Optional<ErrorResult> download(D d) {
-        return streamDownload(d);
+        ErrorResult errorResult = new ErrorResult();
+        httpClient.createGet(d.filerUrl())
+                .setTransferEncodingChunked()
+                .flatMap(br->{
+                    ReplaySubject<Void> replaySubject = ReplaySubject.create();
+                    ContentSource<ByteBuf> content = br.getContent();
+                    if (HttpResponseStatus.OK.equals(br.getStatus())) {
+                        CompositeByteBuf compositeByteBuf = Unpooled.compositeBuffer();
+                        final Scheduler.Worker worker = Schedulers.io().createWorker();
+                        worker.schedule(()->{
+                            content.replayable()
+                                    .autoRelease()
+                                    .toBlocking()
+                                    .forEach(b->compositeByteBuf.addComponents(true, b));
+
+                            d.from(compositeByteBuf);
+                            replaySubject.onCompleted();
+                        });
+                    } else {
+                        content.map(b -> gson.fromJson(b.toString(Charset.forName("utf-8")), JsonElement.class))
+                                .map(j -> {
+                                    JsonObject object = j.getAsJsonObject();
+                                    String error = object.get("error").getAsString();
+                                    errorResult.setError(error);
+                                    return errorResult;
+                                }).singleOrDefault(errorResult);
+                        replaySubject.onCompleted();
+                    }
+                    return replaySubject;
+                }).toBlocking().subscribe();
+
+        return Optional.of(errorResult);
+        //return streamDownload(d);
     }
 
     @Override
@@ -79,9 +115,10 @@ public class SeaweedfsClient implements SeaweedfsOperations {
                         CompositeByteBuf compositeByteBuf = Unpooled.compositeBuffer();
                         content.replayable()
                                 .autoRelease()
+                                .toBlocking()
                                 .subscribe(b -> compositeByteBuf.addComponent(b));
                         d.from(compositeByteBuf);
-                        return null;
+                        return Observable.just(new ErrorResult());
                     } else {
                         return content.map(b -> gson.fromJson(b.toString(Charset.forName("utf-8")), JsonElement.class))
                                 .map(j -> {

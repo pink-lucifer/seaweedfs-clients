@@ -59,6 +59,16 @@ public class SeaweedfsClientTest {
         optional.ifPresent(e->log.debug("error {}", e));
     }
 
+    @Test
+    public void streamDownload(){
+        String dir = "/avatar/png/";
+        String filename = "awesome-vscode-logo.png";
+        ByteArrayDocument document = ByteArrayDocument.create(dir + filename, filename);
+        Optional<ErrorResult> optional = seaweedfsClient.streamDownload(document);
+
+        optional.ifPresent(e->log.debug("error {}", e));
+    }
+
     @After
     public void teardown(){
 
